@@ -21,7 +21,7 @@ pkill mintupdate
 # Warning: Not tested for portability 
 # ------------------------------------------------
  
-## who am i? ##
+### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
  
 ## Delete last component from $_script ##
