@@ -1,4 +1,4 @@
-Copyright © guekho64 2015
+** Copyright © guekho64 2015 **
 
 Los Scripts ("El Software") son proveídos "Tal Cual", por lo que no poseen NINGUNA GARANTÍA, y solo se tiene la esperanza de que funcionen correctamente.
 
