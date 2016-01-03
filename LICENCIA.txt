@@ -1,4 +1,4 @@
-**  Copyright © guekho64 2015  **
+**  Copyright © guekho64 2016  **
 
 Los Scripts ("El Software") son proveídos "Tal Cual", por lo que no poseen NINGUNA GARANTÍA, y solo se tiene la esperanza de que funcionen correctamente.
 
@@ -18,39 +18,43 @@ Además hace uso del PPA ubicado en:
 
 "https://launchpad.net/~xubuntu-dev/+archive/ubuntu/xfce-4.12"
 
-a cargo de “Xubuntu Developers” team 
+a cargo de “Xubuntu Developers team"
 
 ("https://launchpad.net/~xubuntu-dev")
 
 Este Software está diseñado para ejecutarse en el Sistema Operativo 
-Ubuntu, propiedad de © 2015 Canonical Ltd.
+Ubuntu, propiedad de © 2016 Canonical Ltd.
 
-Ni El Software ni El Dueño han sido patrocinados, certificados o aprovados de ninguna otra forma por las marcas o empresas arriba mencionadas
+Ni El Software ni El Dueño han sido patrocinados, certificados o aprovados de ninguna forma por las marcas o empresas mencionadas
 
-Ninguno de los servidores o programas mencionados anteriormente, a excepción de El Software, me pertenece o patrocina. Asímismo, tampoco me pertenecen los archivos que El Software descargue a petición del usuario final.
+Ninguno de los servidores o programas mencionados , a excepción de El Software, me pertenece o patrocina. Asímismo, tampoco me pertenecen los archivos que El Software descargue a petición del usuario final.
 
-El Software es propiedad de © 2015 guekho64 ("El Dueño")
+El Software es propiedad de © 2016 guekho64 ("El Dueño")
 
 TÉRMINOS DE USO:
 
 Queda estrictamente prohibida la asociación de la creación o pertenencia de El Software a cualquier otra persona, salvo El Dueño, que es el único a quien se le puede asociar de la creación o pertenencia de El Software.
 
-Queda estrictamente prohibido el re-almacenamiento de El Software en algún otro sitio de almacenamiento en línea. El Software solo podrá ser obtenido desde los enlaces originales.
+Queda estrictamente prohibido el re-almacenamiento de El Software en algún otro sitio de almacenamiento en línea. El Software solo podrá ser obtenido desde los enlaces originales, ubicados en:
+
+"http://guekho64.webs.com/instalador-de-minecraft"
 
 El Software puede ser re-distribuído por cualquier persona mediante los enlaces originales, independientemente de que sea El Dueño o no.
 
 El Software es de "Código Abierto", por lo que puede ser modificado por cualquier persona, independientemente de que sea El Dueño o no, además de que puede ser accesado por cualquier persona, independientemente de que sea El Dueño o no.
 
-Si El Software es modificado por cualquier otra persona, aquella persona que lo modificó puede reclamar la auditoría de su propio software modificado CON LA CONDICIÓN de que esta misma persona que modificó El Software, de alguna modo, tenga el permiso de El Dueño de El Software original POR ESCRITO para poder distribuír su versión modificada de El Software
+Si El Software es modificado por cualquier otra persona, aquella persona que lo modificó puede reclamar la auditoría de su propio software modificado CON LA CONDICIÓN de que esta misma persona que modificó El Software tenga el permiso de El Dueño para poder distribuír su versión modificada de El Software.
 
-De lo contrario, no tendrá permisos de hacer pública  su creación a otras personas, ni tampoco de distribuírla a otras personas, además de no cumplir con la condición inicial, con lo que no podrá reclamar derechos de auditoría sobre su propio software modificado, con lo que de manera automática, los derechos de autor serán atribuídos a El Dueño de El Software original.
+De lo contrario, no tendrá permiso de hacer pública  su creación a otras personas, ni tampoco de distribuírla a otras personas, con lo que no podrá reclamar derechos de auditoría sobre su propio software modificado, con lo que de manera automática, los derechos de autor serán atribuídos a El Dueño de El Software original.
 
-El Software original no puede ser utilizado para propósitos con fines lucrativos. De igual forma sucede con CUALQUIER trabajo basado o derivado de El Software original. Solo El Dueño puede decidir a quien darle permiso(s) de utilizar El Software, o cualquier derivado del mismo, para utilizarlo de alguna otra manera que normalmente sería prohibida por la licencia.
+El Software original no puede ser utilizado para propósitos con fines lucrativos. De igual forma sucede con CUALQUIER trabajo basado o derivado de El Software original. Solo El Dueño puede decidir a quien darle permiso(s) de utilizar El Software, o cualquier derivado del mismo, para utilizarlo de alguna otra manera que normalmente sería prohibida por Los Términos De Uso.
 
-El Dueño tiene todos los derechos de hacer con EL Software lo que se le plazca, incluyendo utilizarlo para propósitos lucrativos, o permitir que otras personas tengan derechos "Especiales" sobre los demás, incluso, sobre la Licencia y Términos de Uso.
+El Dueño tiene todos los derechos de hacer con EL Software lo que se le plazca, incluyendo utilizarlo para propósitos lucrativos, o permitir que otras personas tengan derechos "Especiales" sobre los demás, incluso, sobre la Licencia y Los Términos de Uso.
 
-En caso del incumplimiento de los Términos De Uso, El Dueño decidirá las medidas a tomar y el castigo a quien corresponda
+En caso del incumplimiento de los Términos De Uso, El Dueño decidirá las medidas a tomar y el castigo a quien corresponda.
 
-Podrás encontrar el código fuente al abrir cada script con un editor de textos. Igual podrás hallarlo en GitHub
+Podrás encontrar el código fuente al abrir cada script con un editor de textos. Igual podrás hallarlo en GitHub en el siguiente enlace:
 
+"https://github.com/guekho64/Minecraft-Installer-for-Ubuntu"
 
+Para cualquier aclaración, contacte al dueño mediante el siguiente correo electrónico:  guekho64@gmail.com
