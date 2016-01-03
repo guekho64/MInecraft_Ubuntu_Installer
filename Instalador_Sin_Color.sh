@@ -2,6 +2,7 @@
 
 #Zona Especial
 
+#I don't even recall if this still works...
 reset
 pkill mintupdate
 
