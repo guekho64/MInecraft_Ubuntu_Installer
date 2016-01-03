@@ -1,8 +1,11 @@
-#Copyright guekho64 © 2015
+#!/bin/bash
+#Copyright guekho64 © 2016
 
 #Zona Especial
 
 reset
+
+#I don't even recall if this still works...
 pkill mintupdate
 
  Arranque () { (
@@ -12,14 +15,6 @@ pkill mintupdate
  Instalador () { ( 
 
  Offline () { ( 
-
-#Copyright guekho64 © 2015 
-
-#!/bin/bash
-# Name: /tmp/demo.bash : 
-# Purpose: Tell in what directory $0 is stored in
-# Warning: Not tested for portability 
-# ------------------------------------------------
  
 ### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -39,9 +34,6 @@ cyan=$(tput setaf 6)
 blanco=$(tput setaf 7)    
 null=$(tput sgr0)       
 
-#Ejemplo:
-#echo "${negritas}${cyan}Esta es mi propia prueba de color, pero no ${amarillo}amarillo, sino ${rojo}rojo...aunque bueno, es hora de apagar las luces...${null}"
-
 cd ~
 
 Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
@@ -50,7 +42,8 @@ Minecraft_Icon="[Desktop Entry]
 Version=1.0
 Type=Application
 Name=Minecraft Offline
-Comment=¡Juega en un mundo totalmente abierto!
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
 Icon=/.guekho64/icons/ml.ico
 Exec=minecraft-offline
 Path=
@@ -95,7 +88,7 @@ blanco=$(tput setaf 7)
 null=$(tput sgr0)
 	
 	
-echo "${negritas}${amarillo}Es posible que se le solicite su contraseña. Si es el caso, por favor tecleela${null}"
+echo "${negritas}${amarillo}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
 
 ( touch $Secret/minecraft-offline )
 if [ $? -ne 0 ]; then 
@@ -156,7 +149,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-echo "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecleela${null}"
+echo "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
 
 sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop
 if [ $? -ne 0 ]; then 
@@ -216,14 +209,6 @@ rm ~/.guekho64/minecraft/.secret/SOYOFFLINE > /dev/null 2>&1
 ) }
 
  Oficial () { ( 
-
-#Copyright guekho64 © 2015 
-
-#!/bin/bash
-# Name: /tmp/demo.bash : 
-# Purpose: Tell in what directory $0 is stored in
-# Warning: Not tested for portability 
-# ------------------------------------------------
  
 ## who am i? ##
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -243,18 +228,16 @@ cyan=$(tput setaf 6)
 blanco=$(tput setaf 7)    
 null=$(tput sgr0)       
 
-#Ejemplo:
-#echo "${negritas}${cyan}Esta es mi propia prueba de color, pero no ${amarillo}amarillo, sino ${rojo}rojo...aunque bueno, es hora de apagar las luces...${null}"
-
 cd ~
 
 Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
 
-Minecraft_Icon="[Desktop Entry]
+Minecraft_Icon_Premium="[Desktop Entry]
 Version=1.0
 Type=Application
 Name=Minecraft
-Comment=¡Juega en un mundo totalmente abierto!
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
 Icon=/.guekho64/icons/ml.ico
 Exec=minecraft
 Path=
@@ -299,7 +282,7 @@ blanco=$(tput setaf 7)
 null=$(tput sgr0)
 	
 	
-echo "${negritas}${amarillo}Es posible que se le solicite su contraseña. Si es el caso, por favor tecleela${null}"
+echo "${negritas}${amarillo}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
 
 ( touch $Secret/minecraft )
 if [ $? -ne 0 ]; then 
@@ -330,7 +313,7 @@ MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files/
 		
 (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-256x256x8.png -O $MinecraftHomeIcons/ml.ico) > /dev/null 2>&1
-( printf "$Minecraft_Icon" ) > ~/.guekho64/minecraft/desktop_files/minecraft.desktop
+( printf "$Minecraft_Icon_Premium" ) > ~/.guekho64/minecraft/desktop_files/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	echo "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -360,7 +343,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-echo "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecleela${null}"
+echo "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
 
 sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop
 if [ $? -ne 0 ]; then 
@@ -418,14 +401,6 @@ echo "${blanco}Bye${null}"
 		fi;
 
 ) }
-
-#Copyright guekho64 © 2015 
-
-#!/bin/bash
-# Name: /tmp/demo.bash : 
-# Purpose: Tell in what directory $0 is stored in
-# Warning: Not tested for portability 
-# ------------------------------------------------
  
 ## who am i? ##
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -462,15 +437,17 @@ ${null}${negritas}Soy guekho64, el creador de este Script para Instalar Minecraf
 launcher será reemplazado por el nuevo.${amarillo} Si por alguna razón necesitas 
 desinstalar mi programa, por favor utiliza el script de ${null}${negritas}${morado}reseteado ${null}${negritas}${amarillo}para dejar tu computadora como antes, obviamente, sin Minecraft..."
 
-sleep 12
-
 echo "
 ${negritas}${rojo}Es importante que todo lo escribas correctamente tal y como se te pide en los 
 cuadros de diálogo, incluyendo las letras Mayúsculas.${cyan}Igual toma en cuenta que al presionar ENTER sin escribir ninguna palabra, al presionar la combinación 
 de teclas ${blanco}CTRL + C / CTRL + Z${cyan} o al escribir cualquier otra palabra que no sea de alguna de las opciones que se te presentan, ya sea ${azul}"Si" ${cyan}o ${verde}"No" ${cyan}, ${rojo}sin la "S" y la "N" 
 Mayúsculas${rojo}, ${amarillo}el programa automáticamente se cerrará${null}"
 
-sleep 12
+echo "Presione Enter para continuar" ;
+read ;
+reset ;
+
+
 
 echo "
 ${negritas}${azul}		    Probando la conexiòn a${null} ${negritas}${verde}Internet${azul}... ${null}  "
@@ -675,14 +652,6 @@ fi;
 
 
 ) }
-
-#Copyright guekho64 © 2015 
-
-#!/bin/bash
-# Name: /tmp/demo.bash : 
-# Purpose: Tell in what directory $0 is stored in
-# Warning: Not tested for portability 
-# ------------------------------------------------
  
 ## who am i? ##
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
