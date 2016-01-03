@@ -14,7 +14,7 @@ pkill mintupdate
 
  Offline () { ( 
 
-#Copyright guekho64 © 2015 
+#Copyright guekho64 © 2016
 
 #!/bin/bash
 # Name: /tmp/demo.bash : 
