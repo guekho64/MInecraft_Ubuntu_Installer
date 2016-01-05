@@ -76,18 +76,17 @@ DeskFolder=${desktopFolder:6}
 
 DesktopFolder=$(echo ~/$DeskFolder)
 
-echo $DesktopFolder
 
 #I don't even recall if this still works...
 pkill mintupdate
 
- Arranque () { (
+ function Arranque  { (
 
- Launcher () { ( 
+ function Launcher { ( 
 
- Instalador () { ( 
+ function Instalador { ( 
 
- Offline () { ( 
+ function Offline { ( 
  
 ### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -107,7 +106,7 @@ cyan=$(tput setaf 6)
 blanco=$(tput setaf 7)    
 null=$(tput sgr0)       
 
-cd ~
+cd ~ || exit
 
 cat "/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
 if [ $? -ne 0 ]; then 
@@ -119,6 +118,7 @@ if [ $? -ne 0 ]; then
         exit
     else
         Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
+fi;
 else
 Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
@@ -225,7 +225,7 @@ Menu_Nv8
 
 	if  [ "$Rspta_Nv8" = "Si" ]  ; then
 		Desktop=$DesktopFolder
-    if  [ "$Rspta_Nv8" = "No" ]  ; then
+    elif  [ "$Rspta_Nv8" = "No" ]  ; then
         reset
 		echo "${negritas}${azul}Se pondrà el icono de Minecraft en su carpeta personal${null}"
 		sleep 3.2
@@ -382,7 +382,7 @@ rm ~/.guekho64/minecraft/.secret/SOYOFFLINE > /dev/null 2>&1
 
 ) }
 
- Oficial () { ( 
+ function Oficial { ( 
  
 ### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -413,9 +413,10 @@ if [ $? -ne 0 ]; then
         sleep 3.2
         exit
     else
-        Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+        Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
+fi;
 else
-Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
 
 Minecraft_Icon_Premium="[Desktop Entry]
@@ -677,7 +678,7 @@ rm ~/.guekho64/minecraft/.secret/SOYOFFLINE > /dev/null 2>&1
 
 ) }
 
-Oficial_A () { ( 
+function Oficial_A { ( 
  
 ### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -708,9 +709,10 @@ if [ $? -ne 0 ]; then
         sleep 3.2
         exit
     else
-        Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+        Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
+fi;
 else
-Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
 
 Minecraft_Icon_Premium="[Desktop Entry]
@@ -937,7 +939,7 @@ hcentro "$Aviso"
 
 ) }
 
-Offline_A () { ( 
+function Offline_A { ( 
  
 ### who am i? ###
 _script="$(readlink -f ${BASH_SOURCE[0]})" > /dev/null 2>&1
@@ -969,6 +971,7 @@ if [ $? -ne 0 ]; then
         exit
     else
         Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
+fi;
 else
 Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
@@ -1075,7 +1078,7 @@ Menu_Nv8
 
 	if  [ "$Rspta_Nv8" = "Si" ]  ; then
 		Desktop=$DesktopFolder
-    if  [ "$Rspta_Nv8" = "No" ]  ; then
+    elif  [ "$Rspta_Nv8" = "No" ]  ; then
         reset
 		echo "${negritas}${azul}Se pondrà el icono de Minecraft Offline en su carpeta personal${null}"
 		sleep 3.2
@@ -1296,7 +1299,7 @@ sleep 3.2
 reset
 		fi;
 	
-((exec mkdir ~/.guekho64) && (exec mkdir ~/.guekho64/minecraft) && (exec mkdir ~/.guekho64/minecraft/launchers)&& (exec mkdir ~/.guekho64/minecraft/launchers/original) && (exec mkdir ~/.guekho64/minecraft/launchers/offline) && (exec mkdir ~/.guekho64/minecraft/icons) && (exec mkdir ~/.guekho64/minecraft/desktop_files) && (exec mkdir ~/.guekho64/minecraft/.secret) && (exec mkdir ~/.local/share/applications/ ) ) > /dev/null 2>&1
+( (exec mkdir ~/.guekho64) && (exec mkdir ~/.guekho64/minecraft) && (exec mkdir ~/.guekho64/minecraft/launchers)&& (exec mkdir ~/.guekho64/minecraft/launchers/original) && (exec mkdir ~/.guekho64/minecraft/launchers/offline) && (exec mkdir ~/.guekho64/minecraft/icons) && (exec mkdir ~/.guekho64/minecraft/desktop_files) && (exec mkdir ~/.guekho64/minecraft/.secret) && (exec mkdir ~/.local/share/applications/ ) ) > /dev/null 2>&1
 
 sleep .64
 
@@ -1332,7 +1335,7 @@ function menu {
     hcentro "${negritas}${blanco}Opciones Disponibles:${null}"
     echo ""
     for i in ${!options[@]}; do 
-        printf "%3d%s) %s\n" $((1+i)) "${choices[i]:- }" "${options[i]}"
+        printf "%3d%s) %s\n" $"(( 1+i ))" "${choices[i]:- }" "${options[i]}"
     done
     [[ "$msg" ]] && echo "$msg"; :
 }
