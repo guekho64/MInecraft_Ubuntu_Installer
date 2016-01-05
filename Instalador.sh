@@ -5,6 +5,8 @@
 
 reset
 
+MyMessage="Instalador de Minecraft de guekho64 © 2016"
+
 #Universal Functions
 function hcentro {
 
@@ -354,7 +356,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
 echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}${subrayado}ENTER ${azul}${negritas}para salir${null}"
 		
@@ -650,7 +652,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
 echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}${subrayado}ENTER ${azul}${negritas}para salir${null}"
 		
@@ -1207,7 +1209,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
 echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}${subrayado}ENTER ${azul}${negritas}para salir${null}"
 		
@@ -1951,6 +1953,8 @@ function centro {
   vcentro "`hcentro $text`"
 }
 
+reset
+
 hcentro "${negritas}${verde}Script de ${cyan}guekho64${verde} para instalar Minecraft${null}"
 
 sleep 2
@@ -1964,7 +1968,7 @@ sleep 2
 
 title="${negritas}${amarillo}¿Qué desea hacer?${null}"
 prompt="${negritas}${blanco}
-Seleccione una Opción${null}"
+Seleccione una Opción:${null}"
 options=("${negritas}${verde}Instalar${null}" "${negritas}${rojo}Desinstalar${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
@@ -2087,7 +2091,7 @@ function centro {
 
 title="${negritas}${blanco}¿Te gustaría borrar tu carpeta .minecraft${null}"
 prompt="${negritas}${blanco}
-Seleccione una Opción${null}"
+Seleccione una Opción:${null}"
 options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
@@ -2183,7 +2187,7 @@ function centro {
 
 title="${negritas}${amarillo}¿Te gustaría borrar las fuentes externas de programas${null}"
 prompt="${negritas}${blanco}
-Seleccione una Opción${null}"
+Seleccione una Opción:${null}"
 options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
@@ -2293,6 +2297,7 @@ reset
 
 echo "${negritas}${amarillo}Por favor introduzca su contraseña.Es normal que no se vea${ull}"
 
+( ( printf "$Acepto" ) > ~/.Acepto.txt ) > /dev/null 2>&1
 ( sudo chmod go-w ~/.Acepto.txt ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -2379,7 +2384,7 @@ null=$(tput sgr0)
 title="${negritas}${verde}¿Te gustaría instalar una terminal adicional en caso de que esta falle?
 ${null}"
 prompt="${negritas}${blanco}
-Seleccione una Opción${null}"
+Seleccione una Opción:${null}"
 options=("${negritas}${verde}Si${null}" "${negritas}${amarillo}No${null}" "${negritas}${rojo}Nunca${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
@@ -2414,13 +2419,6 @@ centro "${negritas}${cyan}Trabajando...${null}"
 if  [ "$Rspta_Nv2" = "Si" ]  ; then
 
 		sudo apt update > /dev/null 2>&1
-        if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	reset
-	echo "${negritas}${rojo}Ha ocurrido un error en la instalación del programa. Saliendo...${null}";
-	sleep 2
-	exit
-fi;
         sudo apt install xfce4-terminal -y > /dev/null 2>&1
         if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -2590,7 +2588,7 @@ null=$(tput sgr0)
 title="${negritas}¿Acepta usted la licencia y sus respectivos términos de uso?
 ${null}"
 prompt="${negritas}${blanco}
-Seleccione una Opción${null}"
+Seleccione una Opción:${null}"
 options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
 respuesta=$(echo "${negritas}${amarillo}
 Has elegido:${null}" )
@@ -2642,7 +2640,6 @@ else
 	hcentro "${negritas}${verde}Al parecer usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
     hcentro "${negritas}${verde}por lo que el instalador puede continuar${null}"
 	sleep 6.4
-	( ( printf "$Acepto" ) > ~/.Acepto.txt ) > /dev/null 2>&1
 	( chmod 444 ~/.Acepto.txt ) > /dev/null 2>&1
 	Arranque
 	fi;
