@@ -8,6 +8,10 @@ reset
 MyMessage="Instalador de Minecraft de guekho64 © 2016"
 Uninstall="Desinstalación de Minecraft Completada"
 
+Inexistente="Inexistente"
+Inactivo="Inactivo"
+Activo="Activo"
+
 #Universal Functions
 function hcentro {
 
@@ -1756,7 +1760,7 @@ fi;
 }
         function Anti_PPA2 {
 
-echo $Anti_PPA_Result | grep "# deb" > /dev/null 2>&1
+echo $Anti_PPA_Result | grep "#" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
     
     Estado_PPA_no1wantdthisname_openjdk=Activo
@@ -1771,13 +1775,15 @@ echo $Estado_PPA_no1wantdthisname_openjdk
 
         Anti_PPA
 
-        if [ $Estado_PPA_no1wantdthisname_openjdk = "Inexistente" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
         ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
-        if [ $Estado_PPA_no1wantdthisname_openjdk = "Inactivo" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
         Fixed_PPA_no1wantdthisname_openjdk=$(cat $PPA | sed '$d' | sed "s/#//")
+        sudo chmod 777 $PPA
         sudo echo $Fixed_PPA_no1wantdthisname_openjdk > $PPA
+        sudo chmod 444 $PPA
         if [ $? -ne 0 ]; then 
         rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	      hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1786,7 +1792,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk
         else
         echo "" > /dev/null 2>&1
         fi
-        elif [ $Estado_PPA_no1wantdthisname_openjdk = "Activo" ]  > /dev/null 2>&1 ; then
+        elif [ $Estado_PPA_no1wantdthisname_openjdk = $Activo ]  > /dev/null 2>&1 ; then
         echo "" > /dev/null 2>&1
         fi
         fi
@@ -1807,7 +1813,7 @@ fi;
 }
         function Anti_PPA_a2 {
 
-echo $Anti_PPA_a_Result | grep "# deb" > /dev/null 2>&1
+echo $Anti_PPA_a_Result | grep "#" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
     
     Estado_PPA_no1wantdthisname=Activo
@@ -1822,13 +1828,15 @@ echo $Estado_PPA_no1wantdthisname
 
         Anti_PPA_a
 
-        if [ $Estado_PPA_no1wantdthisname = "Inexistente" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
         ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
-        if [ $Estado_PPA_no1wantdthisname = "Inactivo" ]  > /dev/null 2>&1 ; then
-        Fixed_PPA_a_no1wantdthisname_openjdk=$(cat $PPA_a | sed '$d' | sed "s/#//")
-        sudo echo $Fixed_PPA_a_no1wantdthisname_openjdk > $PPA_a
+        if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
+        Fixed_PPA_a_no1wantdthisname=$(cat $PPA_a | sed '$d' | sed "s/#//")
+        sudo chmod 777 $PPA_a
+        sudo echo $Fixed_PPA_a_no1wantdthisname > $PPA_a
+        sudo chmod 444 $PPA_a
         if [ $? -ne 0 ]; then 
         rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	      hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1837,7 +1845,7 @@ echo $Estado_PPA_no1wantdthisname
         else
         echo "" > /dev/null 2>&1
         fi
-        elif [ $Estado_PPA_no1wantdthisname = "Activo" ]  > /dev/null 2>&1 ; then
+        elif [ $Estado_PPA_no1wantdthisname = $Activo ]  > /dev/null 2>&1 ; then
         echo "" > /dev/null 2>&1
         fi
         fi
@@ -1869,6 +1877,7 @@ elif  [ "$Rspta_Nv6" = "No" ]  ; then
         hcentro "${cyan}${negritas}que suelen ocurrir con la versión ${negritas}${verde}OFICIAL${null} ${cyan}${negritas}, como errores en las fuentes${null}"
         echo ""
         hcentro "${negritas}${verde}Para continuar presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
+        read ;
         reset
         function Menu_Nv7 {
 
@@ -1923,10 +1932,11 @@ function centro {
   vcentro "`hcentro $text`"
 }
 
-title="${negritas}${amarillo}¿Desearía usted que instale la versión ${negritas}${verde}OFICIAL${null} de Java?"
+title="${negritas}${amarillo}¿Desearía usted que instale la versión ${negritas}${verde}OFICIAL${null} ${negritas}${amarillo}de Java?${null}
+"
 prompt="${negritas}${blanco}
 Seleccione una Opción:${null}"
-options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}" "${negritas}${amarillo}Prefiero la externa${null}")
+options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}" "${negritas}${cyan}Prefiero la anterior${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
 
@@ -1956,6 +1966,7 @@ done
         sudo echo ""
         reset
         hcentro "${negritas}${cyan}Trabajando. Esto llevará tiempo${null}"
+        echo ""
         hcentro "${negritas}${verde}Si tienes las notificaciones activadas,serás notificado cuando esto termine ${null}"
         sudo pkill synaptic
         sudo apt-get clean > /dev/null 2>&1
@@ -1985,6 +1996,7 @@ done
           sudo echo ""
           reset
           hcentro "${negritas}${cyan}Trabajando. Esto llevará tiempo${null}"
+          echo ""
           hcentro "${negritas}${verde}Si tienes las notificaciones activadas,serás notificado cuando esto termine ${null}"
           sudo pkill synaptic > /dev/null 2>&1
           sudo apt-get clean > /dev/null 2>&1
@@ -2005,7 +2017,7 @@ fi;
 }
         function Anti_PPA2 {
 
-echo $Anti_PPA_Result | grep "# deb" > /dev/null 2>&1
+echo $Anti_PPA_Result | grep "#" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
     
     Estado_PPA_no1wantdthisname_openjdk=Activo
@@ -2020,11 +2032,11 @@ echo $Estado_PPA_no1wantdthisname_openjdk
 
         Anti_PPA
 
-        if [ $Estado_PPA_no1wantdthisname_openjdk = "Inexistente" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
         ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
-        if [ $Estado_PPA_no1wantdthisname_openjdk = "Inactivo" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
         Fixed_PPA_no1wantdthisname_openjdk=$(cat $PPA | sed '$d' | sed "s/#//")
         sudo echo $Fixed_PPA_no1wantdthisname_openjdk > $PPA
         if [ $? -ne 0 ]; then 
@@ -2035,7 +2047,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk
         else
         echo "" > /dev/null 2>&1
         fi
-        elif [ $Estado_PPA_no1wantdthisname_openjdk = "Activo" ]  > /dev/null 2>&1 ; then
+        elif [ $Estado_PPA_no1wantdthisname_openjdk = $Activo ]  > /dev/null 2>&1 ; then
         echo "" > /dev/null 2>&1
         fi
         fi
@@ -2056,7 +2068,7 @@ fi;
 }
         function Anti_PPA_a2 {
 
-echo $Anti_PPA_a_Result | grep "# deb" > /dev/null 2>&1
+echo $Anti_PPA_a_Result | grep "#" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
     
     Estado_PPA_no1wantdthisname=Activo
@@ -2071,11 +2083,11 @@ echo $Estado_PPA_no1wantdthisname
 
         Anti_PPA_a
 
-        if [ $Estado_PPA_no1wantdthisname = "Inexistente" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
         ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
-        if [ $Estado_PPA_no1wantdthisname = "Inactivo" ]  > /dev/null 2>&1 ; then
+        if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
         Fixed_PPA_a_no1wantdthisname_openjdk=$(cat $PPA_a | sed '$d' | sed "s/#//")
         sudo echo $Fixed_PPA_a_no1wantdthisname_openjdk > $PPA_a
         if [ $? -ne 0 ]; then 
@@ -2086,7 +2098,7 @@ echo $Estado_PPA_no1wantdthisname
         else
         echo "" > /dev/null 2>&1
         fi
-        elif [ $Estado_PPA_no1wantdthisname = "Activo" ]  > /dev/null 2>&1 ; then
+        elif [ $Estado_PPA_no1wantdthisname = $Activo ]  > /dev/null 2>&1 ; then
         echo "" > /dev/null 2>&1
         fi
         fi
@@ -2968,9 +2980,9 @@ select opt in "${options[@]}"; do
     case "$REPLY" in
 
     1 ) echo "
-$respuestá $opt" && Rspta_Nv1="Si" && sleep 1.64 && reset;;
+$respuesta $opt" && Rspta_Nv1="Si" && sleep 1.64 && reset;;
     2 ) echo "
-$respuestá $opt" && Rspta_Nv1="No" && sleep 1.64 && reset;;
+$respuesta $opt" && Rspta_Nv1="No" && sleep 1.64 && reset;;
 
   # Add another option at the end, like "Quit" // $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
     *) echo "${negritas}${rojo}
