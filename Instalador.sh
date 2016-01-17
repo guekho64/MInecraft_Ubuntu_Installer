@@ -407,9 +407,9 @@ reset
 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 
-cat ~/Minecraft-Offline.desktop
+cat ~/"Minecraft Offline.desktop"
 if [ $? -ne 0 ]; then 
-	cat $Desktop/Minecraft-Offline.desktop
+	cat "$Desktop/Minecraft Offline.desktop"
         if [ $? -ne 0 ]; then 
           rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
            hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -437,7 +437,7 @@ echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/
 echo ""
 echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
-echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
+hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 read input
 
@@ -806,7 +806,7 @@ echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/
 echo ""
 echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
-echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
+hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 read input
 
@@ -957,7 +957,7 @@ function centro {
   vcentro "`hcentro $text`"
 }
 
-title="${negritas}${cyan}¿Desea colocar un ícono de Minecraft en su escritorio?${null}"
+title="${negritas}${cyan}¿Desea colocar los íconos de Minecraft en su escritorio?${null}"
 prompt="${negritas}${blanco}
 Seleccione una Opción:${null}"
 options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
@@ -1185,25 +1185,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 else
 echo "${verde}${negritas}OK${null}"
 fi;
-( sudo mkdir /.guekho64 ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
-( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1286,6 +1268,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
+sleep 3.28
 SettingEnvironment-Premium
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1293,18 +1276,18 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-reset ; hcentro "${verde}${negritas}¡El Instalador Ha Instalado con Éxito el Launcher Premium!${null}" ; sleep 1.64 ; reset
+reset ; hcentro "${verde}${negritas}¡El Instalador Ha Instalado con Éxito el Launcher Premium!${null}" ; sleep 3.28 ; reset
 fi;
-reset ; hcentro "${verde}${negritas}¡El Instalador Ha Instalado con Éxito el Launcher Offline!${null}" ; sleep 1.64 ; reset
+reset ; hcentro "${verde}${negritas}¡El Instalador Ha Instalado con Éxito el Launcher Offline!${null}" ; sleep 3.28 ; reset
 fi;
 
 reset
 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 
-cat ~/Minecraft-Offline.desktop
+cat ~/"Minecraft Offline.desktop"
 if [ $? -ne 0 ]; then 
-	cat $Desktop/Minecraft-Offline.desktop
+	cat "$Desktop/Minecraft Offline.desktop"
         if [ $? -ne 0 ]; then 
           rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
            hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1332,7 +1315,7 @@ echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/
 echo ""
 echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
 echo ""
-echo "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
+hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 read input
 
@@ -1403,10 +1386,10 @@ hcentro "${negritas}${azul}Probando la conexiòn a ${negritas}${verde}Internet${
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	reset
-	echo "${negritas}Al parecer usted no está conectado a Internet${null}";
+	hcentro "${negritas}Al parecer usted no está conectado a Internet${null}";
 	sleep 3.28
 	reset
-	echo "${negritas}Conèctese a Internet y vuelva a Intentarlo...${null}"
+	hcentro "${negritas}Conèctese a Internet y vuelva a Intentarlo...${null}"
 		sleep 3.28
 		exit
 else
@@ -1518,7 +1501,7 @@ function SOY_OFICIAL {
 reset
 		mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 		touch ~/.guekho64/minecraft/.secret/SOYOFICIAL > /dev/null 2>&1
-    rm $MinecraftHomeOriginal/*
+    rm "$MinecraftHomeOriginal/*"
 		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar) > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1537,7 +1520,8 @@ function SOY_OFFLINE {
 reset
 		hcentro "${negritas}${verde}Normalmente el Link del launcher se obtiene desde la sección de descargas de su navegador web, una vez que ha descargado el launcher manualmente primero.Después de esto, vaya a las descargas dé click derecho a la descarga, para luego copiar el link de donde fue descargado${null}"
         echo ""
-        hcentro "${negritas}${rojo}AVERTENCIA: No pulse "Control + C" para pegar texto , pues eso cerrará el programa${null}"
+        hcentro "${negritas}${rojo}ADVERTENCIA:${null} ${negritas}${blanco}No pulse Control + C para pegar texto,pues eso cerrará el programa${null}"
+        echo ""
         hcentro "${negritas}${amarillo}En su lugar, dé click derecho a la terminal y seleccione "Pegar"${null}"
         echo ""
         rm $MinecraftHomeOffline/*
@@ -1553,7 +1537,7 @@ else
 reset
 mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 touch $Secret/SOYOFFLINE > /dev/null 2>&1
-echo "${verde}${negritas}Se ha descargado el Launcher Offline correctamente${null}"
+hcentro "${verde}${negritas}Se ha descargado el Launcher Offline correctamente${null}"
 sleep 3.28
 fi;
 
@@ -1579,7 +1563,8 @@ sleep 3.28
 reset
 		hcentro "${negritas}${verde}Normalmente el Link del launcher se obtiene desde la sección de descargas de su navegador web, una vez que ha descargado el launcher manualmente primero.Después de esto, vaya a las descargas dé click derecho a la descarga, para luego copiar el link de donde fue descargado${null}"
         echo ""
-        hcentro "${negritas}${rojo}AVERTENCIA: No pulse "Control + C" para pegar texto , pues eso cerrará el programa${null}"
+        hcentro "${negritas}${rojo}ADVERTENCIA:${null} ${negritas}${blanco}No pulse Control + C para pegar texto,pues eso cerrará el programa${null}"
+        echo ""
         hcentro "${negritas}${amarillo}En su lugar, dé click derecho a la terminal y seleccione "Pegar"${null}"
         echo ""
 		echo "${negritas}${cyan}Por favor pega la URL de tu Launcher preferido de Minecraft a continuación:${null}"
@@ -1592,7 +1577,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	exit
 else
 reset
-echo "${verde}${negritas}Se ha descargado el Launcher Offline correctamente${null}"
+hcentro "${verde}${negritas}Se ha descargado el Launcher Offline correctamente${null}"
 sleep 3.28
 fi;
 		fi;
@@ -1873,7 +1858,7 @@ elif  [ "$Rspta_Nv6" = "No" ]  ; then
         echo ""
         hcentro "${negritas}${verde}Para continuar leyendo presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
         read ;
-        hcentro "${cyan}${negritas}La desventaja de esto, es que ${negritas}${rojo}No${null} ${cyan}${negritas}se podrán arreglar algunos errores${null}"
+        reset ; hcentro "${blanco}${negritas}La desventaja de esto, es que ${negritas}${rojo}No${null} ${cyan}${negritas}se podrán arreglar algunos errores${null}"
         hcentro "${cyan}${negritas}que suelen ocurrir con la versión ${negritas}${verde}OFICIAL${null} ${cyan}${negritas}, como errores en las fuentes${null}"
         echo ""
         hcentro "${negritas}${verde}Para continuar presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
@@ -2038,7 +2023,9 @@ echo $Estado_PPA_no1wantdthisname_openjdk
         Anti_PPA2
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
         Fixed_PPA_no1wantdthisname_openjdk=$(cat $PPA | sed '$d' | sed "s/#//")
+        sudo chmod 777 $PPA
         sudo echo $Fixed_PPA_no1wantdthisname_openjdk > $PPA
+        sudo chmod 444 $PPA
         if [ $? -ne 0 ]; then 
         rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	      hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -2089,7 +2076,9 @@ echo $Estado_PPA_no1wantdthisname
         Anti_PPA_a2
         if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
         Fixed_PPA_a_no1wantdthisname_openjdk=$(cat $PPA_a | sed '$d' | sed "s/#//")
+        sudo chmod 777 $PPA_a
         sudo echo $Fixed_PPA_a_no1wantdthisname_openjdk > $PPA_a
+        sudo chmod 444 $PPA_a
         if [ $? -ne 0 ]; then 
         rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	      hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -2380,20 +2369,20 @@ ${negritas}${cyan}Introduzca su contraseña para continuar:${null}"
 		sudo rm /usr/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 		sudo rm /usr/bin/minecraft > /dev/null 2>&1
 		sudo rm /usr/bin/minecraft-offline > /dev/null 2>&1
-		sudo rm ~/Escritorio/Minecraft-Offline.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/Minecraft.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/minecraft-offline.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/Minecraft-offline.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/minecraft-Offline.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/Minecraft-Offline.desktop > /dev/null 2>&1
-		sudo rm ~/Escritorio/minecraft.desktop > /dev/null 2>&1
-		sudo rm ~/Desktop/Minecraft-Offline.desktop > /dev/null 2>&1
-		sudo rm ~/Desktop/Minecraft.desktop > /dev/null 2>&1
-		sudo rm ~/Minecraft-Offline.desktop > /dev/null 2>&1
+		sudo rm $DesktopFolder/"Minecraft Offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/Minecraft.desktop > /dev/null 2>&1
+		sudo rm $DesktopFolder/"minecraft offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/"Minecraft offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/"minecraft Offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/"Minecraft Offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/minecraft.desktop > /dev/null 2>&1
+		sudo rm $DesktopFolder/"Minecraft Offline.desktop" > /dev/null 2>&1
+		sudo rm $DesktopFolder/Minecraft.desktop > /dev/null 2>&1
+		sudo rm ~/"Minecraft Offline.desktop" > /dev/null 2>&1
 		sudo rm ~/Minecraft.desktop > /dev/null 2>&1
-		sudo rm ~/minecraft-offline.desktop > /dev/null 2>&1
-		sudo rm ~/minecraft-Offline.desktop > /dev/null 2>&1
-		sudo rm ~/Minecraft-offline.desktop > /dev/null 2>&1
+		sudo rm ~/"minecraft offline.desktop" > /dev/null 2>&1
+		sudo rm ~/"minecraft Offline.desktop" > /dev/null 2>&1
+		sudo rm ~/"Minecraft offline.desktop" > /dev/null 2>&1
 		sudo rm ~/minecraft.desktop > /dev/null 2>&1
 		sudo rm -R /.guekho64/ > /dev/null 2>&1
 		
@@ -2587,13 +2576,14 @@ if  [ "$Rspta_Nv5" = "Si" ]  ; then
         centro "${negritas}${cyan}Trabajando...${null}"
         sudo pkill synaptic > /dev/null 2>&1
         sudo apt-get clean > /dev/null 2>&1
+        sudo rm /etc/apt/sources.list.d/no1wantdthisname* > /dev/null 2>&1
         ( sudo apt update && sudo pkill synaptic ) > /dev/null 2>&1
         sudo apt install ppa-purge -y > /dev/null 2>&1
         sudo apt-get clean > /dev/null 2>&1
-        sudo ppa-purge -y ppa:no1wantdthisname/openjdk-fontfix > /dev/null 2>&1
+        sudo ppa-purge ppa:no1wantdthisname/openjdk-fontfix > /dev/null 2>&1
         sudo apt-get clean
         sudo pkill synaptic
-        sudo ppa-purge -y ppa:no1wantdthisname/ppa
+        sudo ppa-purge ppa:no1wantdthisname/ppa
         sudo apt-get clean
         
 elif  [ "$Rspta_Nv5" = "No" ]  ; then
@@ -2813,7 +2803,7 @@ elif  [ "$Rspta_Nv2" = "No" ]  ; then
         
 elif  [ "$Rspta_Nv2" = "Nunca" ]  ; then
 		reset
-		echo "${negritas}No se le volverá a hacer está pregunta nunca más${null}"
+		hcentro "${negritas}${cyan}No se le volverá a hacer está pregunta nunca más${null}"
 		sleep 1.64
         touch ~/.Nunca.txt
         reset
