@@ -136,7 +136,7 @@ Type=Application
 Name=Minecraft Offline
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.ico
+Icon=/.guekho64/icons/ml.png
 Exec=minecraft-offline
 Path=
 NoDisplay=false
@@ -339,7 +339,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.ico) > /dev/null 2>&1
+rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon" ) > $MinecraftHomeDesktop/minecraft-offline.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -435,7 +435,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -505,7 +505,7 @@ Type=Application
 Name=Minecraft
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.ico
+Icon=/.guekho64/icons/ml.png
 Exec=minecraft
 Path=
 NoDisplay=false
@@ -708,7 +708,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.ico) > /dev/null 2>&1
+rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -804,7 +804,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -874,7 +874,7 @@ Type=Application
 Name=Minecraft
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.ico
+Icon=/.guekho64/icons/ml.png
 Exec=minecraft
 Path=
 NoDisplay=false
@@ -889,7 +889,7 @@ Type=Application
 Name=Minecraft Offline
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.ico
+Icon=/.guekho64/icons/ml.png
 Exec=minecraft-offline
 Path=
 NoDisplay=false
@@ -1207,7 +1207,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.ico) > /dev/null 2>&1
+rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1313,7 +1313,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.ico" $MyMessage
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1470,7 +1470,7 @@ Opción Inválida: $num${null}"; continue; }
     [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="${negritas}${blanco}*${null}"
 done
 
-( printf "${negritas}${amarillo}Marcadas:${null}" ; msg=" ${negritas}${blanco}Ninguna${null}" ) > /dev/null 2>&1
+( printf "${negritas}${amarillo}Marcadas:${null}" ; msg=" ${negritas}${blanco}Ninguna${null}" )
 
 function Final_Message {
 for i in ${!options[@]}; do 
@@ -1478,7 +1478,7 @@ for i in ${!options[@]}; do
 done 
 }
 
-Final_Message > /dev/null 2>&1
+Final_Message
 
 
 Fnl_Mssg=$(Final_Message)
@@ -1486,15 +1486,15 @@ reset
 
 #Functions
 function Extracto_Offline {
-( echo $Fnl_Mssg |  grep -o 'Offline["]*' ) > /dev/null 2>&1
+( echo $Fnl_Mssg |  grep -o 'Offline["]*' )
 }
 
 function Extracto_Premium {
-( echo $Fnl_Mssg |  grep -o 'Premium["]*' ) > /dev/null 2>&1
+( echo $Fnl_Mssg |  grep -o 'Premium["]*' )
 }
 
 function Extracto_Ambos {
-( echo $Fnl_Mssg | grep -oe 'Premium["]*' -oe 'Offline["]*' ) > /dev/null 2>&1
+( echo $Fnl_Mssg | grep -oe 'Premium["]*' -oe 'Offline["]*' )
 }
 #More Functions
 function SOY_OFICIAL {
@@ -1561,7 +1561,7 @@ reset
 hcentro "${amarillo}${negritas}Ahora procederé a descargar el Launcher Offline${null}"
 sleep 3.28
 reset
-		hcentro "${negritas}${verde}Normalmente el Link del launcher se obtiene desde la sección de descargas de su navegador web, una vez que ha descargado el launcher manualmente primero.Después de esto, vaya a las descargas dé click derecho a la descarga, para luego copiar el link de donde fue descargado${null}"
+		hcentro "${negritas}${verde}Normalmente el Link del launcher se obtiene desde la sección de descargas de su navegador web, una vez que ha descargado el launcher manualmente primero.Después de esto, vaya a las descargas y dé click derecho a la descarga, para luego copiar el link de donde fue descargado${null}"
         echo ""
         hcentro "${negritas}${rojo}ADVERTENCIA:${null} ${negritas}${blanco}No pulse Control + C para pegar texto,pues eso cerrará el programa${null}"
         echo ""
@@ -1754,7 +1754,7 @@ Estado_PPA_no1wantdthisname_openjdk=Inactivo
 fi;
 
 
-echo $Estado_PPA_no1wantdthisname_openjdk
+echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
 
 }
 
@@ -1807,7 +1807,7 @@ Estado_PPA_no1wantdthisname=Inactivo
 fi;
 
 
-echo $Estado_PPA_no1wantdthisname
+echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
 
 }
 
@@ -1858,8 +1858,8 @@ elif  [ "$Rspta_Nv6" = "No" ]  ; then
         echo ""
         hcentro "${negritas}${verde}Para continuar leyendo presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
         read ;
-        reset ; hcentro "${blanco}${negritas}La desventaja de esto, es que ${negritas}${rojo}No${null} ${cyan}${negritas}se podrán arreglar algunos errores${null}"
-        hcentro "${cyan}${negritas}que suelen ocurrir con la versión ${negritas}${verde}OFICIAL${null} ${cyan}${negritas}, como errores en las fuentes${null}"
+        reset ; hcentro "${blanco}${negritas}La desventaja de esto, es que ${negritas}${rojo}No${null} ${blanco}${negritas}se podrán arreglar algunos errores${null}"
+        hcentro "${blanco}${negritas}que suelen ocurrir con la versión ${negritas}${verde}OFICIAL${null} ${blanco}${negritas},como errores en las fuentes${null}"
         echo ""
         hcentro "${negritas}${verde}Para continuar presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
         read ;
@@ -2011,7 +2011,7 @@ Estado_PPA_no1wantdthisname_openjdk=Inactivo
 fi;
 
 
-echo $Estado_PPA_no1wantdthisname_openjdk
+echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
 
 }
 
@@ -2064,7 +2064,7 @@ Estado_PPA_no1wantdthisname=Inactivo
 fi;
 
 
-echo $Estado_PPA_no1wantdthisname
+echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
 
 }
 
