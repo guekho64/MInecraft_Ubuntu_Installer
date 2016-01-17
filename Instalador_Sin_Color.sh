@@ -1588,7 +1588,7 @@ Ext_O=$(Extracto_Offline)
 Ext_P=$(Extracto_Premium)
 Ext_A1=$(Extracto_Ambos)
 
-Ext_A=$(echo $Ext_A1 > /dev/null 2>&1 )
+Ext_A=$(echo $Ext_A1)
 
 # Special Base
 
