@@ -1936,7 +1936,7 @@ title="${negritas}${amarillo}¿Desearía usted que instale la versión ${negrita
 "
 prompt="${negritas}${blanco}
 Seleccione una Opción:${null}"
-options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}" "${negritas}${cyan}Prefiero la anterior${null}")
+options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}" "${negritas}${morado}Prefiero la anterior${null}")
 respuesta=$(echo "${negritas}${cyan}
 Has elegido:${null}" )
 
