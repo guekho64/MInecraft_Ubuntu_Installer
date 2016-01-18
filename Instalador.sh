@@ -300,14 +300,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -318,14 +310,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -339,7 +323,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon" ) > $MinecraftHomeDesktop/minecraft-offline.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -669,14 +653,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -687,14 +663,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -708,7 +676,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -862,10 +830,12 @@ if [ $? -ne 0 ]; then
         sleep 3.28
         exit
     else
-        Minecraft="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+        Minecraft_Premium="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+        Minecraft_Offline="exec /usr/lib/jvm/java-7-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
 else
-Minecraft="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+Minecraft_Premium="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/original/Minecraft.jar"
+Minecraft_Offline="exec /usr/lib/jvm/java-8-openjdk-*/bin/java -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -jar ~/.guekho64/minecraft/launchers/offline/Minecraft.jar"
 fi;
 
 Minecraft_Icon_Premium="[Desktop Entry]
@@ -1032,7 +1002,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 else
 echo "${verde}${negritas}OK${null}"
 fi;
-( echo $Minecraft) > $Secret/minecraft-offline
+( echo $Minecraft_Offline) > $Secret/minecraft-offline
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1054,14 +1024,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1072,14 +1034,6 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
-if [ $? -ne 0 ]; then 
-rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
-	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
-	sleep 3.28
-	exit
-else
-echo "${verde}${negritas}OK${null}"
-fi;
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1164,7 +1118,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 else
 echo "${verde}${negritas}OK${null}"
 fi;
-( echo $Minecraft) > $Secret/minecraft
+( echo $Minecraft_Premium) > $Secret/minecraft
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1207,7 +1161,7 @@ fi;
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm $MinecraftHomeIcons/* ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1501,7 +1455,7 @@ function SOY_OFICIAL {
 reset
 		mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 		touch ~/.guekho64/minecraft/.secret/SOYOFICIAL > /dev/null 2>&1
-    rm "$MinecraftHomeOriginal/*"
+    rm ~/.guekho64/minecraft/launchers/original/*
 		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar) > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -2360,7 +2314,7 @@ if  [ "$Rspta_Nv3" = "Instalar" ]  ; then
 		reset
 		centro "${negritas}${rojo}Desinstalando Archivos del Instalador de Minecraft...${null}"
 		sleep 3.28
-		rm -R ~/.guekho64 > /dev/null 2>&1
+		rm -R ~/.guekho64/icons > /dev/null 2>&1
 		rm ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
 		rm ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 		echo "
@@ -2384,7 +2338,7 @@ ${negritas}${cyan}Introduzca su contraseña para continuar:${null}"
 		sudo rm ~/"minecraft Offline.desktop" > /dev/null 2>&1
 		sudo rm ~/"Minecraft offline.desktop" > /dev/null 2>&1
 		sudo rm ~/minecraft.desktop > /dev/null 2>&1
-		sudo rm -R /.guekho64/ > /dev/null 2>&1
+		sudo rm -R /.guekho64/icons > /dev/null 2>&1
 		
 		reset
 #Function
