@@ -1844,7 +1844,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
         Anti_PPA
 
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix --force-yes -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -1897,7 +1897,7 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         Anti_PPA_a
 
         if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa --force-yes -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
         if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -2101,7 +2101,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
         Anti_PPA
 
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix --force-yes -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -2154,7 +2154,7 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         Anti_PPA_a
 
         if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa --force-yes -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
         if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
