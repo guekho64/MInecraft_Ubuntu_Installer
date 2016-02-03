@@ -5,6 +5,7 @@
 
 reset
 
+Pre-MyMessage="La Instalación ha Finalizado"
 MyMessage="Instalador de Minecraft de guekho64 © 2016"
 Uninstall="Desinstalación de Minecraft Completada"
 
@@ -78,10 +79,21 @@ null=$(tput sgr0)
 
 ENTERPRESS="${verde}${negritas}Presione ${cyan}${negritas}ENTER ${verde}${negritas}para continuar${null}"
 
-desktopVar=$(cat ~/.config/user-dirs.dirs | grep "XDG_DESKTOP_DIR")
-desktopFolder=$(echo ${desktopVar/XDG_DESKTOP_DIR=/""} | tr -d '"')
-
-DeskFolder=${desktopFolder:6}
+cat ~/.config/user-dirs.dirs
+if [ $? -ne 0 ]; then 
+        sleep 3.28
+          
+          desktopVar=~
+          desktopFolder=~
+          DeskFolder=~
+          
+    else
+    
+          desktopVar=$(cat ~/.config/user-dirs.dirs | grep "XDG_DESKTOP_DIR")
+          desktopFolder=$(echo ${desktopVar/XDG_DESKTOP_DIR=/""} | tr -d '"')
+          DeskFolder=${desktopFolder:6}
+          
+    fi
 
 DesktopFolder=$(echo ~/$DeskFolder)
 
@@ -419,7 +431,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -772,7 +784,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1267,7 +1279,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
