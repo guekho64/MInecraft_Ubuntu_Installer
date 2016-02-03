@@ -187,7 +187,7 @@ if  [ "$Rspta_Nv9" = "Si" ]  ; then
 		reset
     hcentro "${morado}${negritas}Introduzca su contraseña para continuar${null}"
     sudo apt-get clean
-    sudo apt install xdg-user-dirs -y
+    sudo apt-get install xdg-user-dirs --force-yes -y
     sudo apt-get clean
     xdg-user-dirs-update
     hcentro "${verde}${negritas}¡Listo!${null}"
@@ -1586,7 +1586,6 @@ function SOY_OFICIAL {
 reset
 		mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 		touch ~/.guekho64/minecraft/.secret/SOYOFICIAL > /dev/null 2>&1
-    rm ~/.guekho64/minecraft/launchers/original/*
 		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar -O $MinecraftHomeOriginal/Minecraft.jar) > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1609,7 +1608,6 @@ reset
         echo ""
         hcentro "${negritas}${amarillo}En su lugar, dé click derecho a la terminal y seleccione "Pegar"${null}"
         echo ""
-        rm $MinecraftHomeOffline/*
 		echo "${negritas}${cyan}Por favor pega la URL de tu Launcher preferido de Minecraft a continuación:${null}"
 		read input
 		(wget --no-check-certificate --directory-prefix=$MinecraftHomeOffline $input -O $MinecraftHomeOffline/Minecraft.jar) > /dev/null 2>&1
@@ -1846,7 +1844,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
         Anti_PPA
 
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix --force-yes -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -1899,7 +1897,7 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         Anti_PPA_a
 
         if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa --force-yes -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
         if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -1920,8 +1918,8 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         fi
         fi
         
-        sudo apt update > /dev/null 2>&1
-        sudo apt install fontconfig-infinality openjdk-8-jre -y > /dev/null 2>&1
+        sudo apt-get update > /dev/null 2>&1
+        sudo apt-get install fontconfig-infinality openjdk-8-jre --force-yes -y > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -2040,8 +2038,8 @@ done
         hcentro "${negritas}${verde}Si tienes las notificaciones activadas,serás notificado cuando esto termine ${null}"
         sudo pkill synaptic
         sudo apt-get clean > /dev/null 2>&1
-        sudo apt update > /dev/null 2>&1
-        sudo apt install openjdk-7-jre -y > /dev/null 2>&1
+        sudo apt-get update > /dev/null 2>&1
+        sudo apt-get install openjdk-7-jre --force-yes -y > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
             rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	        hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -2103,7 +2101,7 @@ echo $Estado_PPA_no1wantdthisname_openjdk > /dev/null 2>&1
         Anti_PPA
 
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/openjdk-fontfix --force-yes -y) ) > /dev/null 2>&1
         else
         Anti_PPA2
         if [ $Estado_PPA_no1wantdthisname_openjdk = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -2156,7 +2154,7 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         Anti_PPA_a
 
         if [ $Estado_PPA_no1wantdthisname = $Inexistente ]  > /dev/null 2>&1 ; then
-        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa -y) ) > /dev/null 2>&1
+        ( (sudo apt-add-repository ppa:no1wantdthisname/ppa --force-yes -y) ) > /dev/null 2>&1
         else
         Anti_PPA_a2
         if [ $Estado_PPA_no1wantdthisname = $Inactivo ]  > /dev/null 2>&1 ; then
@@ -2177,8 +2175,8 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         fi
         fi
         
-        sudo apt update > /dev/null 2>&1
-        sudo apt install fontconfig-infinality openjdk-8-jre -y > /dev/null 2>&1
+        sudo apt-get update > /dev/null 2>&1
+        sudo apt-get install fontconfig-infinality openjdk-8-jre --force-yes -y > /dev/null 2>&1
             if [ $? -ne 0 ]; then 
                 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
             	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -2662,8 +2660,8 @@ if  [ "$Rspta_Nv5" = "Si" ]  ; then
         sudo pkill synaptic > /dev/null 2>&1
         sudo apt-get clean > /dev/null 2>&1
         sudo rm /etc/apt/sources.list.d/no1wantdthisname* > /dev/null 2>&1
-        ( sudo apt update && sudo pkill synaptic ) > /dev/null 2>&1
-        sudo apt install ppa-purge -y > /dev/null 2>&1
+        ( sudo apt-get update && sudo pkill synaptic ) > /dev/null 2>&1
+        sudo apt-get install ppa-purge --force-yes -y > /dev/null 2>&1
         sudo apt-get clean > /dev/null 2>&1
         sudo ppa-purge ppa:no1wantdthisname/openjdk-fontfix > /dev/null 2>&1
         sudo apt-get clean
@@ -2739,7 +2737,7 @@ hcentro "${negritas}${amarillo}Por favor introduzca su contraseña.Es normal que
 ( sudo chown root:root $HOME/.Acepto.txt ) > /dev/null 2>&1
 sudo pkill synaptic > /dev/null 2>&1
 sudo apt-get clean > /dev/null 2>&1
-sudo apt install libnotify-bin libnotify4 software-properties-gtk -y > /dev/null 2>&1
+sudo apt-get install libnotify-bin libnotify4 software-properties-gtk --force-yes -y > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	reset
@@ -2863,8 +2861,8 @@ if  [ "$Rspta_Nv2" = "Si" ]  ; then
 
     sudo pkill synaptic > /dev/null 2>&1
     sudo apt-get clean > /dev/null 2>&1
-		sudo apt update > /dev/null 2>&1
-        sudo apt install xfce4-terminal -y > /dev/null 2>&1
+		sudo apt-get update > /dev/null 2>&1
+        sudo apt-get install xfce4-terminal --force-yes -y > /dev/null 2>&1
         if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	reset
