@@ -5,7 +5,7 @@
 
 reset
 
-Pre-MyMessage="La Instalación ha Finalizado"
+FirstMyMessage="La Instalación ha Finalizado"
 MyMessage="Instalador de Minecraft de guekho64 © 2016"
 Uninstall="Desinstalación de Minecraft Completada"
 
@@ -77,15 +77,134 @@ cyan=$(tput setaf 6)
 blanco=$(tput setaf 7)    
 null=$(tput sgr0)
 
+#Central
+reset
+hcentro "${negritas}Para cualquier asunto relacionado al programa, contácte al dueño:${null}"
+hcentro "${negritas}${cyan}guekho64@gmail.com${null}"
+
+sleep 6.4
+reset
+
 ENTERPRESS="${verde}${negritas}Presione ${cyan}${negritas}ENTER ${verde}${negritas}para continuar${null}"
 
-cat ~/.config/user-dirs.dirs
+cat ~/.config/user-dirs.dirs > /dev/null 2>&1
+
 if [ $? -ne 0 ]; then 
         sleep 3.28
           
-          desktopVar=~
-          desktopFolder=~
-          DeskFolder=~
+          hcentro "${cyan}${negritas}Por alguna extraña razón, hace falta cierto archivo común, y es el que${null}"
+          hcentro "${cyan}${negritas}determina la ubicación de ciertas carpetas que el instalador utiliza, además de${null}"
+          hcentro "${cyan}${negritas}que muchas otras aplicaciones, hacen uso de estas carpetas, creyendo que existen${null}"
+          echo ""
+          hcentro "${blanco}${negritas}Probablemente sea solo un error del programa,pero si usted está conciente de que${null}"
+          hcentro "${blanco}${negritas}su carpeta personal carece de folders que son habituales, como las carpetas${null}"
+          hcentro "${blanco}${negritas}de Descargas o del Escritorio, puede dejar que el instalador tome las acciones${null}"
+          hcentro "${blanco}${negritas}para poder crear las carpetas faltantes por usted, evitando así futuros errores${null}"
+          echo ""
+          
+          function Menu_Nv9 {
+
+#Centra el Texto, gracias a "matrixagent"
+
+function hcentro {
+
+  text="$1"
+
+  cols=`tput cols`
+
+  IFS=$'\n'$'\r'
+  for line in $(echo -e $text); do
+
+    line_length=`echo $line | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" | wc -c`
+    half_of_line_length=`expr $line_length / 2`
+    centro=`expr \( $cols / 2 \) - $half_of_line_length`
+
+    spaces=""
+    for ((i=0; i < $centro; i++)) {
+      spaces="$spaces "
+    }
+
+    echo "$spaces$line"
+
+  done
+
+}
+
+function vcentro {
+
+  text=$1
+
+  rows=`tput lines`
+
+  text_length=`echo -e $text | wc -l`
+  half_of_text_length=`expr $text_length / 2`
+
+  centro=`expr \( $rows / 2 \) - $half_of_text_length`
+
+  lines=""
+
+  for ((i=0; i < $centro; i++)) {
+    lines="$lines\n"
+  }
+
+  echo -e "$lines$text$lines"
+}
+
+function centro {
+  text="$1"
+  vcentro "`hcentro $text`"
+}
+
+title="${verde}${negritas}¿Desea que el instalador genere dichas carpetas por usted?${null}"
+prompt="${negritas}${blanco}
+Seleccione una Opción:${null}"
+options=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
+respuesta=$(echo "${negritas}${cyan}
+Has elegido:${null}" )
+
+hcentro "$title"
+PS3="$prompt "
+select opt in "${options[@]}"; do 
+
+    case "$REPLY" in
+
+    1 ) echo "$respuesta $opt" && Rspta_Nv9="Si"&& sleep 1.64 && reset;;
+    2 ) echo "$respuesta $opt" && Rspta_Nv9="No"&& sleep 1.64 && reset;;
+
+  # Add another option at the end, like "Quit" // $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
+    *) echo "${negritas}${rojo}
+Opción Inválida${null}";continue;;
+
+    esac
+    break
+
+done
+}
+
+Menu_Nv9
+
+if  [ "$Rspta_Nv9" = "Si" ]  ; then
+		reset
+    hcentro "${morado}${negritas}Introduzca su contraseña para continuar${null}"
+    sudo apt-get clean
+    sudo apt install xdg-user-dirs -y
+    sudo apt-get clean
+    xdg-user-dirs-update
+    hcentro "${verde}${negritas}¡Listo!${null}"
+    sleep 3.2
+    reset
+elif  [ "$Rspta_Nv9" = "No" ]  ; then
+		reset
+		hcentro "${negritas}${verde}No se generará ninguna carpeta adicional.${null}"
+    hcentro "${negritas}${verde}Desgraciadamente no podré colocar íconos en su escritorio${null}"
+		sleep 6.4
+		reset
+else
+		reset
+		hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
+		sleep 3.28
+		exit
+	fi
           
     else
     
@@ -431,7 +550,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $FirstMyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -784,7 +903,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $FirstMyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1279,7 +1398,7 @@ echo "${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mi
 echo ""
 echo "${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
 echo ""
-echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $Pre-MyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
+echo "${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}" && notify-send $FirstMyMessage -i "/.guekho64/icons/ml.png" $MyMessage ; echo "" ; echo "${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,cerrar la sesión y volver a entrar debería solucionarlo o también puedes reiniciar tu PC${null}"
 echo ""
 hcentro "${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1415,7 +1534,7 @@ function menu {
 }
 
 mensaje="${negritas}${blanco}
-Al elegir dos veces una opción, está será desmarcada${null}
+Al elegir dos veces una opción, está será desmarcada. Puedes elegir ambos${null}
 
 ${negritas}${verde}Presione ${cyan}${negritas}ENTER ${verde}${negritas}al terminar${null}
 
@@ -1468,7 +1587,7 @@ reset
 		mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 		touch ~/.guekho64/minecraft/.secret/SOYOFICIAL > /dev/null 2>&1
     rm ~/.guekho64/minecraft/launchers/original/*
-		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar) > /dev/null 2>&1
+		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar -O $MinecraftHomeOriginal/Minecraft.jar) > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1514,7 +1633,7 @@ function SOY_AMBOS {
 reset
 		mkdir ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 		touch ~/.guekho64/minecraft/.secret/SOYAMBOS > /dev/null 2>&1
-		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar) > /dev/null 2>&1
+		(wget --directory-prefix=$MinecraftHomeOriginal https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar -O $MinecraftHomeOriginal/Minecraft.jar) > /dev/null 2>&1
 		if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1596,7 +1715,7 @@ hcentro "${negritas}${azul}Estos repositorios de programas${null}"
 hcentro "${negritas}${azul}no pertenecen a los repositorios oficiales de Ubuntu ni a mi${null}"
 hcentro "${negritas}${azul}por lo que ${amarillo}no me hago responsable de cualquier daño a su computadora${null}"
 hcentro "${negritas}${azul}Si a alguien le sirve de alivio, por experiencia propia${null}"
-hcentro "${negritas}${azul}le puedo asegurar que estás fuentes externas de programas ${negritas}${blanco}JAMÁS${null}"
+hcentro "${negritas}${azul}le puedo asegurar que éstas fuentes externas de programas ${negritas}${blanco}JAMÁS${null}"
 hcentro "${negritas}${azul}me han dado problema alguno a mí, aunque claro, cada PC es diferente${null}"
 hcentro "${negritas}${azul}y por lo tanto puede haber reacciones secundarias buenas o malas${null}"
 echo ""
@@ -1812,7 +1931,7 @@ else
 touch ~/.guekho64/minecraft/.secret/OPENJRE8UNOFFICIAL
 reset
 sudo apt-get clean
-notify-send -i ok "¡Se han instalado las dependencias y parches correctamente!"
+notify-send ¡Listo! -i ok "¡Se han instalado las dependencias y parches correctamente!"
 hcentro "${verde}${negritas}¡Se han instalado las dependencias y parches correctamente!${null}"
 sleep 3.28
 fi;
@@ -1932,7 +2051,7 @@ done
         touch ~/.guekho64/minecraft/.secret/OPENJRE7OFFICIAL
             reset
             sudo apt-get clean > /dev/null 2>&1
-            notify-send -i ok "¡Se ha instalado la versión oficial de Java correctamente!"
+            notify-send ¡Listo! -i ok "¡Se ha instalado la versión oficial de Java correctamente!"
             hcentro "${verde}${negritas}¡Se ha instalado la versión oficial de Java correctamente!${null}" 
             sleep 3.28
         fi;
@@ -2069,7 +2188,7 @@ echo $Estado_PPA_no1wantdthisname > /dev/null 2>&1
         touch ~/.guekho64/minecraft/.secret/OPENJRE8UNOFFICIAL
         reset
         sudo apt-get clean
-        notify-send -i ok "¡Se han instalado las dependencias y parches correctamente!"
+        notify-send ¡Listo! -i ok "¡Se han instalado las dependencias y parches correctamente!"
         hcentro "${verde}${negritas}¡Se han instalado las dependencias y parches correctamente!${null}"
         sleep 3.28
         fi;
@@ -2326,7 +2445,7 @@ if  [ "$Rspta_Nv3" = "Instalar" ]  ; then
 		reset
 		centro "${negritas}${rojo}Desinstalando Archivos del Instalador de Minecraft...${null}"
 		sleep 3.28
-		rm -R ~/.guekho64/icons > /dev/null 2>&1
+		rm -R /.guekho64/icons > /dev/null 2>&1
 		rm ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
 		rm ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 		echo "
@@ -2566,7 +2685,7 @@ else
         
         reset
         echo ""
-        notify-send -i error $Uninstall
+        notify-send Terminado-i error $Uninstall
 		hcentro "${negritas}${verde}Para salir presione ${subrayado}${azul}${negritas}ENTER${null}${negritas}${verde}...${null}"
 		
 		read input
@@ -2620,7 +2739,7 @@ hcentro "${negritas}${amarillo}Por favor introduzca su contraseña.Es normal que
 ( sudo chown root:root $HOME/.Acepto.txt ) > /dev/null 2>&1
 sudo pkill synaptic > /dev/null 2>&1
 sudo apt-get clean > /dev/null 2>&1
-sudo apt install libnotify-bin libnotify4 -y > /dev/null 2>&1
+sudo apt install libnotify-bin libnotify4 software-properties-gtk -y > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	reset
@@ -2763,14 +2882,14 @@ fi;
         
 elif  [ "$Rspta_Nv2" = "No" ]  ; then
 		reset
-		echo "${negritas}No se instalará ninguna consola adicional${null}"
+		hcentro "${amarillo}${negritas}No se instalará ninguna consola adicional${null}"
 		sleep 1.64
         reset
         
 elif  [ "$Rspta_Nv2" = "Nunca" ]  ; then
 		reset
-		hcentro "${negritas}${cyan}No se le volverá a hacer está pregunta nunca más${null}"
-		sleep 1.64
+		hcentro "${negritas}${cyan}No se le volverá a hacer ésta pregunta nunca más${null}"
+		sleep 6.4
         touch ~/.Nunca.txt
         reset
 else
@@ -2783,7 +2902,7 @@ else
 else
         reset
         hcentro "${negritas}${verde}La terminal adicional ya ha sido instalada con anterioridad${null}";
-        sleep 3.28
+        sleep 6.4
         reset
         fi
 else
@@ -2814,11 +2933,6 @@ Home=~ > /dev/null 2>&1
 Raiz="$(dirname $Casa)"
 
 Acepto="Yo acepté la licencia y los términos de uso del Instalador de Minecraft por guekho64"
-
-hcentro "${negritas}Para cualquier asunto relacionado al programa, contácte al dueño:${null}"
-hcentro "${negritas}${cyan}guekho64@gmail.com${null}"
-
-sleep 6.4
 reset
 hcentro "${negritas}Probando conexiòn a Internet...${null}"
 ( ping -c 4 www.google.com.mx ) > /dev/null 2>&1
