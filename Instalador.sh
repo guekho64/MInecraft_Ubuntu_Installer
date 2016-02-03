@@ -475,7 +475,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop
+cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -485,7 +485,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop"
+cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -495,7 +495,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop
+sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -828,7 +828,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop
+cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -838,7 +838,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop"
+cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -848,7 +848,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop
+sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1198,7 +1198,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop
+cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1208,7 +1208,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop"
+cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1218,7 +1218,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop
+sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1313,7 +1313,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop
+cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1323,7 +1323,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop"
+cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop" > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
@@ -1333,7 +1333,7 @@ else
 echo "${verde}${negritas}OK${null}"
 fi;
 
-sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop
+sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	hcentro "${rojo}${negritas}Algo salió mal, cerrando el programa...${null}";
