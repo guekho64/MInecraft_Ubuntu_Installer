@@ -267,7 +267,7 @@ Type=Application
 Name=Minecraft Offline
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.png
+Icon=minecraft
 Exec=minecraft-offline
 Path=
 NoDisplay=false
@@ -398,7 +398,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( chmod +x $Secret/minecraft-offline ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -407,7 +407,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( echo $Minecraft) > $Secret/minecraft-offline
 if [ $? -ne 0 ]; then 
@@ -416,7 +416,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 hcentro "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
@@ -428,7 +428,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
@@ -438,7 +438,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
@@ -448,13 +448,13 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1 ; sudo ln --symbolic /.guekho64/icons/ml.* /usr/share/icons/minecraft.png
 ( printf "$Minecraft_Icon" ) > $MinecraftHomeDesktop/minecraft-offline.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -462,7 +462,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x $MinecraftHomeDesktop/minecraft-offline.desktop ) > /dev/null 2>&1
@@ -472,7 +472,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
@@ -482,7 +482,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop" > /dev/null 2>&1
@@ -492,7 +492,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop > /dev/null 2>&1
@@ -502,7 +502,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 }
@@ -620,7 +620,7 @@ Type=Application
 Name=Minecraft
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.png
+Icon=minecraft
 Exec=minecraft
 Path=
 NoDisplay=false
@@ -751,7 +751,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( chmod +x $Secret/minecraft ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -760,7 +760,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( echo $Minecraft) > $Secret/minecraft
 if [ $? -ne 0 ]; then 
@@ -769,7 +769,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 hcentro "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
@@ -781,7 +781,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
@@ -791,7 +791,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
@@ -801,13 +801,13 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1 ; sudo ln --symbolic /.guekho64/icons/ml.* /usr/share/icons/minecraft.png
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -815,7 +815,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x $MinecraftHomeDesktop/minecraft.desktop ) > /dev/null 2>&1
@@ -825,7 +825,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
@@ -835,7 +835,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop" > /dev/null 2>&1
@@ -845,7 +845,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop > /dev/null 2>&1
@@ -855,7 +855,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 }
@@ -975,7 +975,7 @@ Type=Application
 Name=Minecraft
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.png
+Icon=minecraft
 Exec=minecraft
 Path=
 NoDisplay=false
@@ -990,7 +990,7 @@ Type=Application
 Name=Minecraft Offline
 Comment[en]=Play in a completely open world!
 Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=/.guekho64/icons/ml.png
+Icon=minecraft
 Exec=minecraft-offline
 Path=
 NoDisplay=false
@@ -1122,7 +1122,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( chmod +x $Secret/minecraft-offline ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -1131,7 +1131,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( echo $Minecraft_Offline) > $Secret/minecraft-offline
 if [ $? -ne 0 ]; then 
@@ -1140,7 +1140,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 hcentro "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
@@ -1152,7 +1152,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64 ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
@@ -1162,7 +1162,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo mkdir /.guekho64/icons ) > /dev/null 2>&1
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
@@ -1172,7 +1172,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 MinecraftHomeIcons=/.guekho64/icons
@@ -1185,7 +1185,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x $MinecraftHomeDesktop/minecraft-offline.desktop ) > /dev/null 2>&1
@@ -1195,7 +1195,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp $MinecraftHomeDesktop/minecraft-offline.desktop -f ~/.local/share/applications/minecraft-offline.desktop > /dev/null 2>&1
@@ -1205,7 +1205,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp ~/.local/share/applications/minecraft-offline.desktop -f $Desktop/"Minecraft Offline.desktop" > /dev/null 2>&1
@@ -1215,7 +1215,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 sudo mv $MinecraftHomeDesktop/minecraft-offline.desktop -f /usr/share/applications/minecraft-offline.desktop > /dev/null 2>&1
@@ -1225,7 +1225,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 }
@@ -1238,7 +1238,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( chmod +x $Secret/minecraft ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -1247,7 +1247,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( echo $Minecraft_Premium) > $Secret/minecraft
 if [ $? -ne 0 ]; then 
@@ -1256,7 +1256,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 hcentro "${negritas}${azul}Es posible que se le solicite su contraseña. Si es el caso, por favor tecléela${null}"
@@ -1268,7 +1268,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo chmod -R 777 /.guekho64 ) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -1277,7 +1277,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 ( sudo chmod -R 777 /.guekho64/icons) > /dev/null 2>&1
 if [ $? -ne 0 ]; then 
@@ -1286,13 +1286,13 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 MinecraftHomeIcons=/.guekho64/icons
 MinecraftHomeDesktop=~/.guekho64/minecraft/desktop_files
 		
-rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1
+rm "$MinecraftHomeIcons/*" ; (wget --no-check-certificate --directory-prefix=$MinecraftHomeIcons http://www.rw-designer.com/icon-image/5547-64x64x32.png -O $MinecraftHomeIcons/ml.png) > /dev/null 2>&1 ; sudo ln --symbolic /.guekho64/icons/ml.* /usr/share/icons/minecraft.png
 ( printf "$Minecraft_Icon_Premium" ) > $MinecraftHomeDesktop/minecraft.desktop
 if [ $? -ne 0 ]; then 
 rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
@@ -1300,7 +1300,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x $MinecraftHomeDesktop/minecraft.desktop ) > /dev/null 2>&1
@@ -1310,7 +1310,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp $MinecraftHomeDesktop/minecraft.desktop -f ~/.local/share/applications/minecraft.desktop > /dev/null 2>&1
@@ -1320,7 +1320,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 cp ~/.local/share/applications/minecraft.desktop -f $Desktop/"Minecraft.desktop" > /dev/null 2>&1
@@ -1330,7 +1330,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 sudo mv $MinecraftHomeDesktop/minecraft.desktop -f /usr/share/applications/minecraft.desktop > /dev/null 2>&1
@@ -1340,7 +1340,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 }
@@ -1676,18 +1676,12 @@ Ext_A=$(echo $Ext_A1)
 # Special Base
 
 if  [ "$Ext_A" = "Premium Offline" ]  ; then
-        echo "${negritas}${blanco}"Ambos"${null}"
-        sleep 1.64
         reset
         SOY_AMBOS
 elif [ "$Ext_O" = "Offline" ]  ; then
-        echo "${negritas}${verde}"Offline"${null}"
-        sleep 1.64
         reset
         SOY_OFFLINE
 elif [ "$Ext_P" = "Premium" ]  ; then
-        echo "${negritas}${amarillo}"Premium"${null}"
-        sleep 1.64
         reset
         SOY_OFICIAL
         else
@@ -2219,7 +2213,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x ~/.guekho64/minecraft/desktop_files/minecraft.desktop ) > /dev/null 2>&1
@@ -2230,7 +2224,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 )
@@ -2245,7 +2239,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 ( chmod +x ~/.guekho64/minecraft/desktop_files/minecraft-offline.desktop ) > /dev/null 2>&1
@@ -2256,7 +2250,7 @@ rm -R ~/.guekho64/minecraft/.secret > /dev/null 2>&1
 	sleep 3.28
 	exit
 else
-echo "${verde}${negritas}OK${null}"
+echo "${verde}${negritas}Listo${null}"
 fi;
 
 )
