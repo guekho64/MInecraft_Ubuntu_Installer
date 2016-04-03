@@ -88,7 +88,7 @@ clear
         AlgoSalioMalInternet="Hay algún error en su conexión a Internet"
         ErrorCodigo="Error código $?"
         
-        Acepto="Yo acepté la licencia del Instalador de guekho64"
+        Acepto="Yo acepté la licencia del programa de guekho64"
         
     # Programas
     
@@ -152,16 +152,16 @@ Opción Inválida${null}"
 
             # Numeración
             
-                Titulo1="${verde}${negritas}¿Desea que el instalador genere dichas carpetas por usted?${null}"
+                Titulo1="${verde}${negritas}¿Desea que el programa genere dichas carpetas por usted?${null}"
             
         # Post-Inicio
         
             PstInicio1="${Verde}${negritas}Por alguna extraña razón, hace falta cierto archivo común, y es el que${null}"
-            PstInicio2="${Verde}${negritas}determina la ubicación de ciertas carpetas que el instalador utiliza, además de${null}"
+            PstInicio2="${Verde}${negritas}determina la ubicación de ciertas carpetas que el programa utiliza, además de${null}"
             PstInicio3="${Verde}${negritas}que muchas otras aplicaciones, hacen uso de estas carpetas, creyendo que existen${null}"
             PstInicio4="${amarillo}${negritas}Probablemente sea solo un error del programa,pero si usted está conciente de que${null}"
             PstInicio5="${amarillo}${negritas}su carpeta personal carece de folders que son habituales, como las carpetas${null}"
-            PstInicio6="${amarillo}${negritas}de Descargas o del Escritorio, puede dejar que el instalador tome las acciones${null}"
+            PstInicio6="${amarillo}${negritas}de Descargas o del Escritorio, puede dejar que el programa tome las acciones${null}"
             PstInicio7="${amarillo}${negritas}para poder crear las carpetas faltantes por usted, evitando así futuros errores${null}"
             
 
@@ -276,7 +276,7 @@ Opción Inválida${null}"
             
             LICENCE_NO="${negritas}Usted no ha aceptado la licencia y los términos de uso${null}"
             
-            LICENCE_NO1="${negritas}por lo que el instalador no puede continuar${null}"
+            LICENCE_NO1="${negritas}por lo que el programa no puede continuar${null}"
             
             Why="${rojo}${negritas}Algo salió mal, cerrando el programa...${null}"
             
@@ -285,7 +285,7 @@ ${null}"
 
             Licencia_Yay="${negritas}${verde}Al parecer usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
             
-            Licencia_Yay1="${negritas}${verde}por lo que el instalador puede continuar${null}"
+            Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
 
         # Procedimiento
         
@@ -422,7 +422,7 @@ ${null}"
             else
 
                 hcentro "$Msg_Contra" &
-                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute)" > /dev/null 2>&1
+                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute > /dev/null 2>&1)"
                 
             fi;
             
