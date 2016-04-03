@@ -44,7 +44,7 @@
 # Usted debió haber recibido una copia de la "GNU General Public License"
 # junto con este programa. Si no, vea <http://www.gnu.org/licenses/>.
 
-clear
+reset
 
 # Lenguaje: Español
 
@@ -111,7 +111,9 @@ clear
             
             Msg_Contra="${morado}${negritas}Introduzca su contraseña para continuar${null}"
             
-            Listo="${verde}${negritas}¡Listo!${null}"
+            Listo="${amarillo}${negritas}¡Listo!${null}"
+            
+            Mini_Listo="${amarillo}ok${null}"
             
             PingPong="${negritas}Probando conexiòn a Internet...${null}"
             
@@ -166,6 +168,66 @@ Opción Inválida${null}"
             
 
 # Funciones Universales
+
+    # Barra de Progreso, gracias a Teddy Skarin por esta pieza de código
+    
+        # Author : Teddy Skarin, colors added by guekho64
+
+        # 1. Create ProgressBar function
+        # 1.1 Input is currentState($1) and totalState($2)
+        
+        hcentroProgressBar () {
+
+                text="$1"
+
+                cols="$(tput cols)"
+
+                IFS=$'\n'$'\r'
+                for line in $(echo -e "$text"); do
+
+                line_length="$(echo "$line" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" | wc -c)"
+                half_of_line_length="$(expr "$line_length" / 2)"
+                centro="$(expr \( "$cols" / 2 \) - "$half_of_line_length")"
+
+                spaces=""
+                for ((i=0; i < $centro; i++)) {
+                spaces="$spaces "
+                }
+
+                echo -ne "$spaces$line"'\r'
+
+                done
+
+            }
+        
+        function ProgressBar {
+        # Process data
+	        let _progress=(${1}*100/${2}*100)/100
+	        let _done=(${_progress}*4)/10
+	        let _left=40-$_done
+        # Build progressbar string lengths
+	        _done=$(printf "%${_done}s")
+	        _left=$(printf "%${_left}s")
+
+	LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}#"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+
+        # 1.2 Build progressbar strings and print the ProgressBar line
+        # 1.2.1 Output example:
+        # 1.2.1.1 Progress : [########################################] 100%
+        hcentroProgressBar "
+$LineaDeProgreso"
+
+        }
+
+        # Variables
+        _start=1
+
+        # This accounts as the "totalState" variable for the ProgressBar function
+        _end=100
+        
+        Final="${_end}"
+        
+    # Barra de Progreso, gracias a Teddy Skarin por esta pieza de código FINAL
 
     # Atrapar Ctrl+C
     
@@ -283,7 +345,7 @@ Opción Inválida${null}"
             TituloLICENCIA="${negritas}${amarillo}¿Acepta usted la licencia y sus respectivos términos de uso?
 ${null}"
 
-            Licencia_Yay="${negritas}${verde}Al parecer usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
+            Licencia_Yay="${negritas}${verde}Al parecer, usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
             
             Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
 
@@ -351,8 +413,16 @@ ${null}"
     
         Listo () {
         
-        echo ""
         hcentro "$Listo"
+        sleep 0.64
+        
+        }
+
+    # Función: ¡Mini-Listo! # Depreciated
+    
+        Mini_Listo () {
+        
+        printf %s "$Mini_Listo"
         sleep 0.64
         
         }
@@ -398,9 +468,9 @@ ${null}"
             
             Error
             
-        else
+#        else
 
-            Listo
+#            Mini_Listo
 
         fi;
         
@@ -422,7 +492,7 @@ ${null}"
             else
 
                 hcentro "$Msg_Contra" &
-                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute > /dev/null 2>&1)"
+                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute )"
                 
             fi;
             
@@ -430,9 +500,7 @@ ${null}"
     
         autosudo () {
         
-        LOL=$( echo "$Passwd" | sudo -S "$@" )
-        
-        printf "$LOL " 
+        echo "$Passwd" | sudo -S "$@"
         
         }
         
@@ -529,6 +597,7 @@ fi;
     
     else
     
+    echo ""
     Listo
     
     fi
@@ -568,19 +637,26 @@ if [ $? -ne 0 ]; then
         clear
         hcentro "$Espera"
         hcentro "$Noty"
-        (autosudo $apt clean | Registrador) > /dev/null 2>&1
+        echo ""
+        (autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
         CheckError
-        (autosudo $apt update | Registrador) > /dev/null 2>&1
+        ProgressBar "20" "$Final"
+        (autosudo $apt update >> "${Registro}") > /dev/null 2>&1
         CheckError
-        (autosudo $apt install xdg-user-dirs -y | Registrador) > /dev/null 2>&1
+        ProgressBar "40" "$Final"
+        (autosudo $apt install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
         CheckError
-        (autosudo $apt clean | Registrador) > /dev/null 2>&1
+        ProgressBar "60" "$Final"
+        (autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
         CheckError
-        (xdg-user-dirs-update | Registrador) > /dev/null 2>&1
+        ProgressBar "80" "$Final"
+        (xdg-user-dirs-update >> "${Registro}") > /dev/null 2>&1
         CheckError
+        ProgressBar "100" "$Final"
 
-        clear
         OK
+        echo ""
+        echo ""
         Listo
         
         Estado_xdg_user_dirs="Si"
