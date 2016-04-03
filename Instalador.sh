@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # THIS INSTALLER is Copyright of guekho64 © 2015-2016
 
 # "Minecraft" is a trademark of Mojang Synergies AB. Mojang © 2009-2016.
@@ -41,8 +43,6 @@
 
 # Usted debió haber recibido una copia de la "GNU General Public License"
 # junto con este programa. Si no, vea <http://www.gnu.org/licenses/>.
-
-#!/bin/bash
 
 clear
 
@@ -422,7 +422,7 @@ ${null}"
             else
 
                 hcentro "$Msg_Contra" &
-                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute)"
+                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute)" > /dev/null 2>&1
                 
             fi;
             
@@ -477,6 +477,7 @@ Inicio () {
 
 if [ "$Passwd" = "$Nada" ]; then
 
+    clear
     hcentro "$NoPasswd"
     sleep 3.28
     echo ""
