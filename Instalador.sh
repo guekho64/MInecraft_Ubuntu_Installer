@@ -79,6 +79,31 @@ reset
         
         Registro="${Raiz}/Registro.txt"
         
+    #Licencia            
+
+        # IMPORTANTE: ACEPTACIÓN DE LA LICENCIA
+
+            # Strings
+            
+                TituloDeLaLicencia="${negritas}Por favor, primero acepte la licencia para continuar${null}"
+                
+                TituloDeLaLicencia1="${negritas} y así declarar que está usted de acuerdo${null}"
+            
+                ArchivoDeLicenciaAceptada="${HOME}/.config/guekho64/MinecraftInstaller/.OK.txt"
+            
+                LICENCE_NO="${negritas}Usted no ha aceptado la licencia y los términos de uso${null}"
+            
+                LICENCE_NO1="${negritas}por lo que el programa no puede continuar${null}"
+            
+                Why="${rojo}${negritas}Algo salió mal, cerrando el programa...${null}"
+            
+                TituloLICENCIA="${negritas}${amarillo}¿Acepta usted la licencia y sus respectivos términos de uso?
+${null}"
+
+                Licencia_Yay="${negritas}${verde}Al parecer, usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
+            
+                Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
+        
     # Misc
     
         Nada=""
@@ -103,11 +128,29 @@ reset
         
             Msg_Inicio="${negritas}Para cualquier asunto relacionado al programa, contácte al desarrollador:${null}"
             
-            Email="${negritas}${amarillo}guekho64@gmail.com${null}"
+            Email="${negritas}${cyan}guekho64@gmail.com${null}"
             
         # Acciones         
             
             ENTERPRESS="${verde}${negritas}Presione ${cyan}${negritas}ENTER ${verde}${negritas}para continuar${null}"
+            
+            Menu="${negritas}${verde}Programa de ${cyan}guekho64${verde} para Minecraft${null}"
+
+            MenuInfoCanal="${negritas}${blanco}Para más información, visite el canal de YouTube de guekho64:${null}"
+
+            CanalYT="${negritas}${cyan}https://www.youtube.com/user/guekho64${null}"
+
+            TituloPRINCIPAL="${negritas}${amarillo}¿Qué desea hacer?${null}"
+
+            Instalar="${negritas}${verde}Iniciando Instalador de Minecraft...${null}"
+
+            Desinstalar="${negritas}${rojo}Iniciando Desinstalador de Minecraft...${null}"
+            
+            Advertencia="${negritas}${amarillo}Antes de continuar, por favor cierre cualquier otro programa${null}"
+
+            Advertencia1="${negritas}${amarillo}que pueda llegar a interferir con el programa de instalación${null}"
+
+            Advertencia2="${negritas}${blanco}Por ejemplo: ${negritas}${cyan}Otras terminales y programas, como instaladores o actualizadores${null}"
             
             Msg_Contra="${morado}${negritas}Introduzca su contraseña para continuar${null}"
             
@@ -145,6 +188,8 @@ reset
 Seleccione una Opción:${null}"
 
             Opciones=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
+            
+            OpcionesMenuInstalar=("${negritas}${verde}Instalar${null}" "${negritas}${rojo}Desinstalar${null}")
             
             Rspsta="$(echo "${negritas}${cyan}
 Has elegido:${null}" )"
@@ -323,31 +368,33 @@ $LineaDeProgreso"
             done
             
             }
+    
+        # Menu Instalación
             
-# Funciones Universales FINAL            
+            Menu_Instalacion () {
 
-# IMPORTANTE: ACEPTACIÓN DE LA LICENCIA
+            T="${Titulo}"
+            
+            
+            hcentro "$T"
+            PS3="$SeleccioneOpcion "
+            select opt in "${OpcionesMenuInstalar[@]}"; do 
 
-        # Strings
-            
-            TituloDeLaLicencia="${negritas}Por favor, primero acepte la licencia para continuar${null}"
-            
-            TituloDeLaLicencia1="${negritas} y así declarar que está usted de acuerdo${null}"
-            
-            ArchivoDeLicenciaAceptada="${HOME}/.config/guekho64/MinecraftInstaller/.OK.txt"
-            
-            LICENCE_NO="${negritas}Usted no ha aceptado la licencia y los términos de uso${null}"
-            
-            LICENCE_NO1="${negritas}por lo que el programa no puede continuar${null}"
-            
-            Why="${rojo}${negritas}Algo salió mal, cerrando el programa...${null}"
-            
-            TituloLICENCIA="${negritas}${amarillo}¿Acepta usted la licencia y sus respectivos términos de uso?
-${null}"
+                case "$REPLY" in
 
-            Licencia_Yay="${negritas}${verde}Al parecer, usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
+                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Instalar" && sleep 1.64 && clear;;
+                2 ) echo "$Rspsta $opt" && eval Respuesta$1="Desinstalar" && sleep 1.64 && clear;;
+
+                *) echo "${Nulo}";continue;;
+
+                esac
+                break
+
+            done
             
-            Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
+            }
+            
+# Funciones Universales FINAL
 
         # Procedimiento
         
@@ -517,23 +564,25 @@ ${null}"
     
 PreInicio () {
 
+reset
+
     # Programas Diversos
     
-    # Gestor de Descargas
+      # Gestor de Descargas
         
-        if [ "$get" = "wget" ]; then
+         if [ "$get" = "wget" ]; then
             
-            GetMode="-O"
+             GetMode="-O"
             
-        elif [ "$get" = "aria2c" ]; then
+          elif [ "$get" = "aria2c" ]; then
         
-            GetMode="-o"
+             GetMode="-o"
             
-        else
+         else
                 
-            Error
+                Error
             
-        fi;
+         fi;
     
 }
             
@@ -542,6 +591,8 @@ PreInicio () {
 # INICIO SCRIPT
     
 Inicio () {
+
+reset
 
 if [ "$Passwd" = "$Nada" ]; then
 
@@ -628,6 +679,7 @@ if [ $? -ne 0 ]; then
           echo ""
 
     n=1
+    
     eval Titulo="\$"Titulo${n}""
               
     Menu_Simple "${n}"
@@ -713,5 +765,68 @@ fi
 
 # ETAPA INTERMEDIA : SCRIPT
 
-PreInicio
-Inicio
+Intermedio () {
+
+reset
+
+hcentro "$Advertencia"
+hcentro "$Advertencia1"
+echo ""
+hcentro "$Advertencia2"
+echo ""
+sleep 3.28
+hcentro "$ENTERPRESS"
+read
+
+clear
+
+autosudo pkill synaptic > /dev/null 2>&1
+autosudo $apt clean > /dev/null 2>&1
+
+clear
+
+hcentro "$Menu"
+
+sleep 1.1808
+
+echo ""
+hcentro "$MenuInfoCanal"
+hcentro "$CanalYT"
+echo ""
+
+sleep 1.1808
+
+n=PRINCIPAL
+
+eval Titulo="\$"Titulo${n}""
+              
+Menu_Instalacion "${n}"
+
+if [ "$RespuestaPRINCIPAL" = "Instalar" ]; then
+
+    clear
+    centro "$Instalar"
+    sleep 3.28
+    clear
+    Accion="Instalar"
+    clear
+    
+elif [ "$RespuestaPRINCIPAL" = "Desinstalar" ]; then
+
+    clear
+    centro "$Desinstalar"
+    sleep 3.28
+    clear
+    Accion="Desinstalar"
+    clear
+    
+else
+
+    clear
+    Error
+    
+fi
+
+}
+
+PreInicio && Inicio && Intermedio
