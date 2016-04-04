@@ -809,6 +809,9 @@ if [ "$RespuestaPRINCIPAL" = "Instalar" ]; then
     sleep 3.28
     clear
     Accion="Instalar"
+    echo "" >> "$Registro"
+    echo "$Acción" >> "$Registro"
+    echo "" >> "$Registro"
     clear
     
 elif [ "$RespuestaPRINCIPAL" = "Desinstalar" ]; then
@@ -818,6 +821,9 @@ elif [ "$RespuestaPRINCIPAL" = "Desinstalar" ]; then
     sleep 3.28
     clear
     Accion="Desinstalar"
+    echo "" >> "$Registro"
+    echo "$Acción" >> "$Registro"
+    echo "" >> "$Registro"
     clear
     
 else
@@ -826,6 +832,18 @@ else
     Error
     
 fi
+
+}
+
+Instalar () {
+
+reset
+
+}
+
+Desinstalar () {
+
+reset
 
 }
 
