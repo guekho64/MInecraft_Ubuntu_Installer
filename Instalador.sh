@@ -44,7 +44,7 @@
 # Usted debió haber recibido una copia de la "GNU General Public License"
 # junto con este programa. Si no, vea <http://www.gnu.org/licenses/>.
 
-reset
+tput reset
 
 # Lenguaje: Español
 
@@ -73,7 +73,34 @@ reset
             done
         Directorio="$( cd -P "$( dirname "$Fuente" )" && pwd )"
         
-        Raiz="$Directorio"             
+        Raiz="$Directorio"
+		
+		
+		LauncherPremium="${HOME}/.guekho64/minecraft/launchers/premium"
+		
+		LauncherOffline="${HOME}/.guekho64/minecraft/launchers/offline"
+		
+		MinecraftIcons="${HOME}/.guekho64/minecraft/icons"
+		
+		MinecraftDesktop="${HOME}/.guekho64/minecraft/desktop_files"
+		
+		Secret="${HOME}/.guekho64/minecraft/.secret"
+		
+		MinecraftPremiumJar="https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar"
+		
+	# UTF-8 ?
+	
+		Cool="$( echo "$LANG" | grep -o 'UTF-8[*]*' )"
+		
+		if [ "${Cool}" = "UTF-8" ]; then
+		
+			Simbolo="${negritas}${blanco}➤${null}"
+			
+		else
+		
+			Simbolo="${negritas}${blanco}*${null}"
+			
+		fi
 
     # Archivos
         
@@ -106,19 +133,57 @@ ${null}"
         
     # Misc
     
-        Nada=""
-        ListoNoty="Listo"
-        Termine="He terminado"
-        AlgoSalioMal="Algo estuvo mal"
-        AlgoSalioMalInternet="Hay algún error en su conexión a Internet"
-        ErrorCodigo="Error código $?"
+		ReadyOfficialNoty="El Launcher Premium se ha descargado correctamente"
+		
+		ReadyOfflineNoty="El Launcher Offline se ha descargado correctamente"
+        
+		Nada=""
+        
+		ListoNoty="Listo"
+        
+		Termine="He terminado"
+        
+		AlgoSalioMal="Algo estuvo mal"
+        
+		AlgoSalioMalInternet="Hay algún error en su conexión a Internet"
+        
+		ErrorCodigo="Error código $?"
         
         Acepto="Yo acepté la licencia del programa de guekho64"
         
-    # Programas
-    
-        apt="apt-get"
-        get="wget"
+	# Opciones de Programas
+	
+		cat "/usr/bin/aria2c" > /dev/null 2>&1
+		
+		TempErrorVar="$?"
+	
+		if [ "$TempErrorVar" = "0" ]; then
+            
+             get="aria2c"
+			 GetMode="-o"
+			 NoCheckCert="--check-certificate=false"
+			 
+         else
+            
+             get="wget"
+             GetMode="-O"
+			 NoCheckCert="--no-check-certificate"
+            
+         fi;
+	
+		cat "/usr/bin/apt-fast" > /dev/null 2>&1
+		
+		TempErrorVar="$?"
+	
+		if [ "$TempErrorVar" = "0" ]; then
+            
+			 apt="apt-fast"
+			 
+		else
+		
+			 apt="apt-get"
+            
+         fi;
         
 # Variables de Lenguaje
 
@@ -130,7 +195,84 @@ ${null}"
             
             Email="${negritas}${cyan}guekho64@gmail.com${null}"
             
-        # Acciones         
+        # Acciones
+		
+			QNoty="${negritas}${cyan}¿Le gustaría activar las notificaciones del programa?${null}"
+
+			QNoty1="${negritas}${blanco}Muchos otros programas hacen uso de ellas,así que es${null}"
+
+			QNoty2="${negritas}${blanco}muy probable que tarde o temprano termine instalándolas de todos modos...${null}"
+
+			ActiveNoty="${negritas}${verde}Notificaciones de escritorio: ${cyan}Activadas${null}"
+
+			NotyNope="${negritas}${rojo}Las Notificaciones de escritorio no serán activadas...${null}"
+
+			TituloNoty="${negritas}Entonces...${negritas}${verde}¿Las activo?${null}"
+
+			EsperaNoty="${negritas}${verde}Esto va a tardar un poquito...${null}"	
+		
+			WaitingPremium="${verde}${negritas}Descargando Launcher Premium...${null}"
+			
+			WaitingOffline="${verde}${negritas}Descargando Launcher Offline...${null}"
+
+			ReadyPremium="${verde}${negritas}Se ha descargado el Launcher Premium correctamente${null}"
+			
+			ReadyPremiumNoty="Se ha descargado el Launcher Premium correctamente"
+
+			MinecraftOfflineMsg="${negritas}${rojo}ADVERTENCIA:${null} ${negritas}${blanco}No pulse Control + C para pegar texto,pues eso cerrará el programa${null}"
+
+			MinecraftOfflineMsg1="${negritas}${amarillo}En su lugar, dé click derecho a la terminal y seleccione "Pegar"${null}"
+
+			MinecraftOfflineMsg2="${negritas}${verde}Pegue el Link Directo de descarga de su launcher preferido"
+
+			WaitingOffline="${verde}${negritas}Descargando Launcher Offline...${null}"
+
+			ReadyOffline="${verde}${negritas}Se ha descargado el Launcher Offline correctamente${null}"
+			
+            Premium="Premium"
+            
+            Offline="Offline"
+            
+            Marcadas="${negritas}${cyan}Marcadas:${null}"
+
+            Ninguna="Ninguna"
+            
+            DobleSeleccion="${negritas}${blanco}
+            
+Al elegir dos veces una opción, está será desmarcada${null}
+
+            
+${negritas}${verde}Presione ${cyan}${negritas}ENTER ${verde}${negritas}al terminar${null}
+
+            
+${negritas}Seleccione una opción:${null}"
+            
+            
+            PingPongRe="${negritas}Volviendo a verificar la conexión a internet${null}"
+
+            SeleccionaLauncher="${negritas}${blanco}A continuación podrás elegir que Launchers se descargarán${null}"
+        
+            GitHubWebPage="https://github.com/guekho64/Minecraft-Installer-for-Ubuntu"
+            
+            DistroActual="$(lsb_release -sir | tr -d '\n')"
+
+            DialogoInstalador1="${negritas}${verde}¡Bienvenido al Instalador de Minecraft de guekho64!${null}"
+            
+            DialogoInstalador3="${negritas}${cyan}El objetivo de este programa, es facilitar la instalación${null}"
+            
+            DialogoInstalador4="${negritas}${cyan}de Minecraft en computadoras que usen, ya sea ${null}"
+            
+            DialogoInstalador5="${negritas}${blanco}Debian ${negritas}${cyan}o ${amarillo}${negritas}Ubuntu${negritas}${cyan} como su Sistema Operativo, aunque igual${null}"
+            
+            DialogoInstalador6="${negritas}${cyan}puede ser utilizado en Distribuciones derivadas a partir de alguno de ellas${null}"
+            
+            DialogoInstalador7="${negritas}${cyan}Su Distribución actual: ${negritas}${blanco}${DistroActual}${null}"
+            
+            DialogoInstalador8="${negritas}${blanco}El programa soporta instalar hasta 2 Launchers de Minecraft de distintos tipos${null}"
+            
+            DialogoInstalador9="${negritas}${blanco}de diferentes tipos, como por ejemplo, un Launcher Offline + un Launcher Premium${null}"
+            
+            DialogoInstalador10="${negritas}${amarillo}IMPORTANTE: Al instalar dos launchers offline, el viejo será reemplazado${null}"
             
             ENTERPRESS="${verde}${negritas}Presione ${cyan}${negritas}ENTER ${verde}${negritas}para continuar${null}"
             
@@ -158,7 +300,7 @@ ${null}"
             
             Mini_Listo="${amarillo}ok${null}"
             
-            PingPong="${negritas}Probando conexiòn a Internet...${null}"
+            PingPong="${negritas}Probando conexión a Internet...${null}"
             
             ErrorPingPong="${negritas}Al parecer usted no está conectado a Internet${null}"
             
@@ -175,6 +317,36 @@ ${null}"
             Espera="${negritas}${cyan}Trabajando. Esto llevará tiempo${null}"
             
             Noty="${negritas}${verde}Si tienes las notificaciones activadas,serás notificado cuando esto termine ${null}"
+            
+         # Acciones: Menú Especial
+         
+            # Función: Color
+		
+            Color () {
+
+                        echo "\033[$1m"
+
+            }
+            
+            # Función: Color FIN
+         
+            options=("$(echo "$(printf "$(Color "33;1")"Premium${null})")" "$(echo "${negritas}$(printf "$(Color "38;5;159;48;1")"Offline${null})")")
+            OpcionesDisponibles="${negritas}${cyan}Opciones Disponibles:${null}"
+
+            mensaje="${negritas}${blanco}
+Al elegir dos veces una opción, esta será desmarcada. ${subrayado}${negritas}${blanco}Puedes elegir ambas${null}
+
+$ENTERPRESS
+
+${negritas}${cyan}Seleccione una opción:${null}"
+
+            OpcionInvalida="${negritas}${rojo}
+Opción Inválida: $num${null}"
+
+            Marcadas=""
+            Ninguna=""
+            
+        # Acciones: Menú Especial FIN
             
         # Numeración: Nope_Carpetas
         
@@ -214,7 +386,7 @@ Opción Inválida${null}"
 
 # Funciones Universales
 
-    # Barra de Progreso, gracias a Teddy Skarin por esta pieza de código
+	    # Barra de Progreso, gracias a Teddy Skarin por esta pieza de código
     
         # Author : Teddy Skarin, colors added by guekho64
 
@@ -245,7 +417,8 @@ Opción Inválida${null}"
 
             }
         
-        function ProgressBar {
+        ProgressBar () {
+		
         # Process data
 	        let _progress=(${1}*100/${2}*100)/100
 	        let _done=(${_progress}*4)/10
@@ -253,8 +426,16 @@ Opción Inválida${null}"
         # Build progressbar string lengths
 	        _done=$(printf "%${_done}s")
 	        _left=$(printf "%${_left}s")
-
-	LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}#"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+			
+		if [ "${Cool}" = "UTF-8" ]; then
+		
+			LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}>"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+			
+		else
+		
+			LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}#"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+			
+		fi
 
         # 1.2 Build progressbar strings and print the ProgressBar line
         # 1.2.1 Output example:
@@ -272,7 +453,32 @@ $LineaDeProgreso"
         
         Final="${_end}"
         
-    # Barra de Progreso, gracias a Teddy Skarin por esta pieza de código FINAL
+    # Función: Notificación OK
+    
+        OK () {
+		
+		if [ "${1}" = "${Nada}" ] ; then
+		
+			VarMsg="${Termine}"
+			
+		else
+		
+			VarMsg="${1}"
+			
+		fi
+        
+        ( notify-send "$ListoNoty" "$VarMsg" --icon=gtk-ok ) > /dev/null 2>&1
+        
+        }
+
+    # Función: Notificación "Algo anda mal"
+    
+        KO () {
+        
+        ( notify-send "$AlgoSalioMal" "$ErrorCodigo" --icon=error ) > /dev/null 2>&1
+        
+        }
+        
 
     # Atrapar Ctrl+C
     
@@ -282,14 +488,38 @@ $LineaDeProgreso"
         
         ( rm -R "${HOME}/.guekho64/minecraft/.secret" | tee -a "$Registro" ) > /dev/null 2>&1
         
-        clear
-        KO > /dev/null 2>&1
+        tput reset
+        KO
         hcentro "$Error"
         sleep 3.28
-        clear
+        tput reset
         exit
         
         }
+		
+	# Checar Programa
+	
+		if [ "$get" = "wget" ] ; then
+
+			Get () {
+	
+			( "${get}" --append-output="${Registro}" "${3}" "${1}"  "${GetMode}" "${2}"/Minecraft.jar ) > /dev/null 2>&1 ;
+	
+			}
+	
+		elif [ "$get" = "aria2c" ] ; then
+
+			Get () {
+	
+			( ( "${get}" "${1}" "${GetMode}" "Minecraft.jar" -d "${2}" ${3}  ) > "$Registro" )
+	
+			}
+	
+		else
+
+			Error
+	
+		fi
 
     # Atrapar Ctrl+C FINAL
 
@@ -344,7 +574,7 @@ $LineaDeProgreso"
 
     # Menus
     
-        # Menu Simple
+        # Menú Simple
             
             Menu_Simple () {
 
@@ -357,8 +587,8 @@ $LineaDeProgreso"
 
                 case "$REPLY" in
 
-                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Si" && sleep 1.64 && clear;;
-                2 ) echo "$Rspsta $opt" && eval Respuesta$1="No" && sleep 1.64 && clear;;
+                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Si" && sleep 1.64 && tput reset;;
+                2 ) echo "$Rspsta $opt" && eval Respuesta$1="No" && sleep 1.64 && tput reset;;
 
                 *) echo "${Nulo}";continue;;
 
@@ -369,7 +599,7 @@ $LineaDeProgreso"
             
             }
     
-        # Menu Instalación
+        # Menú Instalación
             
             Menu_Instalacion () {
 
@@ -382,8 +612,8 @@ $LineaDeProgreso"
 
                 case "$REPLY" in
 
-                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Instalar" && sleep 1.64 && clear;;
-                2 ) echo "$Rspsta $opt" && eval Respuesta$1="Desinstalar" && sleep 1.64 && clear;;
+                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Instalar" && sleep 1.64 && tput reset;;
+                2 ) echo "$Rspsta $opt" && eval Respuesta$1="Desinstalar" && sleep 1.64 && tput reset;;
 
                 *) echo "${Nulo}";continue;;
 
@@ -393,7 +623,88 @@ $LineaDeProgreso"
             done
             
             }
-            
+			
+        # Menú Especial
+        
+            Menu_Especial () {     
+
+# Base Especial
+
+menu () {
+    hcentro "${OpcionesDisponibles}"
+    echo ""
+    for i in ${!options[@]}; do 
+        printf "%3d%s) %s\n" $((i+1)) "${choices[i]:- }" "${options[i]}"
+    done
+    [[ "$msg" ]] && echo "$msg"; :
+}
+
+Read_Function () {
+read -rp "$mensaje" num
+}
+
+Rd_Fctn=Read_Function
+
+while menu && "${Rd_Fctn}" && tput reset && [[ "$num" ]]  ; do
+    [[ "$num" != *[![:digit:]]* ]] &&
+    (( num > 0 && num <= ${#options[@]} )) ||
+    { msg="$(printf "${OpcionInvalida}")"; continue; }
+    ((num--)); msg=""
+    [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="${Simbolo}"
+done
+
+( printf "${Marcadas}" ; msg="${Ninguna}" )
+
+Final_Message () {
+for i in ${!options[@]}; do 
+    [[ "${choices[i]}" ]] && { printf " %s" "${options[i]}"; msg=""; }
+done 
+}
+
+Fnl_Mssg="$(Final_Message)"
+
+#Funciones Especiales
+
+Extracto_Offline () {
+echo "${Fnl_Mssg}" |  grep -o 'Offline["]*'
+}
+
+Extracto_Premium () {
+echo "${Fnl_Mssg}" |  grep -o 'Premium["]*'
+}
+
+Extracto_Ambos () {
+echo "${Fnl_Mssg}" | grep -oe 'Premium["]*' -oe 'Offline["]*'
+}
+
+Ext_O=$(Extracto_Offline)
+Ext_P=$(Extracto_Premium)
+Ext_A1=$(Extracto_Ambos)
+
+Ext_A=$(echo $Ext_A1)
+
+if  [ "$Ext_A" = "Premium Offline" ]  ; then
+
+        tput reset
+        Instalacion="Ambos"
+        
+elif [ "$Ext_O" = "Offline" ]  ; then
+
+        tput reset
+        Instalacion="Offline"
+        
+elif [ "$Ext_P" = "Premium" ]  ; then
+
+        tput reset
+        Instalacion="Premium"
+        
+else
+       
+       Error
+fi        
+
+}
+
 # Funciones Universales FINAL
 
         # Procedimiento
@@ -407,7 +718,7 @@ $LineaDeProgreso"
                 echo ""
                 hcentro "$ENTERPRESS"
                 read
-                clear
+                tput reset
                 
                 ( xdg-open "${Directorio}/COPYING.txt" > /dev/null 2>&1 ) &
                 
@@ -418,14 +729,14 @@ $LineaDeProgreso"
                 
                 if [ "$RespuestaLICENCIA" = "Si" ]; then
                 
-                     ( mkdir -p "${HOME}/.config/guekho64/MinecraftInstaller/" ) > /dev/null 2>&1
+                     ( mkdir -v -p "${HOME}/.config/guekho64/MinecraftInstaller/" ) > /dev/null 2>&1
                      ( touch "${HOME}/.config/guekho64/MinecraftInstaller/.OK" ) > /dev/null 2>&1
                      ( printf "$Acepto" ) > "${ArchivoDeLicenciaAceptada}"
                      ( chmod 444 "${ArchivoDeLicenciaAceptada}" )
                     
                 elif [ "$RespuestaLICENCIA" = "No" ]; then
                 
-                        clear
+                        tput reset
                         hcentro "$LICENCE_NO"
                         hcentro "$LICENCE_NO1"
                         sleep 3.28
@@ -433,7 +744,7 @@ $LineaDeProgreso"
                     
                 else
                 
-                        clear
+                        tput reset
                         hcentro "$Why"
                         sleep 3.28
                         exit
@@ -443,11 +754,11 @@ $LineaDeProgreso"
            else
            
                 echo ""
-                clear
+                tput reset
                 hcentro "$Licencia_Yay"
                 hcentro "$Licencia_Yay1"
                 sleep 6.4
-                clear
+                tput reset
             fi
            
         
@@ -473,36 +784,20 @@ $LineaDeProgreso"
         sleep 0.64
         
         }
-        
-    # Función: Notificación OK
-    
-        OK () {
-        
-        notify-send "$ListoNoty" "$Termine" --icon=gtk-ok
-        
-        }
-
-    # Función: Notificación "Algo anda mal"
-    
-        KO () {
-        
-        notify-send "$AlgoSalioMal" "$ErrorCodigo" --icon=error
-        
-        }
-        
+		
     # Función: Atrapar error de ping
     
         PingPongError () {
         
         ( rm -R "${HOME}/.guekho64/minecraft/.secret" | tee -a "$Registro" ) > /dev/null 2>&1
         
-        clear
+        tput reset
         hcentro "$ErrorPingPong"
         sleep 3.28
-        clear
+        tput reset
         hcentro "$BeHappyPingPong"
         sleep 3.28
-        clear
+        tput reset
         exit
         
         }
@@ -558,45 +853,236 @@ $LineaDeProgreso"
         tee -a "$Registro"
         
         }
-            
-            
-# PRE-INICIO SCRIPT
-    
-PreInicio () {
+		
+		# Función: Busca
+		
+		Busca () {
 
-reset
+        cat "${1}" > /dev/null 2>&1
+		
+		ErrVar="${?}"
+		
+		SearchCrit=$( echo "${@}" |  grep -o '\-c["]*' )
+		
+		if [ "${SearchCrit}" = "-c" ]; then
+		
+			Fail () {  Error ; }
+			
+			
+		else
+		
+			Fail () {  echo "Error" ; }
+		
+		fi
+        
+        if [ "${ErrVar}" -ne 0 ]; then
+        
+        Fail
+        
+        if [ "$3" = "" ] ; then
+        
+          sleep 0
+          
+        else
+        
+				sleep "${3}"
+        
+        fi
 
-    # Programas Diversos
-    
-      # Gestor de Descargas
+
+        fi
         
-         if [ "$get" = "wget" ]; then
-            
-             GetMode="-O"
-            
-          elif [ "$get" = "aria2c" ]; then
-        
-             GetMode="-o"
-            
-         else
-                
-                Error
-            
-         fi;
-    
+        }
+		
+		# Funciones de Launchers
+		
+		Premium () {
+
+		tput reset
+		
+		Estado=Premium
+		
+		hcentro "${WaitingPremium}"
+		echo ""
+		hcentro "${Noty}"
+		echo ""
+		ProgressBar "0" "$Final"
+		rm "${LauncherPremium}"/Minecraft.jar > /dev/null 2>&1
+		Get "${MinecraftPremiumJar}" "${LauncherPremium}"
+		Busca "${LauncherPremium}"/Minecraft.jar -c
+		ProgressBar "100" "${Final}"
+		sleep 1.64
+		tput reset
+		hcentro "${ReadyPremium}"
+		OK "${ReadyPremiumNoty}"
+		sleep 2.46
+		tput reset
+		
 }
-            
-# PRE-INICIO SCRIPT
 
+		Offline () {
+
+		tput reset
+		
+		Estado=Offline
+		
+		hcentro "${MinecraftOfflineMsg}"
+		echo ""
+		hcentro "${MinecraftOfflineMsg1}"
+		echo ""
+		hcentro "${MinecraftOfflineMsg2}"
+		echo ""
+		hcentro "${Noty}"
+		echo ""
+		
+		read MinecraftOfflineJar
+		
+		tput reset
+		hcentro "${WaitingOffline}"
+		echo ""
+		ProgressBar "0" "$Final"
+		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
+		Get "${MinecraftOfflineJar}" "${LauncherOffline}" "${NoCheckCert}"
+		Busca "${LauncherOffline}"/Minecraft.jar -c
+		ProgressBar "100" "${Final}"
+		sleep 1.64
+		tput reset
+		hcentro "${ReadyOffline}"
+		OK "${ReadyOfflineNoty}"
+		sleep 2.46
+		tput reset
+		
+}
+
+		Ambos () {
+		
+		tput reset
+		
+		Estado=Ambos
+		
+		hcentro "${WaitingPremium}"
+		echo ""
+		hcentro "${Noty}"
+		echo ""
+		rm "${LauncherPremium}"/Minecraft.jar > /dev/null 2>&1
+		ProgressBar "0" "$Final"
+		Get "${MinecraftPremiumJar}" "${LauncherPremium}"
+		Busca "${LauncherPremium}"/Minecraft.jar -c
+		ProgressBar "50" "$Final"
+		sleep 1.28
+		tput reset
+		hcentro "${ReadyPremium}"
+		OK "${ReadyPremiumNoty}"
+		sleep 2.46
+		tput reset
+		
+		hcentro "${MinecraftOfflineMsg}"
+		echo ""
+		hcentro "${MinecraftOfflineMsg1}"
+		echo ""
+		hcentro "${MinecraftOfflineMsg2}"
+		echo ""
+		hcentro "${Noty}"
+		echo ""
+		
+		read MinecraftOfflineJar
+		
+		tput reset
+		hcentro "${WaitingOffline}"
+		echo ""
+		ProgressBar "50" "$Final"
+		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
+		Get "${MinecraftOfflineJar}" "${LauncherOffline}" "${NoCheckCert}"
+		Busca "${LauncherOffline}"/Minecraft.jar -c
+		ProgressBar "100" "${Final}"
+		sleep 1.64
+		tput reset
+		hcentro "${ReadyOffline}"
+		OK "${ReadyOfflineNoty}"
+		sleep 2.46
+		tput reset
+		
+		}
+		
+		# Función: Checar Notificaciones de Escritorio
+		
+		NotyCheck () {
+
+		tput reset
+
+		# Activar Notificaciones
+
+			Busca "/usr/bin/notify-send" > /dev/null 2>&1
+
+			if [ "$ErrVar" = "0" ]; then
+
+				tput reset
+				hcentro "$ActiveNoty"
+				sleep 3.84
+	
+			else
+
+				tput reset
+				hcentro "$QNoty"
+				echo ""
+				hcentro "$QNoty1"
+				hcentro "$QNoty2"
+				echo ""
+
+				n=Noty
+    
+				eval Titulo="\$"Titulo${n}""
+              
+				Menu_Simple "${n}"
+	
+				if [ "$RespuestaNoty" = "Si" ]; then
+	
+					tput reset
+					hcentro "$EsperaNoty"
+					echo ""
+					ProgressBar "0" "$Final"
+					(autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+					CheckError
+					ProgressBar "32" "$Final"
+					(autosudo $apt update >> "${Registro}") > /dev/null 2>&1
+					CheckError
+					(autosudo $apt install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
+					CheckError
+					ProgressBar "64" "$Final"
+					(autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+					CheckError
+					ProgressBar "100" "$Final"
+		
+					OK
+					echo ""
+					echo ""
+					Listo
+		
+			elif [ "$RespuestaNoty" = "No" ]; then
+	
+					tput reset
+					hcentro "$NotyNope"
+					echo ""
+					hcentro "$ENTERPRESS"
+					read
+					tput reset
+		
+			fi
+		
+		fi
+		
+		}
+            
+            
 # INICIO SCRIPT
     
 Inicio () {
 
-reset
+tput reset
 
 if [ "$Passwd" = "$Nada" ]; then
 
-    clear
+    tput reset
     hcentro "$NoPasswd"
     sleep 3.28
     echo ""
@@ -608,7 +1094,7 @@ else
     
     if [ "$?" = "0" ]; then
     
-        clear
+        tput reset
         hcentro "$GoodPasswd"
         sleep 3.28
         
@@ -623,25 +1109,35 @@ else
     
 fi
 
-clear
+tput reset
 
-cat "$Registro" > /dev/null 2>&1
+Busca "$Registro" > /dev/null 2>&1
 
-if [ $? -ne 0 ]; then
+if [ "${ErrVar}" -ne 0 ]; then
 
     touch "$Registro"
+	autosudo chmod 777 "${Registro}"
 
 else
 
+	autosudo chmod 777 "${Registro}"
     printf "" > "$Registro"
+	autosudo chmod 777 "${Registro}"
     
 fi;
 
+    tput reset
+
 # Verificar conexión a Internet
 
-    clear
+    #Debian: Ping Bug, no es propiedad de Root. Fix
+    
+    autosudo chmod u+s "$(which ping)"
+        
+    #Debian: Ping Bug, no es propiedad de Root. Fix   FIN
+    
     hcentro "$PingPong"
-    ( ping -c 4 www.google.com.mx ) >> "$Registro"
+    ( ping -c 4 www.google.com ) >> "$Registro"
     if [ $? -ne 0 ]; then
     
     PingPongError
@@ -652,22 +1148,24 @@ fi;
     Listo
     
     fi
+	
+NotyCheck
 
-clear
+tput reset
 
 hcentro "$Msg_Inicio"
 hcentro "$Email"
 
 sleep 6.4
-clear
+tput reset
 
     # CHECAR DIRECTORIOS EN /HOME
     
-cat "${HOME}/.config/user-dirs.dirs" > /dev/null 2>&1
+Busca "${HOME}/.config/user-dirs.dirs" > /dev/null 2>&1
 
-if [ $? -ne 0 ]; then 
-        sleep 3.28
+if [ "${ErrVar}" -ne 0 ]; then 
           
+		  sleep 1.28
           hcentro "$PstInicio1"
           hcentro "$PstInicio2"
           hcentro "$PstInicio3"
@@ -686,10 +1184,11 @@ if [ $? -ne 0 ]; then
     
     if  [ "$Respuesta1" = "Si" ]  ; then
     
-        clear
+        tput reset
         hcentro "$Espera"
         hcentro "$Noty"
         echo ""
+		ProgressBar "0" "$Final"
         (autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
         CheckError
         ProgressBar "20" "$Final"
@@ -714,11 +1213,11 @@ if [ $? -ne 0 ]; then
         Estado_xdg_user_dirs="Si"
         
         sleep 3.2
-        clear
+        tput reset
     
     elif  [ "$Respuesta1" = "No" ]  ; then
     
-        clear
+        tput reset
         hcentro "$Nope_Carpetas1"
         hcentro "$Nope_Carpetas2"
         
@@ -728,7 +1227,7 @@ if [ $? -ne 0 ]; then
         echo ""
         hcentro "$ENTERPRESS"
         read
-        clear
+        tput reset
     
     else
     
@@ -765,9 +1264,94 @@ fi
 
 # ETAPA INTERMEDIA : SCRIPT
 
+	# ETAPA INTERMEDIA: INSTALAR / DESINSTALAR	
+	
+		Instalar () {
+
+		tput reset
+
+		echo ""
+		hcentro "$DialogoInstalador1"
+		echo ""
+		echo ""
+		hcentro "$DialogoInstalador2"
+		hcentro "$DialogoInstalador3"
+		hcentro "$DialogoInstalador4"
+		hcentro "$DialogoInstalador5"
+		hcentro "$DialogoInstalador6"
+		echo ""
+		hcentro "$DialogoInstalador7"
+		echo ""
+		hcentro "${subrayado}$DialogoInstalador8"
+		echo ""
+		echo ""
+		echo ""
+		hcentro "$ENTERPRESS"
+		read
+
+		tput reset
+
+		hcentro "$PingPongRe"
+		( ping -c 4 www.google.com.mx ) >> "$Registro"
+		if [ $? -ne 0 ]; then
+		    
+    		PingPongError
+		    
+		else
+		    
+    		echo ""
+    		Listo
+		    
+		fi
+
+		tput reset
+
+		# Operación: Crear Directorios
+
+		( ( mkdir -v -p ~/.guekho64/minecraft/launchers/premium && mkdir -v -p ~/.guekho64/minecraft/launchers/offline && mkdir -v -p ~/.guekho64/minecraft/icons && mkdir -v -p ~/.guekho64/minecraft/desktop_files && mkdir -v -p ~/.guekho64/minecraft/.secret && mkdir -v -p ~/.local/share/applications ) | Registrador ) > /dev/null 2>&1
+
+		hcentro "$SeleccionaLauncher"
+		echo ""
+		hcentro "$ENTERPRESS"
+		read
+
+		tput reset
+
+		Menu_Especial
+
+		if  [ "$Instalacion" = "Ambos" ] ; then
+		
+				tput reset
+				Ambos
+		
+		elif  [ "$Instalacion" = "Premium" ] ; then
+		
+				tput reset
+				Premium				
+		
+		elif  [ "$Instalacion" = "Offline" ] ; then
+
+				tput reset
+				Offline		
+		else
+		
+				Error
+		
+		fi
+		
+		}
+
+		Desinstalar () {
+
+		tput reset
+
+		}
+		
+	# ETAPA INTERMEDIA: INSTALAR / DESINSTALAR FINAL
+
 Intermedio () {
 
-reset
+tput reset
 
 hcentro "$Advertencia"
 hcentro "$Advertencia1"
@@ -778,12 +1362,12 @@ sleep 3.28
 hcentro "$ENTERPRESS"
 read
 
-clear
+tput reset
 
 autosudo pkill synaptic > /dev/null 2>&1
 autosudo $apt clean > /dev/null 2>&1
 
-clear
+tput reset
 
 hcentro "$Menu"
 
@@ -804,47 +1388,37 @@ Menu_Instalacion "${n}"
 
 if [ "$RespuestaPRINCIPAL" = "Instalar" ]; then
 
-    clear
+    tput reset
     centro "$Instalar"
     sleep 3.28
-    clear
+    tput reset
     Accion="Instalar"
     echo "" >> "$Registro"
-    echo "$Acción" >> "$Registro"
+    echo "${Accion}" >> "$Registro"
     echo "" >> "$Registro"
-    clear
+    tput reset
+	Instalar
     
 elif [ "$RespuestaPRINCIPAL" = "Desinstalar" ]; then
 
-    clear
+    tput reset
     centro "$Desinstalar"
     sleep 3.28
-    clear
+    tput reset
     Accion="Desinstalar"
     echo "" >> "$Registro"
     echo "$Acción" >> "$Registro"
     echo "" >> "$Registro"
-    clear
+    tput reset
+	Desinstalar
     
 else
 
-    clear
+    tput reset
     Error
     
 fi
 
 }
 
-Instalar () {
-
-reset
-
-}
-
-Desinstalar () {
-
-reset
-
-}
-
-PreInicio && Inicio && Intermedio
+Inicio && Intermedio
