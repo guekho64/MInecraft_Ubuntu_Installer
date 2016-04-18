@@ -194,6 +194,16 @@ ${null}"
             Msg_Inicio="${negritas}Para cualquier asunto relacionado al programa, contácte al desarrollador:${null}"
             
             Email="${negritas}${cyan}guekho64@gmail.com${null}"
+			
+		# Iconos
+		
+			ExecutableScriptIcon="application-x-executable-script"
+
+			ErrorDialog="dialog-error"
+
+			OkDialog="dialog-ok"
+
+			InstalledPackageIcon="utilities-file-archiver"
             
         # Acciones
 		
@@ -255,6 +265,10 @@ ${negritas}Seleccione una opción:${null}"
             GitHubWebPage="https://github.com/guekho64/Minecraft-Installer-for-Ubuntu"
             
             DistroActual="$(lsb_release -sir | tr -d '\n')"
+			
+			NotyAcabado="Ya acabé"
+
+			SpecialNoty="¡Ya instalé las notificaciones de escritorio! ¿Acaso no me veo genial?"
 
             DialogoInstalador1="${negritas}${verde}¡Bienvenido al Instalador de Minecraft de guekho64!${null}"
             
@@ -466,8 +480,28 @@ $LineaDeProgreso"
 			VarMsg="${1}"
 			
 		fi
+		
+		if [ "${2}" = "${Nada}" ] ; then
+		
+			VarIcon="$OkDialog"
+			
+		else
+		
+			VarIcon="${2}"
+			
+		fi
+		
+		if [ "${3}" = "${Nada}" ] ; then
+		
+			VarTitle="$ListoNoty"
+			
+		else
+		
+			VarTitle="${3}"
+			
+		fi
         
-        ( notify-send "$ListoNoty" "$VarMsg" --icon=gtk-ok ) > /dev/null 2>&1
+        ( notify-send "$VarTitle" "$VarMsg" --icon="${VarIcon}" ) > /dev/null 2>&1
         
         }
 
@@ -475,7 +509,7 @@ $LineaDeProgreso"
     
         KO () {
         
-        ( notify-send "$AlgoSalioMal" "$ErrorCodigo" --icon=error ) > /dev/null 2>&1
+        ( notify-send "$AlgoSalioMal" "$ErrorCodigo" --icon="$ErrorDialog" ) > /dev/null 2>&1
         
         }
         
@@ -834,7 +868,7 @@ fi
             else
 
                 hcentro "$Msg_Contra" &
-                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon=gtk-execute )"
+                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon="$ExecutableScriptIcon" )"
                 
             fi;
             
@@ -940,6 +974,8 @@ fi
 		tput reset
 		hcentro "${WaitingOffline}"
 		echo ""
+		hcentro "${Noty}"
+		echo ""
 		ProgressBar "0" "$Final"
 		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
 		Get "${MinecraftOfflineJar}" "${LauncherOffline}" "${NoCheckCert}"
@@ -989,6 +1025,8 @@ fi
 		
 		tput reset
 		hcentro "${WaitingOffline}"
+		echo ""
+		hcentro "${Noty}"
 		echo ""
 		ProgressBar "50" "$Final"
 		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
@@ -1053,7 +1091,7 @@ fi
 					CheckError
 					ProgressBar "100" "$Final"
 		
-					OK
+					OK "$SpecialNoty" "$InstalledPackageIcon" "$NotyAcabado"
 					echo ""
 					echo ""
 					Listo
@@ -1205,7 +1243,7 @@ if [ "${ErrVar}" -ne 0 ]; then
         CheckError
         ProgressBar "100" "$Final"
 
-        OK
+        OK "" "$InstalledPackageIcon"
         echo ""
         echo ""
         Listo
