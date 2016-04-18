@@ -511,7 +511,7 @@ $LineaDeProgreso"
 
 			Get () {
 	
-			( ( "${get}" "${1}" "${GetMode}" "Minecraft.jar" -d "${2}" ${3}  ) > "$Registro" )
+			( ( "${get}" "${1}" "${GetMode}" "Minecraft.jar" -d "${2}" ${3}  ) >> "$Registro" )
 	
 			}
 	
