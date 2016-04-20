@@ -86,6 +86,8 @@ tput reset
 		
 		Secret="${HOME}/.guekho64/minecraft/.secret"
 		
+		AptListFiles="/etc/apt/sources.list.d/"
+		
 		MinecraftPremiumJar="https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar"
 		
 	# UTF-8 ?
@@ -105,6 +107,10 @@ tput reset
     # Archivos
         
         Registro="${Raiz}/Registro.txt"
+		
+		AptList="/etc/apt/sources.list.d/guekho64.list"
+		
+		InfinalityScript="/etc/fonts/infinality/infctl.sh"
         
     #Licencia            
 
@@ -133,6 +139,25 @@ ${null}"
         
     # Misc
     
+		#PPA
+		
+			key="apt-key"
+			
+			Codename="$(lsb_release -c)"
+
+			FinalCodename="$(echo "$(echo "$(awk '{gsub("Codename:", "");print}' <<< "$Codename")" | tr -d '[[:space:]]' )")"
+
+			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu ${FinalCodename} main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu ${FinalCodename} main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} main"
+
+		PreparandoEntorno="${negritas}${cyan}Estaré trabajando en ello, tu solo espera. Tardará un poco${null}"
+
 		ReadyOfficialNoty="El Launcher Premium se ha descargado correctamente"
 		
 		ReadyOfflineNoty="El Launcher Offline se ha descargado correctamente"
@@ -197,19 +222,33 @@ ${null}"
 			
 		# Iconos
 		
-			ExecutableScriptIcon="application-x-executable-script"
+			ExecutableScriptIcon="gnome-run"
 
-			ErrorDialog="dialog-error"
+			ErrorDialog="list-remove"
 
-			OkDialog="dialog-ok"
+			OkDialog="list-add"
 
-			InstalledPackageIcon="utilities-file-archiver"
+			InstalledPackageIcon="gnome-stock-mail-fwd"
             
         # Acciones
+			
+			WaitingDestinoRapido="${negritas}${cyan}Esto va a tardar un buen rato, dependiendo de tu velocidad de Internet...${null}"
+
+			InfinalityText="${negritas}${verde}Seleccione el tipo de ${negritas}${cyan}Look${null}${negritas}${verde}de fuente que le gustaría tener${null}"
+
+			InfinalityText1="${negritas}${amarillo}Personalmente recomiendo el estilo 4 o el 5${null}"
+			
+			QEligeTuDestino="${negritas}${cyan}Ahora podrás elegir tu método de Instalación${null}"
+
+			QEligeTuDestino2="${negritas}${Simbolo} ${negritas}${verde}El método \"${negritas}${amarillo}Rápido${negritas}${verde}\" usa los ajustes que considero más adecuados y confiables${null}"
+
+			QEligeTuDestino3="${negritas}${Simbolo} ${negritas}${blanco}El método \"${negritas}${azul}Personalizado${negritas}${blanco}\" deja que tu configures cada detalle de los ajustes${null}"
+
+			QEligeTuDestino4="${negritas}${cyan}¿Cuál eliges?${null}"
 		
 			QNoty="${negritas}${cyan}¿Le gustaría activar las notificaciones del programa?${null}"
 
-			QNoty1="${negritas}${blanco}Muchos otros programas hacen uso de ellas,así que es${null}"
+			QNoty1="${negritas}${blanco}Muchos otros programas hacen uso de ellas, así que es${null}"
 
 			QNoty2="${negritas}${blanco}muy probable que tarde o temprano termine instalándolas de todos modos...${null}"
 
@@ -219,8 +258,8 @@ ${null}"
 
 			TituloNoty="${negritas}Entonces...${negritas}${verde}¿Las activo?${null}"
 
-			EsperaNoty="${negritas}${verde}Esto va a tardar un poquito...${null}"	
-		
+			EsperaNoty="${negritas}${verde}Esto va a tardar un poquito...${null}"
+			
 			WaitingPremium="${verde}${negritas}Descargando Launcher Premium...${null}"
 			
 			WaitingOffline="${verde}${negritas}Descargando Launcher Offline...${null}"
@@ -278,9 +317,9 @@ ${negritas}Seleccione una opción:${null}"
             
             DialogoInstalador5="${negritas}${blanco}Debian ${negritas}${cyan}o ${amarillo}${negritas}Ubuntu${negritas}${cyan} como su Sistema Operativo, aunque igual${null}"
             
-            DialogoInstalador6="${negritas}${cyan}puede ser utilizado en Distribuciones derivadas a partir de alguno de ellas${null}"
+            DialogoInstalador6="${negritas}${cyan}puede ser utilizado en Distribuciones derivadas a partir de alguna de ellas${null}"
             
-            DialogoInstalador7="${negritas}${cyan}Su Distribución actual: ${negritas}${blanco}${DistroActual}${null}"
+            DialogoInstalador7="${negritas}${cyan}Su Distribución actual: ${negritas}${blanco}${DistroActual} ${FinalCodename}${null}"
             
             DialogoInstalador8="${negritas}${blanco}El programa soporta instalar hasta 2 Launchers de Minecraft de distintos tipos${null}"
             
@@ -375,8 +414,6 @@ Seleccione una Opción:${null}"
 
             Opciones=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
             
-            OpcionesMenuInstalar=("${negritas}${verde}Instalar${null}" "${negritas}${rojo}Desinstalar${null}")
-            
             Rspsta="$(echo "${negritas}${cyan}
 Has elegido:${null}" )"
 
@@ -386,17 +423,44 @@ Opción Inválida${null}"
             # Numeración
             
                 Titulo1="${verde}${negritas}¿Desea que el programa genere dichas carpetas por usted?${null}"
+				
+			# PPA
+			
+				ZuluOptionalPPA="
+deb http://repos.azulsystems.com/ubuntu stable main"
             
         # Post-Inicio
         
             PstInicio1="${Verde}${negritas}Por alguna extraña razón, hace falta cierto archivo común, y es el que${null}"
+			
             PstInicio2="${Verde}${negritas}determina la ubicación de ciertas carpetas que el programa utiliza, además de${null}"
+			
             PstInicio3="${Verde}${negritas}que muchas otras aplicaciones, hacen uso de estas carpetas, creyendo que existen${null}"
+			
             PstInicio4="${amarillo}${negritas}Probablemente sea solo un error del programa,pero si usted está conciente de que${null}"
-            PstInicio5="${amarillo}${negritas}su carpeta personal carece de folders que son habituales, como las carpetas${null}"
+			
+         	PstInicio5="${amarillo}${negritas}su carpeta personal carece de folders que son habituales, como las carpetas${null}"
+			
             PstInicio6="${amarillo}${negritas}de Descargas o del Escritorio, puede dejar que el programa tome las acciones${null}"
+			
             PstInicio7="${amarillo}${negritas}para poder crear las carpetas faltantes por usted, evitando así futuros errores${null}"
             
+# Procesos Extra
+
+	DebianLinux="$(echo "$(lsb_release -si)" | grep -o 'Debian["]*')"
+	
+	if [ "$DebianLinux" = "Debian" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
 
 # Funciones Universales
 
@@ -612,6 +676,30 @@ $LineaDeProgreso"
             
             Menu_Simple () {
 
+			if [ "$2" = "$Nada" ]; then
+			
+				echo "" > /dev/null 2>&1
+				
+			else
+			
+				Opt2="$2"
+				
+			fi
+
+			if [ "$3" = "$Nada" ]; then
+			
+				echo "" > /dev/null 2>&1
+				
+			else
+			
+				Opt3="$3"		
+				
+				unset Opciones
+				
+				Opciones=("$Opt2" "$Opt3")
+				
+			fi
+
             T="${Titulo}"
             
             
@@ -632,32 +720,7 @@ $LineaDeProgreso"
             done
             
             }
-    
-        # Menú Instalación
-            
-            Menu_Instalacion () {
-
-            T="${Titulo}"
-            
-            
-            hcentro "$T"
-            PS3="$SeleccioneOpcion "
-            select opt in "${OpcionesMenuInstalar[@]}"; do 
-
-                case "$REPLY" in
-
-                1 ) echo "$Rspsta $opt" && eval Respuesta$1="Instalar" && sleep 1.64 && tput reset;;
-                2 ) echo "$Rspsta $opt" && eval Respuesta$1="Desinstalar" && sleep 1.64 && tput reset;;
-
-                *) echo "${Nulo}";continue;;
-
-                esac
-                break
-
-            done
-            
-            }
-			
+    			
         # Menú Especial
         
             Menu_Especial () {     
@@ -1076,18 +1139,22 @@ fi
 				if [ "$RespuestaNoty" = "Si" ]; then
 	
 					tput reset
+					
+					autosudo pkill synaptic > /dev/null 2>&1
+					autosudo "$apt" clean > /dev/null 2>&1
+					
 					hcentro "$EsperaNoty"
 					echo ""
 					ProgressBar "0" "$Final"
-					(autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+					(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
 					CheckError
 					ProgressBar "32" "$Final"
-					(autosudo $apt update >> "${Registro}") > /dev/null 2>&1
+					(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 					CheckError
-					(autosudo $apt install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
+					(autosudo "$apt" install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
 					CheckError
 					ProgressBar "64" "$Final"
-					(autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+					(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
 					CheckError
 					ProgressBar "100" "$Final"
 		
@@ -1109,6 +1176,96 @@ fi
 		
 		fi
 		
+		}
+		
+		# Función: Vientos de Hyrule ( Easter Egg )
+		
+		Hyrulean_Winds () {
+
+			autosudo pkill synaptic > /dev/null 2>&1
+			autosudo "$apt" clean > /dev/null 2>&1
+	
+			tput reset
+	
+			Destino="Rápido"
+	
+			hcentro "$WaitingDestinoRapido"
+			echo ""
+			hcentro "$Noty"
+			echo ""
+			ProgressBar "10" "$Final"
+			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "20" "$Final"	
+			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys E985B27B >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "30" "$Final"	
+			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys DC058F40 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "40" "$Final"
+			(autosudo touch "$AptList") > /dev/null 2>&1
+			ProgressBar "50" "$Final"
+			( printf "$ListFile" >  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			# If necessary
+			
+			if [ "$DebianLinux" = "Debian" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+
+			fi
+			
+			( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+			ProgressBar "60" "$Final"
+			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "70" "$Final"
+			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast aria2 -y >> "${Registro}") > /dev/null 2>&1
+			CheckError
+	
+			apt="apt-fast"
+			get="aria2c"
+	
+			ProgressBar "80" "$Final"
+			
+			# If necessary
+			
+			if [ "$DebianLinux" = "Debian" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+
+			else
+			
+			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+
+			fi
+			
+			CheckError
+			
+			if [ "$JavaVar" = "zulu-8" ]; then
+			
+				JVM="Zulu-8"
+			
+			else
+			
+				JVM="Unofficial-8"
+
+			fi
+			
+			ProgressBar "90" "$Final"
+			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+			CheckError
+	
+			( autosudo "$InfinalityScript" setstyle osx2 >> "${Registro}") > /dev/null 2>&1
+	
+			ProgressBar "100" "$Final"
+
 		}
             
             
@@ -1227,16 +1384,16 @@ if [ "${ErrVar}" -ne 0 ]; then
         hcentro "$Noty"
         echo ""
 		ProgressBar "0" "$Final"
-        (autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+        (autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
         CheckError
         ProgressBar "20" "$Final"
-        (autosudo $apt update >> "${Registro}") > /dev/null 2>&1
+        (autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
         CheckError
         ProgressBar "40" "$Final"
-        (autosudo $apt install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
+        (autosudo "$apt" install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
         CheckError
         ProgressBar "60" "$Final"
-        (autosudo $apt clean >> "${Registro}") > /dev/null 2>&1
+        (autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
         CheckError
         ProgressBar "80" "$Final"
         (xdg-user-dirs-update >> "${Registro}") > /dev/null 2>&1
@@ -1377,6 +1534,33 @@ fi
 		
 		fi
 		
+		tput reset
+		
+		hcentro "$QEligeTuDestino"
+		echo ""
+		hcentro "$QEligeTuDestino2"
+		echo ""
+		hcentro "$QEligeTuDestino3"
+		echo ""
+		echo ""
+		hcentro "$QEligeTuDestino4"
+		
+		n=ETD
+		eval Titulo="\$"Titulo${n}""
+              
+		Menu_Simple "${n}" "${negritas}${amarillo}Rápido${null}" "${negritas}${azul}Personalizado${null}"
+		
+		if [ "$RespuestaETD" = "Si" ];then
+		
+			Hyrulean_Winds
+			
+		elif [ "$RespuestaETD" = "No" ];then
+		
+			Never_Be_Alone
+			
+		fi
+		
+		
 		}
 
 		Desinstalar () {
@@ -1403,7 +1587,7 @@ read
 tput reset
 
 autosudo pkill synaptic > /dev/null 2>&1
-autosudo $apt clean > /dev/null 2>&1
+autosudo "$apt" clean > /dev/null 2>&1
 
 tput reset
 
@@ -1422,9 +1606,9 @@ n=PRINCIPAL
 
 eval Titulo="\$"Titulo${n}""
               
-Menu_Instalacion "${n}"
+Menu_Simple "${n}" "${negritas}${verde}Instalar${null}" "${negritas}${rojo}Desinstalar${null}"
 
-if [ "$RespuestaPRINCIPAL" = "Instalar" ]; then
+if [ "$RespuestaPRINCIPAL" = "Si" ]; then
 
     tput reset
     centro "$Instalar"
@@ -1437,7 +1621,7 @@ if [ "$RespuestaPRINCIPAL" = "Instalar" ]; then
     tput reset
 	Instalar
     
-elif [ "$RespuestaPRINCIPAL" = "Desinstalar" ]; then
+elif [ "$RespuestaPRINCIPAL" = "No" ]; then
 
     tput reset
     centro "$Desinstalar"
