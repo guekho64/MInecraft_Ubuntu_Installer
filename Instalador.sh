@@ -111,6 +111,10 @@ tput reset
 		AptList="/etc/apt/sources.list.d/guekho64.list"
 		
 		InfinalityScript="/etc/fonts/infinality/infctl.sh"
+		
+		NotyNopeEternal="${HOME}/.config/guekho64/MinecraftInstaller/NotyNope"
+		
+		PstInicioNeverFile="${HOME}/.config/guekho64/MinecraftInstaller/HomeDirsNope"
         
     #Licencia            
 
@@ -138,15 +142,21 @@ ${null}"
                 Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
         
     # Misc
-    
+	
+		DistroActual="$(lsb_release -sir | tr -d '\n')"
+	
+		LinuxMint17="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '17["]*')" | tr -d '[[:space:]]')"
+		
 		#PPA
 		
 			key="apt-key"
 			
+			DistroVersion="$(lsb_release -sr)"
+			
 			Codename="$(lsb_release -c)"
 
 			FinalCodename="$(echo "$(echo "$(awk '{gsub("Codename:", "");print}' <<< "$Codename")" | tr -d '[[:space:]]' )")"
-
+			
 			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
 
@@ -236,6 +246,8 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 
 			InfinalityText="${negritas}${verde}Seleccione el tipo de ${negritas}${cyan}Look${null}${negritas}${verde}de fuente que le gustaría tener${null}"
 
+			Nope_Carpetas_Never="${negritas}${amarillo}y no se le volverá a preguntar sobre esto${null}"
+
 			InfinalityText1="${negritas}${amarillo}Personalmente recomiendo el estilo 4 o el 5${null}"
 			
 			QEligeTuDestino="${negritas}${cyan}Ahora podrás elegir tu método de Instalación${null}"
@@ -253,8 +265,14 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 			QNoty2="${negritas}${blanco}muy probable que tarde o temprano termine instalándolas de todos modos...${null}"
 
 			ActiveNoty="${negritas}${verde}Notificaciones de escritorio: ${cyan}Activadas${null}"
+			
+			DeactiveNoty="${negritas}${verde}Notificaciones de escritorio: ${rojo}Desactivadas${null}"
 
-			NotyNope="${negritas}${rojo}Las Notificaciones de escritorio no serán activadas...${null}"
+			NotyNope="${negritas}${amarillo}Las Notificaciones de escritorio no serán activadas...${null}"
+			
+			NotyNever="${negritas}${amarillo}Las Notificaciones de escritorio no serán activadas${null}"
+			
+			NotyNever1="${negritas}${rojo}y no se le volverá a preguntar nunca más${null}"
 
 			TituloNoty="${negritas}Entonces...${negritas}${verde}¿Las activo?${null}"
 
@@ -303,8 +321,6 @@ ${negritas}Seleccione una opción:${null}"
         
             GitHubWebPage="https://github.com/guekho64/Minecraft-Installer-for-Ubuntu"
             
-            DistroActual="$(lsb_release -sir | tr -d '\n')"
-			
 			NotyAcabado="Ya acabé"
 
 			SpecialNoty="¡Ya instalé las notificaciones de escritorio! ¿Acaso no me veo genial?"
@@ -413,6 +429,8 @@ Opción Inválida: $num${null}"
 Seleccione una Opción:${null}"
 
             Opciones=("${negritas}${verde}Si${null}" "${negritas}${rojo}No${null}")
+			
+			Opciones3=("${negritas}${verde}Si${null}" "${negritas}${amarillo}No${null}" "${negritas}${rojo}Nunca${null}")
             
             Rspsta="$(echo "${negritas}${cyan}
 Has elegido:${null}" )"
@@ -450,6 +468,35 @@ deb http://repos.azulsystems.com/ubuntu stable main"
 	DebianLinux="$(echo "$(lsb_release -si)" | grep -o 'Debian["]*')"
 	
 	if [ "$DebianLinux" = "Debian" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+	
+	if [ "$FinalCodename" = "xenial" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+	
+	if [ "$LinuxMint17" = "LinuxMint17" ]; then
 	
 		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
@@ -507,11 +554,11 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
 			
 		if [ "${Cool}" = "UTF-8" ]; then
 		
-			LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}>"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+			LineaDeProgreso="\r${negritas}${cyan}Progreso : ${negritas}${blanco}[${_done// /${negritas}>}${_left// /-}${negritas}${blanco}]${negritas}${cyan}${_progress}%${null}"
 			
 		else
 		
-			LineaDeProgreso="\r${negritas}${cyan}Progreso : "${negritas}${blanco}["${_done// /"${negritas}#"}${_left// /-}"${negritas}${blanco}]" "${negritas}${cyan}${_progress}"%${null}"
+			LineaDeProgreso="\r${negritas}${cyan}Progreso : ${negritas}${blanco}[${_done// /${negritas}#}${_left// /-}${negritas}${blanco}]${negritas}${cyan}${_progress}%${null}"
 			
 		fi
 
@@ -720,6 +767,66 @@ $LineaDeProgreso"
             done
             
             }
+			
+		# Menú Simple de 3 entradas
+		
+			Menu_3 () {
+
+			if [ "$2" = "$Nada" ]; then
+			
+				echo "" > /dev/null 2>&1
+				
+			else
+			
+				3Opt2="$2"
+				
+			fi
+
+			if [ "$3" = "$Nada" ]; then
+			
+				echo "" > /dev/null 2>&1
+				
+			else
+			
+				3Opt3="$3"
+				
+			fi
+
+			if [ "$4" = "$Nada" ]; then
+			
+				echo "" > /dev/null 2>&1
+				
+			else
+			
+				3Opt4="$4"		
+				
+				unset OpcionesDe3
+				
+				Opciones3=("$3Opt2" "$3Opt3" "$3Opt4")
+				
+			fi
+
+            T="${Titulo}"
+            
+            
+            hcentro "$T"
+            PS3="$SeleccioneOpcion "
+            select opt in "${Opciones3[@]}"; do 
+
+                case "$REPLY" in
+
+                1 ) echo "$Rspsta $opt" && eval Respuesta$1="1" && sleep 1.64 && tput reset;;
+                2 ) echo "$Rspsta $opt" && eval Respuesta$1="2" && sleep 1.64 && tput reset;;
+                3 ) echo "$Rspsta $opt" && eval Respuesta$1="3" && sleep 1.64 && tput reset;;
+
+                *) echo "${Nulo}";continue;;
+
+                esac
+                break
+
+            done
+            
+            }
     			
         # Menú Especial
         
@@ -827,7 +934,7 @@ fi
                 if [ "$RespuestaLICENCIA" = "Si" ]; then
                 
                      ( mkdir -v -p "${HOME}/.config/guekho64/MinecraftInstaller/" ) > /dev/null 2>&1
-                     ( touch "${HOME}/.config/guekho64/MinecraftInstaller/.OK" ) > /dev/null 2>&1
+                     ( touch "${ArchivoDeLicenciaAceptada}" ) > /dev/null 2>&1
                      ( printf "$Acepto" ) > "${ArchivoDeLicenciaAceptada}"
                      ( chmod 444 "${ArchivoDeLicenciaAceptada}" )
                     
@@ -1112,68 +1219,91 @@ fi
 		tput reset
 
 		# Activar Notificaciones
-
-			Busca "/usr/bin/notify-send" > /dev/null 2>&1
+			
+			Busca "$NotyNopeEternal" > /dev/null 2>&1
 
 			if [ "$ErrVar" = "0" ]; then
 
 				tput reset
-				hcentro "$ActiveNoty"
+				hcentro "$DeactiveNoty"
 				sleep 3.84
-	
+				
 			else
 
-				tput reset
-				hcentro "$QNoty"
-				echo ""
-				hcentro "$QNoty1"
-				hcentro "$QNoty2"
-				echo ""
+				Busca "/usr/bin/notify-send" > /dev/null 2>&1
 
-				n=Noty
+				if [ "$ErrVar" = "0" ]; then
+
+					tput reset
+					hcentro "$ActiveNoty"
+					sleep 3.84
+	
+				else
+
+					tput reset
+					hcentro "$QNoty"
+					echo ""
+					hcentro "$QNoty1"
+					hcentro "$QNoty2"
+					echo ""
+
+					n=Noty
     
-				eval Titulo="\$"Titulo${n}""
+					eval Titulo="\$"Titulo${n}""
               
-				Menu_Simple "${n}"
-	
-				if [ "$RespuestaNoty" = "Si" ]; then
-	
-					tput reset
+					Menu_3 "${n}"
 					
-					autosudo pkill synaptic > /dev/null 2>&1
-					autosudo "$apt" clean > /dev/null 2>&1
-					
-					hcentro "$EsperaNoty"
-					echo ""
-					ProgressBar "0" "$Final"
-					(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-					CheckError
-					ProgressBar "32" "$Final"
-					(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-					CheckError
-					(autosudo "$apt" install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
-					CheckError
-					ProgressBar "64" "$Final"
-					(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-					CheckError
-					ProgressBar "100" "$Final"
-		
-					OK "$SpecialNoty" "$InstalledPackageIcon" "$NotyAcabado"
-					echo ""
-					echo ""
-					Listo
-		
-			elif [ "$RespuestaNoty" = "No" ]; then
+					if [ "$RespuestaNoty" = "1" ]; then
 	
-					tput reset
-					hcentro "$NotyNope"
-					echo ""
-					hcentro "$ENTERPRESS"
-					read
-					tput reset
+						tput reset
+					
+						autosudo pkill synaptic > /dev/null 2>&1
+						autosudo "$apt" clean > /dev/null 2>&1
+					
+						hcentro "$EsperaNoty"
+						echo ""
+						ProgressBar "0" "$Final"
+						(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+						CheckError
+						ProgressBar "32" "$Final"
+						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+						(autosudo "$apt" install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
+						CheckError
+						ProgressBar "64" "$Final"
+						(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+						CheckError
+						ProgressBar "100" "$Final"
+		
+						OK "$SpecialNoty" "$InstalledPackageIcon" "$NotyAcabado"
+						echo ""
+						echo ""
+						Listo
+		
+				elif [ "$RespuestaNoty" = "2" ]; then
+	
+						tput reset
+						hcentro "$NotyNope"
+						echo ""
+						hcentro "$ENTERPRESS"
+						read
+						tput reset
+		
+				elif [ "$RespuestaNoty" = "3" ]; then
+			
+						touch "$NotyNopeEternal" > /dev/null 2>&1
+	
+						tput reset
+						hcentro "$NotyNever"
+						hcentro "$NotyNever1"
+						echo ""
+						hcentro "$ENTERPRESS"
+						read
+						tput reset
+		
+				fi
 		
 			fi
-		
+				
 		fi
 		
 		}
@@ -1222,7 +1352,6 @@ fi
 			( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 			ProgressBar "60" "$Final"
 			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-			CheckError
 			ProgressBar "70" "$Final"
 			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast aria2 -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
@@ -1278,7 +1407,7 @@ tput reset
 if [ "$Passwd" = "$Nada" ]; then
 
     tput reset
-    hcentro "$NoPasswd"
+    centro "$NoPasswd"
     sleep 3.28
     echo ""
     Error
@@ -1290,13 +1419,13 @@ else
     if [ "$?" = "0" ]; then
     
         tput reset
-        hcentro "$GoodPasswd"
+        centro "$GoodPasswd"
         sleep 3.28
         
     else
     
-        echo ""
-        hcentro "$IncorrectPasswd"
+		tput reset
+        centro "$IncorrectPasswd"
         sleep 3.28
         Error
         
@@ -1355,86 +1484,114 @@ sleep 6.4
 tput reset
 
     # CHECAR DIRECTORIOS EN /HOME
-    
-Busca "${HOME}/.config/user-dirs.dirs" > /dev/null 2>&1
+	
+Busca "$PstInicioNeverFile" > /dev/null 2>&1
 
-if [ "${ErrVar}" -ne 0 ]; then 
-          
-		  sleep 1.28
-          hcentro "$PstInicio1"
-          hcentro "$PstInicio2"
-          hcentro "$PstInicio3"
-          echo ""
-          hcentro "$PstInicio4"
-          hcentro "$PstInicio5"
-          hcentro "$PstInicio6"
-          hcentro "$PstInicio7"
-          echo ""
-
-    n=1
+if [ "${ErrVar}" = "0" ]; then
     
-    eval Titulo="\$"Titulo${n}""
-              
-    Menu_Simple "${n}"
-    
-    if  [ "$Respuesta1" = "Si" ]  ; then
-    
-        tput reset
-        hcentro "$Espera"
-        hcentro "$Noty"
-        echo ""
-		ProgressBar "0" "$Final"
-        (autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-        CheckError
-        ProgressBar "20" "$Final"
-        (autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-        CheckError
-        ProgressBar "40" "$Final"
-        (autosudo "$apt" install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
-        CheckError
-        ProgressBar "60" "$Final"
-        (autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-        CheckError
-        ProgressBar "80" "$Final"
-        (xdg-user-dirs-update >> "${Registro}") > /dev/null 2>&1
-        CheckError
-        ProgressBar "100" "$Final"
-
-        OK "" "$InstalledPackageIcon"
-        echo ""
-        echo ""
-        Listo
-        
-        Estado_xdg_user_dirs="Si"
-        
-        sleep 3.2
-        tput reset
-    
-    elif  [ "$Respuesta1" = "No" ]  ; then
-    
-        tput reset
-        hcentro "$Nope_Carpetas1"
-        hcentro "$Nope_Carpetas2"
-        
-        Estado_xdg_user_dirs="No"
-
-        sleep 1.6
-        echo ""
-        hcentro "$ENTERPRESS"
-        read
-        tput reset
-    
-    else
-    
-        Error
-    
-    fi
+Estado_xdg_user_dirs="No"
 
 else
+    
+	Busca "${HOME}/.config/user-dirs.dirs" > /dev/null 2>&1
 
-    Estado_xdg_user_dirs="Si"
+	if [ "${ErrVar}" -ne 0 ]; then 
+          
+         	 sleep 1.28
+         	 hcentro "$PstInicio1"
+         	 hcentro "$PstInicio2"
+         	 hcentro "$PstInicio3"
+         	 echo ""
+         	 hcentro "$PstInicio4"
+     	     hcentro "$PstInicio5"
+         	 hcentro "$PstInicio6"
+         	 hcentro "$PstInicio7"
+      	    echo ""
 
-    fi
+ 	   n=1
+    
+ 	   eval Titulo="\$"Titulo${n}""
+              
+ 	   Menu_3 "${n}"
+    
+ 	   if  [ "$Respuesta1" = "1" ]  ; then
+    
+			tput reset
+			hcentro "$Espera"
+			hcentro "$Noty"
+			echo ""
+			ProgressBar "0" "$Final"
+			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "20" "$Final"
+			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+			ProgressBar "40" "$Final"
+			(autosudo "$apt" install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "60" "$Final"
+			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "80" "$Final"
+			(xdg-user-dirs-update >> "${Registro}") > /dev/null 2>&1
+			CheckError
+			ProgressBar "100" "$Final"
+
+			OK "" "$InstalledPackageIcon"
+			echo ""
+			echo ""
+			Listo
+        
+			Estado_xdg_user_dirs="Si"
+        
+			sleep 3.2
+			tput reset
+    
+  	  elif  [ "$Respuesta1" = "2" ]  ; then
+    
+			tput reset
+			hcentro "$Nope_Carpetas1"
+			echo ""
+			hcentro "$Nope_Carpetas2"
+        
+			Estado_xdg_user_dirs="No"
+
+			sleep 1.6
+			echo ""
+			hcentro "$ENTERPRESS"
+			read
+			tput reset
+    
+  	  elif  [ "$Respuesta1" = "3" ]  ; then
+	  
+	  		touch "$PstInicioNeverFile"
+    
+			tput reset
+			hcentro "$Nope_Carpetas1"
+			hcentro "$Nope_Carpetas_Never"
+			echo ""
+			hcentro "$Nope_Carpetas2"
+        
+			Estado_xdg_user_dirs="No"
+
+			sleep 1.6
+			echo ""
+			hcentro "$ENTERPRESS"
+			read
+			tput reset
+    
+ 	   else
+    
+			Error
+    
+   	 fi
+
+	else
+
+  	  Estado_xdg_user_dirs="Si"
+
+	fi
+	
+fi
     
 if [ "$Estado_xdg_user_dirs" = "Si" ] ; then
 
