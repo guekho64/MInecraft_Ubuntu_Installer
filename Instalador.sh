@@ -86,9 +86,7 @@ tput reset
 		
 		Secret="${HOME}/.guekho64/minecraft/.secret"
 		
-		AptListFiles="/etc/apt/sources.list.d/"
-		
-		MinecraftPremiumJar="https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar"
+		UniversalAppsDir="/usr/share/applications"
 		
 	# UTF-8 ?
 	
@@ -108,14 +106,46 @@ tput reset
         
         Registro="${Raiz}/Registro.txt"
 		
-		AptList="/etc/apt/sources.list.d/guekho64.list"
+		MinecraftPremiumJarDownload="https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar"
+		
+		MinecraftIcon="http://www.rw-designer.com/icon-image/5547-64x64x32.png"
+		
+		MinecraftPremiumJar="$LauncherPremium/Minecraft.jar"
+		
+		MinecraftOfflineJar="$LauncherOffline/Minecraft.jar"
+		
+		AptListFiles="/etc/apt/sources.list.d/"
+		
+		PreferencesFile="$Secret/guekho64"
+		
+		PreferencesFileDest="/etc/apt/preferences.d/"
+		
+		TempGtkjava="$Secret/gtkjava"
+		
+		DestGtkjava="/usr/bin/"
+		
+		Bin="$DestGtkjava"
+		
+		OverrideForJava='Package: *
+Pin: release o=LP-PPA-no1wantdthisname-openjdk-fontfix
+Pin-Priority: 6400'
 		
 		InfinalityScript="/etc/fonts/infinality/infctl.sh"
 		
 		NotyNopeEternal="${HOME}/.config/guekho64/MinecraftInstaller/NotyNope"
 		
 		PstInicioNeverFile="${HOME}/.config/guekho64/MinecraftInstaller/HomeDirsNope"
-        
+		
+	# Special Temp Minecraft Locations
+	
+		Tempminecraftpremium="$Secret/minecraft-premium"
+		
+		Tempminecraftoffline="$Secret/minecraft-offline"
+		
+		Desktopminecraftpremium="$MinecraftDesktop/minecraft-premium.desktop"
+		
+		Desktopminecraftoffline="$MinecraftDesktop/minecraft-offline.desktop"
+
     #Licencia            
 
         # IMPORTANTE: ACEPTACIÓN DE LA LICENCIA
@@ -143,9 +173,11 @@ ${null}"
         
     # Misc
 	
-		DistroActual="$(lsb_release -sir | tr -d '\n')"
+		DistroActual="$(lsb_release -is) $(lsb_release -rs) $(lsb_release -cs)"
 	
 		LinuxMint17="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '17["]*')" | tr -d '[[:space:]]')"
+		
+		LinuxMint13="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
 		
 		#PPA
 		
@@ -153,9 +185,7 @@ ${null}"
 			
 			DistroVersion="$(lsb_release -sr)"
 			
-			Codename="$(lsb_release -c)"
-
-			FinalCodename="$(echo "$(echo "$(awk '{gsub("Codename:", "");print}' <<< "$Codename")" | tr -d '[[:space:]]' )")"
+			FinalCodename="$(lsb_release -sc)"
 			
 			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
@@ -241,8 +271,28 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 			InstalledPackageIcon="gnome-stock-mail-fwd"
             
         # Acciones
+		
+			Lema="${cyan}${negritas}Si quieres que algo salga bien, ¡Házlo tu mismo! ${blanco}**Lema de guekho64**${null}"
+			
+			Publicidad="${verde}${negritas}¡No olvides susbcribirte a mi canal, o darle like a mis vídeos, ya sabes, cualquier aporte es bueno! ¡Recomienda este instalador a más linuxeros! El propósito de este instalador no es exactamente la fama, sino ayudar a quienes han elegido el camino hacia un Sistema Operativo más abierto. Por ello pongo a disposición de la gente este instalador, para todos los que no puedan instalar Minecraft en Ubuntu.${null}"
+			
+			Publicidad1="${negritas}${rojo}Canal de YouTube:${blanco} https://www.youtube.com/user/guekho64 ${null}"
+			
+			Publicidad2="${negritas}Igual puedes buscarme en: ${rojo}Google / ${cyan}Twitter / ${azul}Facebook / ${blanco}3D${rojo}juegos / ${verde}http://guekho64.webs.com/ / ${rojo}Google+ ${null}"
+			
+			Publicidad3="${amarillo}${negritas}Si por alguna razón los íconos no se muestran correctamente,espera un poco.Si no, cerrar sesión y volver debería solucionarlo o también puedes reiniciar tu PC${null}"
+			
+			PublicidadFinal="${azul}${negritas}Bueno, ahora que ha leído esto, presione ${negritas}${verde}ENTER${null} ${azul}${negritas}para salir${null}"
+			
+			FirstMyMessage="La Instalación ha Finalizado"
+			
+			MyMessage="Instalador de Minecraft de guekho64 © 2016"
+			
+			Aviso="${verde}${negritas}Podrás encontrar Minecraft en tu escritorio o en el menú de inicio${null}"
 			
 			WaitingDestinoRapido="${negritas}${cyan}Esto va a tardar un buen rato, dependiendo de tu velocidad de Internet...${null}"
+			
+			WaitingDestinoRapido1="${negritas}${cyan}Ya falta poco...${null}"
 
 			InfinalityText="${negritas}${verde}Seleccione el tipo de ${negritas}${cyan}Look${null}${negritas}${verde}de fuente que le gustaría tener${null}"
 
@@ -335,7 +385,7 @@ ${negritas}Seleccione una opción:${null}"
             
             DialogoInstalador6="${negritas}${cyan}puede ser utilizado en Distribuciones derivadas a partir de alguna de ellas${null}"
             
-            DialogoInstalador7="${negritas}${cyan}Su Distribución actual: ${negritas}${blanco}${DistroActual} ${FinalCodename}${null}"
+            DialogoInstalador7="${negritas}${cyan}Su Distribución actual: ${negritas}${blanco}${DistroActual}${null}"
             
             DialogoInstalador8="${negritas}${blanco}El programa soporta instalar hasta 2 Launchers de Minecraft de distintos tipos${null}"
             
@@ -508,6 +558,19 @@ deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
 
 	fi
+	
+	if [ "$LinuxMint13" = "LinuxMint13" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu precise main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu precise main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu precise main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu truprecisesty main"
+
+	fi
 
 # Funciones Universales
 
@@ -644,19 +707,29 @@ $LineaDeProgreso"
 		
 	# Checar Programa
 	
+		Gettie () {
+	
 		if [ "$get" = "wget" ] ; then
+		
+			 get="wget"
+             GetMode="-O"
+			 NoCheckCert="--no-check-certificate"
 
 			Get () {
 	
-			( "${get}" --append-output="${Registro}" "${3}" "${1}"  "${GetMode}" "${2}"/Minecraft.jar ) > /dev/null 2>&1 ;
+			( "$get" --append-output="${Registro}" "$4" "$1" "${GetMode}" "$2/$3" ) > /dev/null 2>&1
 	
 			}
 	
 		elif [ "$get" = "aria2c" ] ; then
+		
+			 get="aria2c"
+			 GetMode="-o"
+			 NoCheckCert="--check-certificate=false"
 
 			Get () {
 	
-			( ( "${get}" "${1}" "${GetMode}" "Minecraft.jar" -d "${2}" ${3}  ) >> "$Registro" )
+			( ( "$get" "$1" "${GetMode}" "$3" -d "$2" $4 ) >> "$Registro" )
 	
 			}
 	
@@ -665,7 +738,13 @@ $LineaDeProgreso"
 			Error
 	
 		fi
-
+		
+		}
+		
+		Gettie
+		
+	# Get "DeDondeSale" "DirectorioAlQueSale" "NombreDeDondeVaASalir" "Certificado: SI / NO"
+		
     # Atrapar Ctrl+C FINAL
 
         hcentro () {
@@ -1112,7 +1191,7 @@ fi
 		echo ""
 		ProgressBar "0" "$Final"
 		rm "${LauncherPremium}"/Minecraft.jar > /dev/null 2>&1
-		Get "${MinecraftPremiumJar}" "${LauncherPremium}"
+		Get "${MinecraftPremiumJarDownload}" "${LauncherPremium}" "Minecraft.jar"
 		Busca "${LauncherPremium}"/Minecraft.jar -c
 		ProgressBar "100" "${Final}"
 		sleep 1.64
@@ -1139,7 +1218,7 @@ fi
 		hcentro "${Noty}"
 		echo ""
 		
-		read MinecraftOfflineJar
+		read MinecraftOfflineJarDownload
 		
 		tput reset
 		hcentro "${WaitingOffline}"
@@ -1148,7 +1227,7 @@ fi
 		echo ""
 		ProgressBar "0" "$Final"
 		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
-		Get "${MinecraftOfflineJar}" "${LauncherOffline}" "${NoCheckCert}"
+		Get "${MinecraftOfflineJarDownload}" "${LauncherOffline}" "Minecraft.jar" "$NoCheckCert"
 		Busca "${LauncherOffline}"/Minecraft.jar -c
 		ProgressBar "100" "${Final}"
 		sleep 1.64
@@ -1172,7 +1251,7 @@ fi
 		echo ""
 		rm "${LauncherPremium}"/Minecraft.jar > /dev/null 2>&1
 		ProgressBar "0" "$Final"
-		Get "${MinecraftPremiumJar}" "${LauncherPremium}"
+		Get "${MinecraftPremiumJarDownload}" "${LauncherPremium}" "Minecraft.jar"
 		Busca "${LauncherPremium}"/Minecraft.jar -c
 		ProgressBar "50" "$Final"
 		sleep 1.28
@@ -1191,7 +1270,7 @@ fi
 		hcentro "${Noty}"
 		echo ""
 		
-		read MinecraftOfflineJar
+		read MinecraftOfflineJarDownload
 		
 		tput reset
 		hcentro "${WaitingOffline}"
@@ -1200,7 +1279,7 @@ fi
 		echo ""
 		ProgressBar "50" "$Final"
 		rm "${LauncherOffline}"/Minecraft.jar > /dev/null 2>&1
-		Get "${MinecraftOfflineJar}" "${LauncherOffline}" "${NoCheckCert}"
+		Get "${MinecraftOfflineJarDownload}" "${LauncherOffline}" "Minecraft.jar" "$NoCheckCert"
 		Busca "${LauncherOffline}"/Minecraft.jar -c
 		ProgressBar "100" "${Final}"
 		sleep 1.64
@@ -1333,7 +1412,9 @@ fi
 			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys DC058F40 >> "${Registro}")  > /dev/null 2>&1
 			CheckError
 			ProgressBar "40" "$Final"
-			(autosudo touch "$AptList") > /dev/null 2>&1
+
+			# Dead 
+
 			ProgressBar "50" "$Final"
 			( printf "$ListFile" >  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
@@ -1358,6 +1439,8 @@ fi
 	
 			apt="apt-fast"
 			get="aria2c"
+			
+			Gettie
 	
 			ProgressBar "80" "$Final"
 			
@@ -1372,6 +1455,10 @@ fi
 			else
 			
 			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+			ProgressBar "85" "$Final"
+			( touch "$PreferencesFile")  > /dev/null 2>&1
+			( printf "$OverrideForJava" >  "$PreferencesFile" )  > /dev/null 2>&1
+			( autosudo mv -f "$PreferencesFile" "$PreferencesFileDest" )  > /dev/null 2>&1
 
 			fi
 			
@@ -1392,11 +1479,288 @@ fi
 			CheckError
 	
 			( autosudo "$InfinalityScript" setstyle osx2 >> "${Registro}") > /dev/null 2>&1
+			
+			ProgressBar "95" "$Final"
+			rm "$MinecraftIcons/Minecraft.png" > /dev/null 2>&1
+			Get "$MinecraftIcon" "$MinecraftIcons" "Minecraft.png"
+			Busca "$MinecraftIcons/Minecraft.png" -c
+			( autosudo ln --symbolic "$MinecraftIcons/Minecraft.png" "/usr/share/icons/" ) > /dev/null 2>&1
 	
 			ProgressBar "100" "$Final"
 
 		}
-            
+		
+		InstallMinecraft () {
+
+			tput reset
+			
+			hcentro "$WaitingDestinoRapido1"
+			echo ""
+			hcentro "$Noty"
+			echo ""
+			
+			ProgressBar "0" "$Final"
+
+			if [ "$JVM" = "Unofficial-8" ]; then
+			
+				gtkjava='#!/bin/bash
+
+GTKJVM="/usr/lib/jvm/java-8-openjdk-*/jre/bin/java"
+SPECIAL_ARGS="-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
+exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
+				
+			elif [ "$JVM" = "Zulu-8" ]; then
+			
+				gtkjava='#!/bin/bash
+
+GTKJVM="/usr/lib/jvm/zulu-8-*/jre/bin/java"
+SPECIAL_ARGS="-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
+exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
+				
+			elif [ "$JVM" = "Official-7" ]; then
+			
+				gtkjava='#!/bin/bash
+
+GTKJVM="/usr/lib/jvm/java-7-openjdk-*/jre/bin/java"
+SPECIAL_ARGS="-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
+exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
+				
+			else
+			
+				Error
+				
+			fi
+			
+			ProgressBar "8" "$Final"
+			
+			( printf "$gtkjava" >  "$TempGtkjava" ) > /dev/null 2>&1
+			
+			ProgressBar "16" "$Final"
+			
+			( chmod +x "$TempGtkjava" ) > /dev/null 2>&1
+			
+			ProgressBar "24" "$Final"
+			
+			( autosudo mv -f "$TempGtkjava" "$DestGtkjava" ) > /dev/null 2>&1
+			
+			ProgressBar "32" "$Final"
+			
+			if [ "$Estado" = "Ambos" ]; then
+			
+				Minecraft_Icon_Premium='[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Minecraft Premium
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
+Icon=Minecraft
+Exec=minecraft-premium
+NoDisplay=false
+Categories=Game;
+StartupNotify=true
+Terminal=false'
+			
+				Minecraft_Icon_Offline='[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Minecraft Offline
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
+Icon=Minecraft
+Exec=minecraft-offline
+NoDisplay=false
+Categories=Game;
+StartupNotify=true
+Terminal=false'
+
+				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
+				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
+			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
+			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
+			CheckError
+			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
+			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
+			CheckError
+			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
+			CheckError
+			
+			ProgressBar "100" "$Final"
+			
+			elif [ "$Estado" = "Premium" ]; then
+			
+				Minecraft_Icon_Premium='[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Minecraft Premium
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
+Icon=Minecraft
+Exec=minecraft-premium
+NoDisplay=false
+Categories=Game;
+StartupNotify=true
+Terminal=false'
+
+				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "100" "$Final"
+			
+			elif [ "$Estado" = "Offline" ]; then
+			
+				Minecraft_Icon_Offline='[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Minecraft Offline
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo totalmente abierto!
+Icon=Minecraft
+Exec=minecraft-offline
+NoDisplay=false
+Categories=Game;
+StartupNotify=true
+Terminal=false'
+
+				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "100" "$Final"
+
+			else
+			
+				Error
+				
+			fi
+			
+			
+		tput reset
+		
+		hcentro "$Aviso"
+		echo ""
+		hcentro "$ENTERPRESS"
+		read
+		
+		tput reset
+		
+		OK "$MyMessage" "Minecraft" "$FirstMyMessage" 
+		
+		echo "$Publicidad"
+		echo ""
+		hcentro "$Publicidad1"
+		echo ""
+		echo "$Publicidad2"
+		echo ""
+		echo "$Publicidad3"
+		echo ""
+		hcentro "$PublicidadFinal"
+		
+		read
+		
+		exit
+
+		}
             
 # INICIO SCRIPT
     
@@ -1598,11 +1962,11 @@ if [ "$Estado_xdg_user_dirs" = "Si" ] ; then
     desktopVar=$(cat ~/.config/user-dirs.dirs | grep "XDG_DESKTOP_DIR")
     desktopFolder=$(echo ${desktopVar/XDG_DESKTOP_DIR=/""} | tr -d '"')
     DeskFolder=${desktopFolder:6}
-    Escritorio="$(echo ~/$DeskFolder)"
+    Escritorio="$HOME/$DeskFolder"
     
 elif [ "$Estado_xdg_user_dirs" = "No" ] ; then
 
-    Escritorio="$(echo ${HOME})"
+    Escritorio="$HOME"
     
 else
     
@@ -1709,7 +2073,7 @@ fi
 		
 		if [ "$RespuestaETD" = "Si" ];then
 		
-			Hyrulean_Winds
+			Hyrulean_Winds && InstallMinecraft
 			
 		elif [ "$RespuestaETD" = "No" ];then
 		
