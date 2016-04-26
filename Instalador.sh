@@ -179,9 +179,19 @@ ${null}"
 		
 		LinuxMint13="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
 		
+		DebianLinux="$(echo $DistroActual | grep -o 'Debian["]*')"
+		
+		LMDEBetsy="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe 'betsy["]*')" | tr -d '[[:space:]]')"
+		
+		Deepin15="$(echo "$(echo "$DistroActual" | grep -oe 'Deepin["]*' -oe '15.1.1["]*')" | tr -d '[[:space:]]')"
+		
+		KaliLinux="$(echo $DistroActual | grep -o 'Kali["]*')"
+		
 		#PPA
 		
 			key="apt-key"
+			
+			Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')"
 			
 			DistroVersion="$(lsb_release -sr)"
 			
@@ -249,7 +259,7 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 			 apt="apt-get"
             
          fi;
-        
+		 
 # Variables de Lenguaje
 
     # Español
@@ -515,9 +525,46 @@ deb http://repos.azulsystems.com/ubuntu stable main"
             
 # Procesos Extra
 
-	DebianLinux="$(echo "$(lsb_release -si)" | grep -o 'Debian["]*')"
-	
 	if [ "$DebianLinux" = "Debian" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+
+	if [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+
+	if [ "$Deepin15" = "Deepin15.1.1" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+	
+	if [ "$KaliLinux" = "Kali" ]; then
 	
 		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
@@ -532,7 +579,9 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
 	
 	if [ "$FinalCodename" = "xenial" ]; then
 	
-		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+		if [ "$Universe" = "universe" ]; then
+	
+			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
 
 deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
@@ -543,7 +592,27 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
 
 deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+	
+		else
+	
+			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
 
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+
+deb http://archive.ubuntu.com/ubuntu xenial universe
+deb http://archive.ubuntu.com/ubuntu xenial-updates universe
+deb http://security.ubuntu.com/ubuntu xenial-security universe"
+
+		fi
+			
 	fi
 	
 	if [ "$LinuxMint17" = "LinuxMint17" ]; then
@@ -568,7 +637,7 @@ deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main
 deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main
 
 deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu precise main
-deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu truprecisesty main"
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu precise main"
 
 	fi
 
@@ -1427,6 +1496,38 @@ fi
 			CheckError
 			ProgressBar "57" "$Final"
 			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$Deepin15" = "Deepin15.1.1" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$LinuxMint13" = "LinuxMint13" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$KaliLinux" = "Kali" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 
 			fi
 			
@@ -1447,6 +1548,30 @@ fi
 			# If necessary
 			
 			if [ "$DebianLinux" = "Debian" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
+			elif [ "$LinuxMint13" = "LinuxMint13" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
+			elif [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
+			elif [ "$Deepin15" = "Deepin15.1.1" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
+			elif [ "$KaliLinux" = "Kali" ]; then
 			
 			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 			
@@ -1560,7 +1685,7 @@ Icon=Minecraft
 Exec=minecraft-premium
 NoDisplay=false
 Categories=Game;
-StartupNotify=true
+StartupNotify=false
 Terminal=false'
 			
 				Minecraft_Icon_Offline='[Desktop Entry]
@@ -1573,7 +1698,7 @@ Icon=Minecraft
 Exec=minecraft-offline
 NoDisplay=false
 Categories=Game;
-StartupNotify=true
+StartupNotify=false
 Terminal=false'
 
 				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
@@ -1634,7 +1759,7 @@ Icon=Minecraft
 Exec=minecraft-premium
 NoDisplay=false
 Categories=Game;
-StartupNotify=true
+StartupNotify=false
 Terminal=false'
 
 				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
@@ -1687,7 +1812,7 @@ Icon=Minecraft
 Exec=minecraft-offline
 NoDisplay=false
 Categories=Game;
-StartupNotify=true
+StartupNotify=false
 Terminal=false'
 
 				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
