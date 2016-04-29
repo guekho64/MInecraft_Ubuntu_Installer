@@ -44,9 +44,25 @@
 # Usted debió haber recibido una copia de la "GNU General Public License"
 # junto con este programa. Si no, vea <http://www.gnu.org/licenses/>.
 
+# Todo viaje, por largo que sea, empieza por un solo paso. "Lao Tse"
+
 tput reset
 
 # Lenguaje: Español
+
+# Funciones No-Genéricas
+		
+		Universe () {	Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')" ; }
+		
+		BuscaAria2 () { BuscaAria2="$(apt-cache search aria2 | grep -oe "aria2"'["]*' | sed '1q;d')" ; }
+		
+		BuscaAptFast () { BuscaAptFast="$(apt-cache search apt-fast | grep -oe "apt-fast"'["]*' | sed '1q;d')" ; }
+		
+		BuscaInfinality () { BuscaInfinality="$(apt-cache search fontconfig-infinality | grep -oe "fontconfig-infinality"'["]*' | sed '1q;d')" ; }
+		
+		BuscaJava8OpenJdk () { BuscaJava8OpenJdk="$(ls /usr/lib/jvm/ | grep -oe "java-8-openjdk"'["]*' | sed '1q;d')" ; }
+		
+		BuscaZulu8 () {  BuscaZulu8="$(ls /usr/lib/jvm/ | grep -oe "zulu-8"'["]*' | sed '1q;d')" ; }
 
 # Variables Universales
 
@@ -2035,20 +2051,6 @@ Terminal=false'
 
 		}
 		
-		# Funciones No-Genéricas
-		
-		Universe () {	Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')" ; }
-		
-		BuscaAria2 () { BuscaAria2="$(apt-cache search aria2 | grep -oe "aria2"'["]*' | sed '1q;d')" ; }
-		
-		BuscaAptFast () { BuscaAptFast="$(apt-cache search apt-fast | grep -oe "apt-fast"'["]*' | sed '1q;d')" ; }
-		
-		BuscaInfinality () { BuscaInfinality="$(apt-cache search fontconfig-infinality | grep -oe "fontconfig-infinality"'["]*' | sed '1q;d')" ; }
-		
-		BuscaJava8OpenJdk () { BuscaJava8OpenJdk="$(ls /usr/lib/jvm/ | grep -oe "java-8-openjdk"'["]*' | sed '1q;d')" ; }
-		
-		BuscaZulu8 () {  BuscaZulu8="$(ls /usr/lib/jvm/ | grep -oe "zulu-8"'["]*' | sed '1q;d')" ; }
-            
 # INICIO SCRIPT
     
 Inicio () {
