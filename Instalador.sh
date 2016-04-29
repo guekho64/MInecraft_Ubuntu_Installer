@@ -195,8 +195,6 @@ ${null}"
 		
 			key="apt-key"
 			
-			Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')"
-			
 			DistroVersion="$(lsb_release -sr)"
 			
 			FinalCodename="$(lsb_release -sc)"
@@ -524,11 +522,9 @@ deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu precise main"
 				AptFastForcePPA="
 deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main"
 
-				Aria2ForcePPA="
-deb http://mirrors.kernel.org/ubuntu precise universe"
-
-				FallbackJavaForcePPA="
-deb http://security.ubuntu.com/ubuntu precise-security main universe"
+				FallbackMainUniversePPA="
+deb http://mirrors.kernel.org/ubuntu precise main universe
+deb http://mirrors.kernel.org/ubuntu precise-security main universe"
 
         # Post-Inicio
         
@@ -1187,8 +1183,13 @@ fi
             else
 
                 hcentro "$Msg_Contra" &
-                Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon="$ExecutableScriptIcon" )"
-                
+				
+				# Un extraño método para suprimir cierto molesto aviso de Zenity
+				
+                ZenityWarningRemoveMethod () { Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon="$ExecutableScriptIcon" )" ; }
+				
+				ZenityWarningRemoveMethod > /dev/null 2>&1
+				
             fi;
             
         # Función: autosudo            
@@ -1492,6 +1493,8 @@ fi
 			
 			if [ "$UbuntuDescription" = "Ubuntu" ]; then
 			
+				Universe > /dev/null 2>&1
+			
 				if [ "$Universe" = "universe" ]; then
 				
 					echo "" > /dev/null 2>&1
@@ -1576,7 +1579,10 @@ fi
 			
 				( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
 				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
-				( printf "$Aria2ForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				( printf "$FallbackMainUniversePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				
+				MainUniverseStatus="Si"
+				
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
@@ -1591,8 +1597,7 @@ fi
 				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
 				( printf "$AptFastForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
-				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-				(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast -y >> "${Registro}") > /dev/null 2>&1
+				( autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 				
 			fi
 			
@@ -1695,19 +1700,16 @@ fi
 				if [ "$BuscaJava8OpenJdk" = "$Nada" ]; then
 				
 					ProgressBar "94" "$Final"
-			
-					BuscaJava7OpenJdk > /dev/null 2>&1
-			
-					if [ "$BuscaJava7OpenJdk" = "$Nada" ]; then
-			
+					
+					if [ "$MainUniverseStatus" != "Si" ]; then
+					
 						( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
 						( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
-						( printf "$FallbackJavaForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+						( printf "$FallbackMainUniversePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
 						( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-						(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
-				
-					fi				
+						
+					fi
 					
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
@@ -1725,19 +1727,16 @@ fi
 				if [ "$BuscaZulu8" = "$Nada" ]; then
 				
 					ProgressBar "94" "$Final"
-			
-					BuscaJava7OpenJdk > /dev/null 2>&1
-			
-					if [ "$BuscaJava7OpenJdk" = "$Nada" ]; then
-			
+					
+					if [ "$MainUniverseStatus" != "Si" ]; then
+					
 						( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
 						( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
-						( printf "$FallbackJavaForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+						( printf "$FallbackMainUniversePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
 						( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-						(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
-				
-					fi				
+						
+					fi
 					
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
@@ -2038,6 +2037,8 @@ Terminal=false'
 		
 		# Funciones No-Genéricas
 		
+		Universe () {	Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')" ; }
+		
 		BuscaAria2 () { BuscaAria2="$(apt-cache search aria2 | grep -oe "aria2"'["]*' | sed '1q;d')" ; }
 		
 		BuscaAptFast () { BuscaAptFast="$(apt-cache search apt-fast | grep -oe "apt-fast"'["]*' | sed '1q;d')" ; }
@@ -2045,8 +2046,6 @@ Terminal=false'
 		BuscaInfinality () { BuscaInfinality="$(apt-cache search fontconfig-infinality | grep -oe "fontconfig-infinality"'["]*' | sed '1q;d')" ; }
 		
 		BuscaJava8OpenJdk () { BuscaJava8OpenJdk="$(ls /usr/lib/jvm/ | grep -oe "java-8-openjdk"'["]*' | sed '1q;d')" ; }
-		
-		BuscaJava7OpenJdk () { BuscaJava7OpenJdk="$(apt-cache search openjdk-7-jre | grep -oe "openjdk-7-jre"'["]*' | sed '1q;d')" ; }
 		
 		BuscaZulu8 () {  BuscaZulu8="$(ls /usr/lib/jvm/ | grep -oe "zulu-8"'["]*' | sed '1q;d')" ; }
             
