@@ -179,6 +179,10 @@ ${null}"
 		
 		LinuxMint13="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
 		
+		Ubuntu12="$(echo "$(echo "$DistroActual" | grep -oe 'Ubuntu["]*' -oe '12["]*')" | tr -d '[[:space:]]')"
+		
+		Ubuntu13="$(echo "$(echo "$DistroActual" | grep -oe 'Ubuntu["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
+		
 		DebianLinux="$(echo $DistroActual | grep -o 'Debian["]*')"
 		
 		LMDEBetsy="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe 'betsy["]*')" | tr -d '[[:space:]]')"
@@ -196,6 +200,13 @@ ${null}"
 			DistroVersion="$(lsb_release -sr)"
 			
 			FinalCodename="$(lsb_release -sc)"
+			
+			Description="$( echo $(lsb_release -ds) | grep -o 'Ubuntu["]*')"
+			
+			UniverseUbuntuPPA="
+deb http://archive.ubuntu.com/ubuntu ${FinalCodename} universe
+deb http://archive.ubuntu.com/ubuntu ${FinalCodename}-updates universe
+deb http://security.ubuntu.com/ubuntu ${FinalCodename}-security universe"
 			
 			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu ${FinalCodename} main
@@ -225,7 +236,7 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 		ErrorCodigo="Error código $?"
         
         Acepto="Yo acepté la licencia del programa de guekho64"
-        
+		
 	# Opciones de Programas
 	
 		cat "/usr/bin/aria2c" > /dev/null 2>&1
@@ -506,7 +517,19 @@ Opción Inválida${null}"
 			
 				ZuluOptionalPPA="
 deb http://repos.azulsystems.com/ubuntu stable main"
-            
+
+				InfinalityForcePPA="
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu precise main"
+
+				AptFastForcePPA="
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main"
+
+				Aria2ForcePPA="
+deb http://mirrors.kernel.org/ubuntu precise universe"
+
+				FallbackJavaForcePPA="
+deb http://security.ubuntu.com/ubuntu precise-security main universe"
+
         # Post-Inicio
         
             PstInicio1="${Verde}${negritas}Por alguna extraña razón, hace falta cierto archivo común, y es el que${null}"
@@ -579,9 +602,7 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
 	
 	if [ "$FinalCodename" = "xenial" ]; then
 	
-		if [ "$Universe" = "universe" ]; then
-	
-			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
 
 deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
@@ -592,26 +613,6 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
 
 deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
-	
-		else
-	
-			ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
-deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
-
-deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
-deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
-
-deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
-deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
-
-deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
-deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
-
-deb http://archive.ubuntu.com/ubuntu xenial universe
-deb http://archive.ubuntu.com/ubuntu xenial-updates universe
-deb http://security.ubuntu.com/ubuntu xenial-security universe"
-
-		fi
 			
 	fi
 	
@@ -1223,7 +1224,7 @@ fi
 			
 		else
 		
-			Fail () {  echo "Error" ; }
+			Fail () {  ( echo "Error" )  > /dev/null 2>&1 ; }
 		
 		fi
         
@@ -1489,6 +1490,21 @@ fi
 			
 			# If necessary
 			
+			if [ "$Description" = "Ubuntu" ]; then
+			
+				if [ "$Universe" = "universe" ]; then
+				
+					echo "" > /dev/null 2>&1
+					
+				else
+					
+					ProgressBar "51" "$Final"
+					( printf "$UniverseUbuntuPPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+					
+				fi
+
+			fi
+			
 			if [ "$DebianLinux" = "Debian" ]; then
 			
 			ProgressBar "53" "$Final"			
@@ -1498,6 +1514,22 @@ fi
 			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$Ubuntu12" = "Ubuntu12" ]; then
+			
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
+			
+			elif [ "$Ubuntu13" = "Ubuntu13" ]; then
 			
 			ProgressBar "53" "$Final"			
 			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
@@ -1535,7 +1567,36 @@ fi
 			ProgressBar "60" "$Final"
 			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 			ProgressBar "70" "$Final"
-			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast aria2 -y >> "${Registro}") > /dev/null 2>&1
+			
+			# Si es necesario...
+			
+			BuscaAria2 > /dev/null 2>&1
+			
+			if [ "$BuscaAria2" = "$Nada" ]; then
+			
+				( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+				( printf "$Aria2ForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
+				
+			fi
+			
+			BuscaAptFast > /dev/null 2>&1
+			
+			if [ "$BuscaAptFast" = "$Nada" ]; then
+			
+				( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+				( printf "$AptFastForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast -y >> "${Registro}") > /dev/null 2>&1
+				
+			fi
+			
+			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
 	
 			apt="apt-fast"
@@ -1546,6 +1607,19 @@ fi
 			ProgressBar "80" "$Final"
 			
 			# If necessary
+			
+			BuscaInfinality > /dev/null 2>&1
+			
+			if [ "$BuscaInfinality" = "$Nada" ]; then
+			
+				( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+				( printf "$InfinalityForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$apt" install --reinstall fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+				
+			fi
 			
 			if [ "$DebianLinux" = "Debian" ]; then
 			
@@ -1565,6 +1639,18 @@ fi
 			
 			JavaVar="zulu-8"
 			
+			elif [ "$Ubuntu12" = "Ubuntu12" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
+			elif [ "$Ubuntu13" = "Ubuntu13" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
+			
 			elif [ "$Deepin15" = "Deepin15.1.1" ]; then
 			
 			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
@@ -1579,15 +1665,13 @@ fi
 
 			else
 			
-			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 			ProgressBar "85" "$Final"
 			( touch "$PreferencesFile")  > /dev/null 2>&1
 			( printf "$OverrideForJava" >  "$PreferencesFile" )  > /dev/null 2>&1
 			( autosudo mv -f "$PreferencesFile" "$PreferencesFileDest" )  > /dev/null 2>&1
+			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 
 			fi
-			
-			CheckError
 			
 			if [ "$JavaVar" = "zulu-8" ]; then
 			
@@ -1601,16 +1685,81 @@ fi
 			
 			ProgressBar "90" "$Final"
 			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-			CheckError
-	
-			( autosudo "$InfinalityScript" setstyle osx2 >> "${Registro}") > /dev/null 2>&1
+			
+			ProgressBar "93" "$Final"
+			
+			if [ "$JVM" = "Unofficial-8" ]; then
+			
+				BuscaJava8OpenJdk > /dev/null 2>&1
+			
+				if [ "$BuscaJava8OpenJdk" = "$Nada" ]; then
+				
+					ProgressBar "94" "$Final"
+			
+					BuscaJava7OpenJdk > /dev/null 2>&1
+			
+					if [ "$BuscaJava7OpenJdk" = "$Nada" ]; then
+			
+						( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+						( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+						( printf "$FallbackJavaForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+						( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+						(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+				
+					fi				
+					
+					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
+					
+					JVM="Official-7"
+					
+				fi
+				
+			fi
+			
+			if [ "$JVM" = "Zulu-8" ]; then
+			
+				BuscaZulu8 > /dev/null 2>&1
+			
+				if [ "$BuscaZulu8" = "$Nada" ]; then
+				
+					ProgressBar "94" "$Final"
+			
+					BuscaJava7OpenJdk > /dev/null 2>&1
+			
+					if [ "$BuscaJava7OpenJdk" = "$Nada" ]; then
+			
+						( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+						( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+						( printf "$FallbackJavaForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+						( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+						(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+				
+					fi				
+					
+					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
+					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
+					
+					JVM="Official-7"
+					
+				fi
+				
+			fi
 			
 			ProgressBar "95" "$Final"
+			( autosudo "$InfinalityScript" setstyle osx2 >> "${Registro}") > /dev/null 2>&1
 			rm "$MinecraftIcons/Minecraft.png" > /dev/null 2>&1
 			Get "$MinecraftIcon" "$MinecraftIcons" "Minecraft.png"
 			Busca "$MinecraftIcons/Minecraft.png" -c
 			( autosudo ln --symbolic "$MinecraftIcons/Minecraft.png" "/usr/share/icons/" ) > /dev/null 2>&1
 	
+	
+			ProgressBar "97" "$Final"
+			
+			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
+			
 			ProgressBar "100" "$Final"
 
 		}
@@ -1886,6 +2035,20 @@ Terminal=false'
 		exit
 
 		}
+		
+		# Funciones No-Genéricas
+		
+		BuscaAria2 () { BuscaAria2="$(apt-cache search aria2 | grep -oe "aria2"'["]*' | sed '1q;d')" ; }
+		
+		BuscaAptFast () { BuscaAptFast="$(apt-cache search apt-fast | grep -oe "apt-fast"'["]*' | sed '1q;d')" ; }
+		
+		BuscaInfinality () { BuscaInfinality="$(apt-cache search fontconfig-infinality | grep -oe "fontconfig-infinality"'["]*' | sed '1q;d')" ; }
+		
+		BuscaJava8OpenJdk () { BuscaJava8OpenJdk="$(ls /usr/lib/jvm/ | grep -oe "java-8-openjdk"'["]*' | sed '1q;d')" ; }
+		
+		BuscaJava7OpenJdk () { BuscaJava7OpenJdk="$(apt-cache search openjdk-7-jre | grep -oe "openjdk-7-jre"'["]*' | sed '1q;d')" ; }
+		
+		BuscaZulu8 () {  BuscaZulu8="$(ls /usr/lib/jvm/ | grep -oe "zulu-8"'["]*' | sed '1q;d')" ; }
             
 # INICIO SCRIPT
     
