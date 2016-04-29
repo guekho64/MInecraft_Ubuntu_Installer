@@ -201,7 +201,7 @@ ${null}"
 			
 			FinalCodename="$(lsb_release -sc)"
 			
-			Description="$( echo $(lsb_release -ds) | grep -o 'Ubuntu["]*')"
+			UbuntuDescription="$( echo $(lsb_release -ds) | grep -o 'Ubuntu["]*')"
 			
 			UniverseUbuntuPPA="
 deb http://archive.ubuntu.com/ubuntu ${FinalCodename} universe
@@ -1490,7 +1490,7 @@ fi
 			
 			# If necessary
 			
-			if [ "$Description" = "Ubuntu" ]; then
+			if [ "$UbuntuDescription" = "Ubuntu" ]; then
 			
 				if [ "$Universe" = "universe" ]; then
 				
