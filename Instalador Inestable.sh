@@ -52,30 +52,37 @@ tput reset
 
 Opts="$( echo $@)"
 
-Antes () {
-
-ForceRead="$( echo "$Opts" |  grep -o '\--force-read["]*' )"
-
-if [ "$ForceRead" != "--force-read" ]; then
-
-	OverrideZenity="0"
-	
-else
-
-	OverrideZenity="1"
-	
-fi
-
-}
-
-Antes > /dev/null 2>&1
-
-# Antes de todo :v (Fin)
-
-
 # Lenguaje: Español
 
 # Funciones No-Genéricas
+
+		Antes () {
+
+								ForceRead="$( echo "$Opts" |  grep -o '\--force-read["]*' )"
+								
+								ForceUpdateAria2="$( echo "$Opts" |  grep -o '\--force-update-aria2["]*' )"
+
+								if [ "$ForceRead" != "--force-read" ]; then
+
+									OverrideZenity="0"
+	
+								else
+
+									OverrideZenity="1"
+	
+								fi
+								
+								if [ "$ForceUpdateAria2" != "--force-update-aria2" ]; then
+								
+									UpdateAria2="0"
+									
+								else
+								
+									UpdateAria2="1"
+									
+								fi
+								
+						} ; Antes > /dev/null 2>&1
 		
 		Universe () {	Universe="$(echo "$(echo "$(cat /etc/apt/sources.list)" | grep -o 'universe["]*')" | sed '1q;d')" ; }
 		
@@ -554,7 +561,7 @@ Opción Inválida${null}"
             
                 Titulo1="${verde}${negritas}¿Desea que el programa genere dichas carpetas por usted?${null}"
 				
-			# PPA
+			# PPA Add-ons
 			
 				ZuluOptionalPPA="
 deb http://repos.azulsystems.com/ubuntu stable main"
@@ -568,6 +575,9 @@ deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu precise main"
 				FallbackMainUniversePPA="
 deb http://mirrors.kernel.org/ubuntu precise main universe
 deb http://mirrors.kernel.org/ubuntu precise-security main universe"
+
+				MinimumAria2PPA="
+deb http://ppa.launchpad.net/t-tujikawa/ppa/ubuntu maverick main"
 
         # Post-Inicio
         
@@ -1214,7 +1224,7 @@ fi
     # Contraseña
     
         # Método de Introducción
-        
+		
             cat "${Zenity}" > /dev/null 2>&1
 
             if [ "$?" -ne "0" ]; then
@@ -1625,6 +1635,24 @@ fi
 			ProgressBar "70" "$Final"
 			
 			# Si es necesario...
+			
+			if [ "$UpdateAria2" = "1" ]; then
+			
+				ProgressBar "74" "$Final"
+			
+				( cp -f "$AptListFiles"/guekho64.list "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo chmod 777 "$Secret"/Temp.list ) > /dev/null 2>&1
+				( printf "$MinimumAria2PPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
+				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
+				
+				(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 1CB94782  >> "${Registro}")  > /dev/null 2>&1
+				
+				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
+				
+				ProgressBar "78" "$Final"
+				
+			fi
 			
 			BuscaAria2 > /dev/null 2>&1
 			
