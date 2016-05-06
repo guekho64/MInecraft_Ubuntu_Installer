@@ -46,7 +46,32 @@
 
 # Todo viaje, por largo que sea, empieza por un solo paso. "Lao Tse"
 
+# Antes de todo :v
+
 tput reset
+
+Opts="$( echo $@)"
+
+Antes () {
+
+ForceRead="$( echo "$Opts" |  grep -o '\--force-read["]*' )"
+
+if [ "$ForceRead" != "--force-read" ]; then
+
+	OverrideZenity="0"
+	
+else
+
+	OverrideZenity="1"
+	
+fi
+
+}
+
+Antes > /dev/null 2>&1
+
+# Antes de todo :v (Fin)
+
 
 # Lenguaje: Español
 
@@ -141,6 +166,8 @@ tput reset
 		DestGtkjava="/usr/bin/"
 		
 		Bin="$DestGtkjava"
+		
+		Zenity="/usr/bin/zenity"
 		
 		OverrideForJava='Package: *
 Pin: release o=LP-PPA-no1wantdthisname-openjdk-fontfix
@@ -408,7 +435,7 @@ ${negritas}Seleccione una opción:${null}"
             
 			NotyAcabado="Ya acabé"
 
-			SpecialNoty="¡Ya instalé las notificaciones de escritorio! ¿Acaso no me veo genial?"
+			SpecialNoty="¡Ya instalé las notificaciones de escritorio!"
 
             DialogoInstalador1="${negritas}${verde}¡Bienvenido al Instalador de Minecraft de guekho64!${null}"
             
@@ -1188,25 +1215,35 @@ fi
     
         # Método de Introducción
         
-            cat "/usr/bin/zenity" > /dev/null 2>&1
+            cat "${Zenity}" > /dev/null 2>&1
 
-            if [ $? -ne 0 ]; then
+            if [ "$?" -ne "0" ]; then
             
                 hcentro "$Msg_Contra"
                 echo ""
                 read Passwd
 
             else
+			
+				if [ "$OverrideZenity" = "1" ]; then
+            
+					hcentro "$Msg_Contra"
+					echo ""
+					read Passwd
+					
+				elif [ "$OverrideZenity" = "0" ]; then
 
-                hcentro "$Msg_Contra" &
+					hcentro "$Msg_Contra" &
 				
-				# Un extraño método para suprimir cierto molesto aviso de Zenity
+					# Un extraño método para suprimir cierto molesto aviso de Zenity
 				
-                ZenityWarningRemoveMethod () { Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon="$ExecutableScriptIcon" )" ; }
+					ZenityWarningRemoveMethod () { Passwd="$(zenity --title "$Msg_Contra_Zenity" --password --window-icon="$ExecutableScriptIcon" )" ; }
 				
-				ZenityWarningRemoveMethod > /dev/null 2>&1
+					ZenityWarningRemoveMethod > /dev/null 2>&1
 				
-            fi;
+				fi
+				
+			fi
             
         # Función: autosudo            
     
@@ -1433,7 +1470,7 @@ fi
 						CheckError
 						ProgressBar "32" "$Final"
 						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-						(autosudo "$apt" install libnotify-bin libnotify4 -y >> "${Registro}") > /dev/null 2>&1
+						(autosudo "$apt" install libnotify-bin -y >> "${Registro}") > /dev/null 2>&1
 						CheckError
 						ProgressBar "64" "$Final"
 						(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
