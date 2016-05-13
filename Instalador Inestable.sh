@@ -1551,7 +1551,7 @@ fi
 		
 		# Funciones Misceláneas
 		
-			# Indicar la Instalación de Zulu JVm en lugar del tradicional OpenJDK
+			# Indicar la Instalación de Zulu JVM en lugar del tradicional OpenJDK
 			
 				InstallZuluJvm () {
 				
