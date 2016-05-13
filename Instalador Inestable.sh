@@ -343,6 +343,8 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
             
          fi;
 		 
+		 dpkg="dpkg"
+		 
 # Variables de Lenguaje
 
     # Español
@@ -1504,6 +1506,8 @@ fi
 						CheckError
 						ProgressBar "32" "$Final"
 						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+						(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+						(autosudo "$apt" install -f) > /dev/null 2>&1
 						(autosudo "$apt" install libnotify-bin -y >> "${Registro}") > /dev/null 2>&1
 						CheckError
 						ProgressBar "64" "$Final"
@@ -1563,6 +1567,8 @@ fi
 			
 				ZuluJvmInstalled () {
 				
+				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 			
 				JavaVar="zulu-8"
@@ -1668,6 +1674,8 @@ fi
 				(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 1CB94782  >> "${Registro}")  > /dev/null 2>&1
 				
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
 				
 				ProgressBar "78" "$Final"
@@ -1686,6 +1694,8 @@ fi
 				
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
 				
 			fi
@@ -1702,6 +1712,8 @@ fi
 				
 			fi
 			
+			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
 	
@@ -1723,6 +1735,8 @@ fi
 				( printf "$InfinalityForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
+				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 				
 			fi
@@ -1765,6 +1779,8 @@ fi
 			( touch "$PreferencesFile")  > /dev/null 2>&1
 			( printf "$OverrideForJava" >  "$PreferencesFile" )  > /dev/null 2>&1
 			( autosudo mv -f "$PreferencesFile" "$PreferencesFileDest" )  > /dev/null 2>&1
+			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 
 			fi
@@ -1814,6 +1830,8 @@ fi
 						
 					fi
 					
+					(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+					(autosudo "$apt" install -f) > /dev/null 2>&1
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
 					
@@ -1841,6 +1859,8 @@ fi
 						
 					fi
 					
+					(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+					(autosudo "$apt" install -f) > /dev/null 2>&1
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
 					
@@ -2326,6 +2346,8 @@ else
 			ProgressBar "20" "$Final"
 			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 			ProgressBar "40" "$Final"
+			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
+			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo "$apt" install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
 			ProgressBar "60" "$Final"
