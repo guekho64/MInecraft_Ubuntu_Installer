@@ -2120,6 +2120,12 @@ Terminal=false'
     
 Inicio () {
 
+#Un Bug MUY Peculiar si es que ya tenías la carpeta .guekho64 antes...
+
+autosudo chmod 777 "$HOME/.guekho64"
+
+#ARREGLADO
+
 tput reset
 
 if [ "$Passwd" = "$Nada" ]; then
