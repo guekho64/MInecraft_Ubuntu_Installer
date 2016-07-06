@@ -1,1 +1,4 @@
 * Evitar la creación de "guekho64.list" en "/etc/apt/sources.list.d/" si los PPA's ya han sido añadidos con anterioridad usando "cat /etc/apt/sources.list.d/*" para obtener la lista de ppa's y detectar los ppa's de script que ya han sido añadidos
+* Añadir Soporte de Linux Mint 18 "Sarah"
+* Añadir Modo de Instalación "Personaliada"
+* Añadir Modo de "Desinstalación"
