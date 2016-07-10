@@ -202,7 +202,7 @@ Opts="$( echo $@)"
 		
 		OverrideForJava='Package: *
 Pin: release o=LP-PPA-no1wantdthisname-openjdk-fontfix
-Pin-Priority: 64000'
+Pin-Priority: 10000'
 		
 		InfinalityScript="/etc/fonts/infinality/infctl.sh"
 		
