@@ -2195,14 +2195,14 @@ exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
 			
 		tput reset
 		
+		OK "$MyMessage" "Minecraft" "$FirstMyMessage"
+		
 		hcentro "$Aviso"
 		echo ""
 		hcentro "$ENTERPRESS"
 		read
 		
 		tput reset
-		
-		OK "$MyMessage" "Minecraft" "$FirstMyMessage" 
 		
 		echo "$Publicidad"
 		echo ""
