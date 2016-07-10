@@ -2066,7 +2066,132 @@ exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
 			
 			ProgressBar "32" "$Final"
 			
-			Wassap
+			if [ "$Estado" = "Ambos" ]; then
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
+			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
+			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
+			CheckError
+			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
+			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
+			CheckError
+			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
+			CheckError
+			
+			ProgressBar "100" "$Final"
+			
+			elif [ "$Estado" = "Premium" ]; then
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "100" "$Final"
+			
+			elif [ "$Estado" = "Offline" ]; then
+			
+			ProgressBar "40" "$Final"
+			
+			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "48" "$Final"
+			
+			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "56" "$Final"
+			
+			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "64" "$Final"
+			
+				#Desktop File
+			
+			ProgressBar "72" "$Final"
+			
+			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "80" "$Final"
+			
+			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
+			
+			ProgressBar "90" "$Final"
+			
+			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
+			
+			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
+			
+			CheckError
+			
+			ProgressBar "100" "$Final"
+
+			else
+			
+				Error
+				
+			fi
 			
 		tput reset
 		
