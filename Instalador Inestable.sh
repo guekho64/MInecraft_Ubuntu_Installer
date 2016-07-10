@@ -61,10 +61,6 @@ Opts="$( echo $@)"
 								ForceRead="$( echo "$Opts" |  grep -o '\--force-read["]*' )"
 								
 								ForceUpdateAria2="$( echo "$Opts" |  grep -o '\--force-update-aria2["]*' )"
-								
-								ForceZuluJvm="$( echo "$Opts" |  grep -o '\--force-zulu-jvm["]*' )"
-								
-								ForceNativeJava="$( echo "$Opts" |  grep -o '\--force-native-jvm["]*' )"
 
 								if [ "$ForceRead" != "--force-read" ]; then
 
@@ -83,26 +79,6 @@ Opts="$( echo $@)"
 								else
 								
 									UpdateAria2="1"
-									
-								fi
-								
-								if [ "$ForceZuluJvm" != "--force-zulu-jvm" ]; then
-								
-									ZuluInstallationState="0"
-									
-								else
-								
-									ZuluInstallationState="1"
-									
-								fi
-								
-								if [ "$ForceNativeJava" != "--force-native-jvm" ]; then
-								
-									NativeJavaEnabled="0"
-									
-								else
-								
-									NativeJavaEnabled="1"
 									
 								fi
 								
@@ -202,7 +178,7 @@ Opts="$( echo $@)"
 		
 		OverrideForJava='Package: *
 Pin: release o=LP-PPA-no1wantdthisname-openjdk-fontfix
-Pin-Priority: 6400'
+Pin-Priority: 64000'
 		
 		InfinalityScript="/etc/fonts/infinality/infctl.sh"
 		
@@ -244,12 +220,59 @@ ${null}"
                 Licencia_Yay="${negritas}${verde}Al parecer, usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
             
                 Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
+				
+	# Definiciones
+	
+		Minecraft_Icon_Premium='[Desktop Entry]
+Version=1.0
+Name=Minecraft Premium
+GenericName=Game
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo completamente abierto!
+Icon=Minecraft
+Exec=minecraft-premium
+NoDisplay=false
+Categories=Game
+StartupNotify=false
+Terminal=false
+Type=Application
+Actions=Root;
+
+[Desktop Action Root]
+Name=Carpeta Raíz
+Exec=xdg-open ~/.minecraft
+OnlyShowIn=Unity'
+			
+				Minecraft_Icon_Offline='[Desktop Entry]
+Version=1.0
+Name=Minecraft Offline
+GenericName=Game
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo completamente abierto!
+Icon=Minecraft
+Exec=minecraft-offline
+NoDisplay=false
+Categories=Game
+StartupNotify=false
+Terminal=false
+Type=Application
+Actions=Root;
+
+[Desktop Action Root]
+Name=Carpeta Raíz
+Exec=xdg-open ~/.minecraft
+OnlyShowIn=Unity'
+
+				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
+				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
         
-    # Misc
+    # Información Especial de Distros
 	
 		DistroActual="$(lsb_release -is) $(lsb_release -rs) $(lsb_release -cs)"
 	
 		LinuxMint17="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '17["]*')" | tr -d '[[:space:]]')"
+		
+		LinuxMint18="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '18["]*')" | tr -d '[[:space:]]')"
 		
 		LinuxMint13="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
 		
@@ -261,7 +284,7 @@ ${null}"
 		
 		LMDEBetsy="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe 'betsy["]*')" | tr -d '[[:space:]]')"
 		
-		Deepin15="$(echo "$(echo "$DistroActual" | grep -oe 'Deepin["]*' -oe '15["]*')" | tr -d '[[:space:]]')"
+		Deepin15="$(echo "$(echo "$DistroActual" | grep -oe 'Deepin["]*' -oe '15.1.1["]*')" | tr -d '[[:space:]]')"
 		
 		KaliLinux="$(echo $DistroActual | grep -o 'Kali["]*')"
 		
@@ -342,8 +365,6 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
 			 apt="apt-get"
             
          fi;
-		 
-		 dpkg="dpkg"
 		 
 # Variables de Lenguaje
 
@@ -649,7 +670,7 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
 
 	fi
 
-	if [ "$Deepin15" = "Deepin15" ]; then
+	if [ "$Deepin15" = "Deepin15.1.1" ]; then
 	
 		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty main
@@ -698,6 +719,22 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty 
 
 deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
 deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+	
+	if [ "$LinuxMint18" = "LinuxMint18" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
 
 deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
@@ -1506,8 +1543,6 @@ fi
 						CheckError
 						ProgressBar "32" "$Final"
 						(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-						(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-						(autosudo "$apt" install -f) > /dev/null 2>&1
 						(autosudo "$apt" install libnotify-bin -y >> "${Registro}") > /dev/null 2>&1
 						CheckError
 						ProgressBar "64" "$Final"
@@ -1549,32 +1584,6 @@ fi
 		
 		}
 		
-		# Funciones Misceláneas
-		
-			# Indicar la Instalación de Zulu JVM en lugar del tradicional OpenJDK
-			
-				InstallZuluJvm () {
-				
-				ProgressBar "53" "$Final"			
-				(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
-				CheckError
-				ProgressBar "57" "$Final"
-				( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
-				
-				}
-				
-			# Instalar Zulu JVM e Indicar su presencia
-			
-				ZuluJvmInstalled () {
-				
-				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-				(autosudo "$apt" install -f) > /dev/null 2>&1
-				(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
-			
-				JavaVar="zulu-8"
-				
-				}
-		
 		# Función: Vientos de Hyrule ( Easter Egg )
 		
 		Hyrulean_Winds () {
@@ -1593,16 +1602,16 @@ fi
 			ProgressBar "10" "$Final"
 			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
 			CheckError
-			ProgressBar "20" "$Final"
-			
-			#Dead
-			
+			ProgressBar "20" "$Final"	
+			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys E985B27B >> "${Registro}")  > /dev/null 2>&1
+			CheckError
 			ProgressBar "30" "$Final"	
 			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys DC058F40 >> "${Registro}")  > /dev/null 2>&1
 			CheckError
-			ProgressBar "40" "$Final"	
-			(autosudo "$key" adv --keyserver keyserver.ubuntu.com --recv-keys E985B27B >> "${Registro}")  > /dev/null 2>&1
-			CheckError
+			ProgressBar "40" "$Final"
+
+			# Dead 
+
 			ProgressBar "50" "$Final"
 			( printf "$ListFile" >  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
@@ -1612,7 +1621,11 @@ fi
 			
 				Universe > /dev/null 2>&1
 			
-				if [ "$Universe" != "universe" ]; then
+				if [ "$Universe" = "universe" ]; then
+				
+					echo "" > /dev/null 2>&1
+					
+				else
 					
 					ProgressBar "51" "$Final"
 					( printf "$UniverseUbuntuPPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
@@ -1621,37 +1634,61 @@ fi
 
 			fi
 			
-			if [ "$ZuluInstallationState" = "1" ]; then
+			if [ "$DebianLinux" = "Debian" ]; then
 			
-			InstallZuluJvm
-			
-			elif [ "$DebianLinux" = "Debian" ]; then
-			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$Ubuntu12" = "Ubuntu12" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$Ubuntu13" = "Ubuntu13" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
-			elif [ "$Deepin15" = "Deepin15" ]; then
+			elif [ "$Deepin15" = "Deepin15.1.1" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$LinuxMint13" = "LinuxMint13" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 			
 			elif [ "$KaliLinux" = "Kali" ]; then
 			
-			InstallZuluJvm
+			ProgressBar "53" "$Final"			
+			(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 >> "${Registro}")  > /dev/null 2>&1
+			CheckError
+			ProgressBar "57" "$Final"
+			( printf "$ZuluOptionalPPA" >>  "$Secret"/Temp.list ) > /dev/null 2>&1
 
 			fi
 			
@@ -1674,8 +1711,6 @@ fi
 				(autosudo "$key" adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 1CB94782  >> "${Registro}")  > /dev/null 2>&1
 				
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
 				
 				ProgressBar "78" "$Final"
@@ -1694,8 +1729,6 @@ fi
 				
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall aria2 -y >> "${Registro}") > /dev/null 2>&1
 				
 			fi
@@ -1712,8 +1745,6 @@ fi
 				
 			fi
 			
-			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo DEBIAN_FRONTEND=noninteractive "$apt" install apt-fast -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
 	
@@ -1735,43 +1766,51 @@ fi
 				( printf "$InfinalityForcePPA" >> "$Secret"/Temp.list ) > /dev/null 2>&1
 				( autosudo mv -f "$Secret"/Temp.list "$AptListFiles"/guekho64.list ) > /dev/null 2>&1
 				(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
-				(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-				(autosudo "$apt" install -f) > /dev/null 2>&1
 				(autosudo "$apt" install --reinstall fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 				
 			fi
 			
-			if [ "$ZuluInstallationState" = "1" ]; then
+			if [ "$DebianLinux" = "Debian" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 			
-			elif [ "$DebianLinux" = "Debian" ]; then
-			
-			ZuluJvmInstalled
+			JavaVar="zulu-8"
 			
 			elif [ "$LinuxMint13" = "LinuxMint13" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
 			
 			elif [ "$LMDEBetsy" = "LinuxMintbetsy" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
 			
 			elif [ "$Ubuntu12" = "Ubuntu12" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
 			
 			elif [ "$Ubuntu13" = "Ubuntu13" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
 			
-			elif [ "$Deepin15" = "Deepin15" ]; then
+			JavaVar="zulu-8"
 			
-			ZuluJvmInstalled
+			elif [ "$Deepin15" = "Deepin15.1.1" ]; then
+			
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
 			
 			elif [ "$KaliLinux" = "Kali" ]; then
 			
-			ZuluJvmInstalled
+			(autosudo "$apt" install zulu-8 fontconfig-infinality -y >> "${Registro}") > /dev/null 2>&1
+			
+			JavaVar="zulu-8"
 
 			else
 			
@@ -1779,8 +1818,6 @@ fi
 			( touch "$PreferencesFile")  > /dev/null 2>&1
 			( printf "$OverrideForJava" >  "$PreferencesFile" )  > /dev/null 2>&1
 			( autosudo mv -f "$PreferencesFile" "$PreferencesFileDest" )  > /dev/null 2>&1
-			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo "$apt" install fontconfig-infinality openjdk-8-jre openjdk-8-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 
 			fi
@@ -1788,18 +1825,6 @@ fi
 			if [ "$JavaVar" = "zulu-8" ]; then
 			
 				JVM="Zulu-8"
-				
-			elif [ "$JavaVar" = "Native" ]; then
-			
-				JVM="Native"
-			
-			elif [ "$ZuluInstallationState" = "1" ]; then
-			
-				JVM="Zulu-8"
-			
-			elif [ "$NativeJavaEnabled" = "1" ]; then
-			
-				JVM="Native"
 			
 			else
 			
@@ -1830,8 +1855,6 @@ fi
 						
 					fi
 					
-					(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-					(autosudo "$apt" install -f) > /dev/null 2>&1
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
 					
@@ -1859,8 +1882,6 @@ fi
 						
 					fi
 					
-					(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-					(autosudo "$apt" install -f) > /dev/null 2>&1
 					(autosudo "$apt" install openjdk-7-jre openjdk-7-jre-headless -y >> "${Registro}") > /dev/null 2>&1
 					Busca /usr/lib/jvm/java-7-openjdk-*/jre/bin/java -c > /dev/null 2>&1
 					
@@ -1875,7 +1896,7 @@ fi
 			rm "$MinecraftIcons/Minecraft.png" > /dev/null 2>&1
 			Get "$MinecraftIcon" "$MinecraftIcons" "Minecraft.png"
 			Busca "$MinecraftIcons/Minecraft.png" -c
-			( autosudo ln -f --symbolic "$MinecraftIcons/Minecraft.png" "/usr/share/icons/" ) > /dev/null 2>&1
+			( autosudo ln --symbolic "$MinecraftIcons/Minecraft.png" "/usr/share/icons/" ) > /dev/null 2>&1
 	
 	
 			ProgressBar "97" "$Final"
@@ -1885,56 +1906,6 @@ fi
 			ProgressBar "100" "$Final"
 
 		}
-		
-		# Función: HardToBeat
-		
-		HardToBeat () {
-
-			autosudo pkill synaptic > /dev/null 2>&1
-			autosudo "$apt" clean > /dev/null 2>&1
-	
-			tput reset
-	
-			Destino="Rápido"
-			
-			JVM="Native"
-	
-			hcentro "$WaitingDestinoRapido"
-			echo ""
-			hcentro "$Noty"
-			echo ""
-			ProgressBar "20" "$Final"
-			(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-			CheckError
-			ProgressBar "40" "$Final"
-			
-			Busca "/usr/bin/java" -c
-			
-			if [ "$NativeJavaEnabled" = "1" ]; then
-			
-				if [ "$ErrVar" = "0" ]; then
-				
-				ProgressBar "64" "$Final"
-				rm "$MinecraftIcons/Minecraft.png" > /dev/null 2>&1
-				Gettie > /dev/null 2>&1
-				Get "$MinecraftIcon" "$MinecraftIcons" "Minecraft.png"
-				Busca "$MinecraftIcons/Minecraft.png" -c
-				( autosudo ln -f --symbolic "$MinecraftIcons/Minecraft.png" "/usr/share/icons/" ) > /dev/null 2>&1
-	
-				ProgressBar "80" "$Final"
-			
-				(autosudo "$apt" clean >> "${Registro}") > /dev/null 2>&1
-			
-				ProgressBar "100" "$Final"
-				
-				fi
-				
-			fi
-			
-		
-		}
-		
-		# Función: Instalar Minecraft
 		
 		InstallMinecraft () {
 
@@ -1974,15 +1945,6 @@ SPECIAL_ARGS="-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFee
 
 exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
 				
-			elif [ "$JVM" = "Native" ]; then
-			
-				gtkjava='#!/bin/bash
-
-GTKJVM="/usr/bin/java"
-SPECIAL_ARGS="-Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-
-exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
-				
 			else
 			
 				Error
@@ -2004,35 +1966,6 @@ exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
 			ProgressBar "32" "$Final"
 			
 			if [ "$Estado" = "Ambos" ]; then
-			
-				Minecraft_Icon_Premium='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Premium
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-premium
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-			
-				Minecraft_Icon_Offline='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Offline
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-offline
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
-				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
 			
 			ProgressBar "40" "$Final"
 			
@@ -2079,21 +2012,6 @@ Terminal=false'
 			
 			elif [ "$Estado" = "Premium" ]; then
 			
-				Minecraft_Icon_Premium='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Premium
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-premium
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
-			
 			ProgressBar "40" "$Final"
 			
 			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
@@ -2131,21 +2049,6 @@ Terminal=false'
 			ProgressBar "100" "$Final"
 			
 			elif [ "$Estado" = "Offline" ]; then
-			
-				Minecraft_Icon_Offline='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Offline
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-offline
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
 			
 			ProgressBar "40" "$Final"
 			
@@ -2189,7 +2092,6 @@ Terminal=false'
 				
 			fi
 			
-			
 		tput reset
 		
 		hcentro "$Aviso"
@@ -2216,7 +2118,6 @@ Terminal=false'
 		exit
 
 		}
-		
 		
 # INICIO SCRIPT
     
@@ -2352,8 +2253,6 @@ else
 			ProgressBar "20" "$Final"
 			(autosudo "$apt" update >> "${Registro}") > /dev/null 2>&1
 			ProgressBar "40" "$Final"
-			(autosudo "$dpkg" --configure -a)  > /dev/null 2>&1
-			(autosudo "$apt" install -f) > /dev/null 2>&1
 			(autosudo "$apt" install xdg-user-dirs -y >> "${Registro}") > /dev/null 2>&1
 			CheckError
 			ProgressBar "60" "$Final"
@@ -2535,21 +2434,9 @@ fi
               
 		Menu_Simple "${n}" "${negritas}${amarillo}Rápido${null}" "${negritas}${azul}Personalizado${null}"
 		
-		if [ "$RespuestaETD" = "Si" ]; then
+		if [ "$RespuestaETD" = "Si" ];then
 		
-			if [ "$NativeJavaEnabled" = "1" ]; then
-			
-				HardToBeat && InstallMinecraft
-				
-			elif [ "$NativeJavaEnabled" = "0" ]; then
-		
-				Hyrulean_Winds && InstallMinecraft
-				
-			else
-			
-				Error
-				
-			fi
+			Hyrulean_Winds && InstallMinecraft
 			
 		elif [ "$RespuestaETD" = "No" ];then
 		
