@@ -202,7 +202,7 @@ Opts="$( echo $@)"
 		
 		OverrideForJava='Package: *
 Pin: release o=LP-PPA-no1wantdthisname-openjdk-fontfix
-Pin-Priority: 6400'
+Pin-Priority: 64000'
 		
 		InfinalityScript="/etc/fonts/infinality/infctl.sh"
 		
@@ -244,12 +244,59 @@ ${null}"
                 Licencia_Yay="${negritas}${verde}Al parecer, usted ya ha aceptado anteriormente la licencia y los términos de uso${null}"
             
                 Licencia_Yay1="${negritas}${verde}por lo que el programa puede continuar${null}"
+				
+	# Misc
+	
+		Minecraft_Icon_Premium='[Desktop Entry]
+Version=1.0
+Name=Minecraft Premium
+GenericName=Game
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo completamente abierto!
+Icon=Minecraft
+Exec=minecraft-premium
+NoDisplay=false
+Categories=Game
+StartupNotify=false
+Terminal=false
+Type=Application
+Actions=Root;
+
+[Desktop Action Root]
+Name=Carpeta Raíz
+Exec=xdg-open ~/.minecraft
+OnlyShowIn=Unity'
+			
+				Minecraft_Icon_Offline='[Desktop Entry]
+Version=1.0
+Name=Minecraft Offline
+GenericName=Game
+Comment[en]=Play in a completely open world!
+Comment[es]=¡Juega en un mundo completamente abierto!
+Icon=Minecraft
+Exec=minecraft-offline
+NoDisplay=false
+Categories=Game
+StartupNotify=false
+Terminal=false
+Type=Application
+Actions=Root;
+
+[Desktop Action Root]
+Name=Carpeta Raíz
+Exec=xdg-open ~/.minecraft
+OnlyShowIn=Unity'
+
+				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
+				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
         
-    # Misc
+    # Informacion Especial Distros
 	
 		DistroActual="$(lsb_release -is) $(lsb_release -rs) $(lsb_release -cs)"
 	
 		LinuxMint17="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '17["]*')" | tr -d '[[:space:]]')"
+		
+		LinuxMint18="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '18["]*')" | tr -d '[[:space:]]')"
 		
 		LinuxMint13="$(echo "$(echo "$DistroActual" | grep -oe 'LinuxMint["]*' -oe '13["]*')" | tr -d '[[:space:]]')"
 		
@@ -698,6 +745,22 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu trusty 
 
 deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
 deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu trusty main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
+
+	fi
+	
+	if [ "$LinuxMint18" = "LinuxMint18" ]; then
+	
+		ListFile="deb http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/openjdk-fontfix/ubuntu xenial main
+
+deb http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+deb-src http://ppa.launchpad.net/saiarcot895/myppa/ubuntu xenial main 
+
+deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
+deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu xenial main
 
 deb http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main
 deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu trusty main"
@@ -2003,192 +2066,7 @@ exec $GTKJVM "$SPECIAL_ARGS"  "$@" >&2'
 			
 			ProgressBar "32" "$Final"
 			
-			if [ "$Estado" = "Ambos" ]; then
-			
-				Minecraft_Icon_Premium='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Premium
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-premium
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-			
-				Minecraft_Icon_Offline='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Offline
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-offline
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
-				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
-			
-			ProgressBar "40" "$Final"
-			
-			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
-			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "48" "$Final"
-			
-			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
-			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "56" "$Final"
-			
-			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
-			CheckError
-			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
-			CheckError
-			
-			ProgressBar "64" "$Final"
-			
-				#Desktop File
-			
-			ProgressBar "72" "$Final"
-			
-			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
-			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "80" "$Final"
-			
-			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
-			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "90" "$Final"
-			
-			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
-			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
-			
-			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
-			CheckError
-			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
-			CheckError
-			
-			ProgressBar "100" "$Final"
-			
-			elif [ "$Estado" = "Premium" ]; then
-			
-				Minecraft_Icon_Premium='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Premium
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-premium
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftPremium="gtkjava -jar $MinecraftPremiumJar"
-			
-			ProgressBar "40" "$Final"
-			
-			( printf "$MinecraftPremium" >  "$Tempminecraftpremium" ) > /dev/null 2>&1
-			
-			ProgressBar "48" "$Final"
-			
-			( chmod +x "$Tempminecraftpremium" ) > /dev/null 2>&1
-			
-			ProgressBar "56" "$Final"
-			
-			( autosudo mv -f "$Tempminecraftpremium" "$Bin" ) > /dev/null 2>&1
-			
-			CheckError
-			
-			ProgressBar "64" "$Final"
-			
-				#Desktop File
-			
-			ProgressBar "72" "$Final"
-			
-			( printf "$Minecraft_Icon_Premium" >  "$Desktopminecraftpremium" ) > /dev/null 2>&1
-			
-			ProgressBar "80" "$Final"
-			
-			( chmod +x "$Desktopminecraftpremium" ) > /dev/null 2>&1
-			
-			ProgressBar "90" "$Final"
-			
-			( cp -f "$Desktopminecraftpremium" "$Escritorio" ) > /dev/null 2>&1
-			
-			( autosudo mv -f "$Desktopminecraftpremium" "$UniversalAppsDir" ) > /dev/null 2>&1
-			
-			CheckError
-			
-			ProgressBar "100" "$Final"
-			
-			elif [ "$Estado" = "Offline" ]; then
-			
-				Minecraft_Icon_Offline='[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Minecraft Offline
-Comment[en]=Play in a completely open world!
-Comment[es]=¡Juega en un mundo totalmente abierto!
-Icon=Minecraft
-Exec=minecraft-offline
-NoDisplay=false
-Categories=Game;
-StartupNotify=false
-Terminal=false'
-
-				MinecraftOffline="gtkjava -jar $MinecraftOfflineJar"
-			
-			ProgressBar "40" "$Final"
-			
-			( printf "$MinecraftOffline" >  "$Tempminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "48" "$Final"
-			
-			( chmod +x "$Tempminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "56" "$Final"
-			
-			( autosudo mv -f "$Tempminecraftoffline" "$Bin" ) > /dev/null 2>&1
-			
-			CheckError
-			
-			ProgressBar "64" "$Final"
-			
-				#Desktop File
-			
-			ProgressBar "72" "$Final"
-			
-			( printf "$Minecraft_Icon_Offline" >  "$Desktopminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "80" "$Final"
-			
-			( chmod +x "$Desktopminecraftoffline" ) > /dev/null 2>&1
-			
-			ProgressBar "90" "$Final"
-			
-			( cp -f "$Desktopminecraftoffline" "$Escritorio" ) > /dev/null 2>&1
-			
-			( autosudo mv -f "$Desktopminecraftoffline" "$UniversalAppsDir" ) > /dev/null 2>&1
-			
-			CheckError
-			
-			ProgressBar "100" "$Final"
-
-			else
-			
-				Error
-				
-			fi
-			
+			Wassap
 			
 		tput reset
 		
