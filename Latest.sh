@@ -376,7 +376,7 @@ deb-src http://ppa.launchpad.net/no1wantdthisname/ppa/ubuntu ${FinalCodename} ma
             
          fi;
 	
-		cat "/usr/bin/apt-fast" > /dev/null 2>&1
+		cat "/usr/sbin/apt-fast" > /dev/null 2>&1
 		
 		TempErrorVar="$?"
 	
