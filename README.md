@@ -9,10 +9,6 @@ Por hacer:
 
 Gmail: guekho64@gmail.com
 
-Contact me!
-
-Gmail: guekho64@gmail.com
-
 # Guekho64's Minecraft Installer for Ubuntu
 This repository was made to host the source code from my own script. This was done 'cause I want to share my software with everyone.
 
