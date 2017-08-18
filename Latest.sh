@@ -583,11 +583,7 @@ ${negritas}Seleccione una opción:${null}"
          
             # Función: Color
 		
-            Color () {
-
-                        echo "\033[$1m"
-
-            }
+            Color () { echo "\033[$1m"; }
             
             # Función: Color FIN
          
@@ -1348,7 +1344,7 @@ fi
     
         autosudo () {
         
-        echo "$Passwd" | sudo -S "$@"
+        echo "$Passwd" | sudo -S -k "$@" > /dev/null 2>&1
         
         }
         
@@ -2243,7 +2239,7 @@ if [ "$Passwd" = "$Nada" ]; then
     
 else
 
-    ( echo "$Passwd" | sudo -S echo ) > /dev/null 2>&1
+    ( echo "$Passwd" | sudo -S -k echo ) > /dev/null 2>&1
     
     if [ "$?" = "0" ]; then
     
